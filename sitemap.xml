@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Architecture Basics Homepage -->
+  <url>
+    <loc>https://www.abasics.in/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.abasics.in/logo-dark.png</image:loc>
+      <image:title>Architecture Basics Logo</image:title>
+      <image:caption>Architecture Basics - Fusion Architecture &amp; Sustainable Design Studio</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.abasics.in/logo-white.png</image:loc>
+      <image:title>Architecture Basics Monogram</image:title>
+      <image:caption>Architecture Basics Studio Monogram</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.abasics.in/logo.png</image:loc>
+      <image:title>Architecture Basics Brandmark</image:title>
+      <image:caption>Architecture Basics Brandmark</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Architectural Narrative -->
+  <url>
+    <loc>https://www.abasics.in/#scrolly-container</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Design Philosophy & Ethos -->
+  <url>
+    <loc>https://www.abasics.in/#philosophy</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Works & Architectural Typologies -->
+  <url>
+    <loc>https://www.abasics.in/#projects</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Visual Monograph & Gallery Archive -->
+  <url>
+    <loc>https://www.abasics.in/#gallery</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Atelier Ruchir & 4-Stage Process -->
+  <url>
+    <loc>https://www.abasics.in/#about</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Physical Atelier Location & Google Maps -->
+  <url>
+    <loc>https://www.abasics.in/#contact</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Private Studio Consultation & Booking Scheduler -->
+  <url>
+    <loc>https://www.abasics.in/#appointment</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>
