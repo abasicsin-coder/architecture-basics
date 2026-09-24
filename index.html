@@ -1020,36 +1020,69 @@
   <!-- ========================================================================= -->
   <!-- MODAL 1: PROJECT DETAIL MODAL -->
   <!-- ========================================================================= -->
-  <div id="project-modal" class="fixed inset-0 z-50 bg-stone-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-stone-50 max-w-2xl w-full border border-stone-300 shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200">
+  <div id="project-modal" class="fixed inset-0 z-50 bg-stone-950/85 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeProjectModal()">
+    <div class="bg-stone-900 max-w-2xl w-full border border-stone-700 shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200" onclick="event.stopPropagation()">
       <!-- Close Button -->
-      <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-stone-900/80 text-stone-200 hover:bg-stone-900 flex items-center justify-center transition-colors">
-        <i data-lucide="x" class="w-5 h-5"></i>
+      <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-stone-900/90 text-white hover:bg-stone-800 border border-stone-600 flex items-center justify-center transition-colors shadow">
+        <i data-lucide="x" class="w-5 h-5 text-white"></i>
       </button>
 
-      <div class="h-72 w-full overflow-hidden relative bg-stone-900">
+      <div class="h-72 w-full overflow-hidden relative bg-stone-950">
         <img id="modal-project-img" src="" alt="Project" class="w-full h-full object-cover" />
       </div>
 
-      <div class="p-8">
+      <div class="p-8 bg-stone-900 text-white">
         <div class="flex items-center justify-between mb-2">
-          <span id="modal-project-type" class="text-xs font-mono text-bronze-600 uppercase tracking-widest">Type</span>
-          <span id="modal-project-area" class="text-xs font-mono text-stone-500">Area</span>
+          <span id="modal-project-type" class="text-xs font-mono text-amber-300 uppercase tracking-widest font-semibold">Type</span>
+          <span id="modal-project-area" class="text-xs font-mono text-stone-300">Area</span>
         </div>
-        <h3 id="modal-project-title" class="font-serif text-3xl text-stone-900 font-medium mb-1">Project Name</h3>
-        <span id="modal-project-location" class="text-xs text-stone-500 block mb-4 flex items-center gap-1">
-          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-stone-400"></i>
+        <h3 id="modal-project-title" class="font-serif text-3xl text-white font-medium mb-1">Project Name</h3>
+        <span id="modal-project-location" class="text-xs text-stone-300 block mb-4 flex items-center gap-1 font-medium">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-300"></i>
           Location
         </span>
-        <p id="modal-project-desc" class="text-stone-600 text-sm leading-relaxed mb-6">Description</p>
+        <p id="modal-project-desc" class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Description</p>
 
-        <div class="pt-4 border-t border-stone-200 flex items-center justify-between">
-          <span class="text-xs text-stone-500 font-mono">Zero-Waste Material Palette</span>
-          <a href="#appointment" onclick="closeProjectModal()" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-stone-900 hover:text-bronze-600">
+        <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
+          <span class="text-xs text-stone-400 font-mono">Zero-Waste Material Palette</span>
+          <a href="#appointment" onclick="closeProjectModal()" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-white hover:text-amber-300 transition-colors">
             <span>Commission Similar Project</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-white"></i>
           </a>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1.5: ARCHITECTURAL GALLERY LIGHTBOX (HIGH CONTRAST WHITE TEXT) -->
+  <!-- ========================================================================= -->
+  <div id="gallery-lightbox-modal" class="fixed inset-0 z-50 bg-stone-950/95 backdrop-blur-xl hidden flex items-center justify-center p-3 sm:p-6" onclick="closeGalleryLightbox()">
+    <!-- Close Button -->
+    <button type="button" onclick="closeGalleryLightbox(); event.stopPropagation();" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 w-11 h-11 rounded-full bg-stone-900/90 text-white hover:bg-stone-800 hover:text-amber-200 border border-stone-700 flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+      <i data-lucide="x" class="w-5 h-5 text-white"></i>
+    </button>
+
+    <!-- Prev & Next Arrows -->
+    <button type="button" onclick="prevGalleryImage(); event.stopPropagation();" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-stone-900/90 text-white hover:bg-stone-800 hover:text-amber-200 border border-stone-700 flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+      <i data-lucide="chevron-left" class="w-6 h-6 text-white"></i>
+    </button>
+    <button type="button" onclick="nextGalleryImage(); event.stopPropagation();" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-stone-900/90 text-white hover:bg-stone-800 hover:text-amber-200 border border-stone-700 flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+      <i data-lucide="chevron-right" class="w-6 h-6 text-white"></i>
+    </button>
+
+    <!-- Main Lightbox Dark Card -->
+    <div class="max-w-4xl w-full bg-stone-900 border border-stone-700 rounded-sm overflow-hidden shadow-2xl relative z-10" onclick="event.stopPropagation()">
+      <div class="max-h-[62vh] sm:max-h-[68vh] w-full overflow-hidden relative bg-stone-950 flex items-center justify-center p-2">
+        <img id="lightbox-img" src="" alt="Gallery Preview" class="max-h-[60vh] sm:max-h-[66vh] w-auto max-w-full object-contain mx-auto" />
+      </div>
+      <div class="p-5 sm:p-6 bg-stone-900 border-t border-stone-800 space-y-1.5">
+        <div class="flex items-center justify-between pb-1">
+          <span id="lightbox-category" class="text-xs font-mono text-amber-300 uppercase tracking-widest font-semibold">Architecture</span>
+          <span id="lightbox-counter" class="text-xs font-mono text-white bg-stone-800 px-2.5 py-0.5 rounded border border-stone-700 font-semibold">1 of 12</span>
+        </div>
+        <h3 id="lightbox-title" class="font-serif text-xl sm:text-2xl text-white font-medium">Photo Title</h3>
+        <p id="lightbox-caption" class="text-stone-200 text-xs sm:text-sm leading-relaxed font-light">Photo Caption</p>
       </div>
     </div>
   </div>
@@ -3316,20 +3349,20 @@
       container.innerHTML = items.map((item, idx) => {
         const fullListIdx = (data.galleryItems || []).findIndex(x => x.id === item.id);
         return `
-          <div class="group relative rounded-sm overflow-hidden bg-stone-900 border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="openGalleryLightbox(${fullListIdx})">
-            <div class="h-64 sm:h-72 overflow-hidden relative">
+          <div class="group relative rounded-sm overflow-hidden bg-stone-900 border border-stone-800 shadow-md hover:shadow-2xl hover:border-amber-400/60 transition-all duration-300 cursor-pointer" onclick="openGalleryLightbox(${fullListIdx})">
+            <div class="h-64 sm:h-72 overflow-hidden relative bg-stone-950">
               <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
-              <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-amberstone-300 text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-sm border border-stone-700/60 font-mono font-medium">
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"></div>
+              <span class="absolute top-3 left-3 bg-stone-950/90 backdrop-blur-sm text-amber-300 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-sm border border-stone-700 font-mono font-semibold">
                 ${item.category}
               </span>
-              <div class="absolute top-3 right-3 w-7 h-7 rounded-full bg-stone-900/70 text-stone-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
+              <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-stone-900/80 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border border-stone-700 shadow-sm">
+                <i data-lucide="zoom-in" class="w-4 h-4 text-white"></i>
               </div>
             </div>
-            <div class="p-4 bg-stone-50 border-t border-stone-200">
-              <h4 class="font-serif text-base text-stone-900 font-medium group-hover:text-bronze-600 transition-colors line-clamp-1">${item.title}</h4>
-              <p class="text-stone-500 text-xs mt-1 line-clamp-2 leading-relaxed">${item.caption || ''}</p>
+            <div class="p-5 bg-stone-900 border-t border-stone-800 space-y-1.5">
+              <h4 class="font-serif text-lg text-white font-medium group-hover:text-amber-200 transition-colors line-clamp-1">${item.title}</h4>
+              <p class="text-stone-300 text-xs line-clamp-2 leading-relaxed font-light">${item.caption || ''}</p>
             </div>
           </div>
         `;
