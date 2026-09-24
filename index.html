@@ -2028,13 +2028,6 @@
       isSeeking = true;
       clearTimeout(seekSafetyTimer);
       seekSafetyTimer = setTimeout(() => { isSeeking = false; }, 120);
-
-      if (typeof video.fastSeek === 'function') {
-        try {
-          video.fastSeek(timeVal);
-          return;
-        } catch (e) {}
-      }
       video.currentTime = timeVal;
     }
 
@@ -2077,17 +2070,17 @@
     }
     requestAnimationFrame(renderScrollyFrame);
 
-    // Scroll listener calculating scroll fraction inside pinned container
-    window.addEventListener('scroll', () => {
+    // Responsive scroll listener: scrubs immediately from the very first pixel (zero dead zone)
+    function onScrollUpdate() {
       if (!scrollyContainer) return;
-      const rect = scrollyContainer.getBoundingClientRect();
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
       const containerHeight = scrollyContainer.offsetHeight;
       const windowHeight = window.innerHeight;
       
       const totalScrollable = containerHeight - windowHeight;
-      const currentScroll = -rect.top;
       
-      let progress = currentScroll / totalScrollable;
+      // Start scrubbing immediately on scrollY = 0 without waiting for header/banner dead zone
+      let progress = scrollY / (totalScrollable > 0 ? totalScrollable : 1);
       progress = Math.max(0, Math.min(1, progress));
 
       // Update video target time
@@ -2098,7 +2091,12 @@
 
       // Choreograph narrative overlay steps based on scroll progress
       updateNarrativeSteps(progress);
-    }, { passive: true });
+    }
+
+    window.addEventListener('scroll', onScrollUpdate, { passive: true });
+    window.addEventListener('touchmove', onScrollUpdate, { passive: true });
+    // Initialize initial frame at scroll position 0 immediately
+    onScrollUpdate();
 
     function updateNarrativeSteps(p) {
       // Step 1: 0% to 22%
