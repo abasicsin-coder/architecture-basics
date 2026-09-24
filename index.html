@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
   <title>ARCHITECTURE BASICS | Fusion Architecture & Sustainable Design</title>
   
   <!-- Favicon -->
@@ -66,6 +66,20 @@
   </script>
 
   <style>
+    /* Viewport & Horizontal Overflow-X Containment */
+    html, body {
+      max-width: 100vw;
+      width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      box-sizing: border-box;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     /* Custom refined scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -182,15 +196,15 @@
   <!-- NAVIGATION (RESPONSIVE & OVERFLOW PROTECTED) -->
   <!-- ========================================================================= -->
   <header class="sticky top-0 z-40 bg-stone-50/95 border-b border-stone-200/80 transition-all duration-500" id="main-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2 sm:gap-4">
       <!-- Logo & Studio Identity (Clean fit, single line, no top overflow) -->
-      <a href="#" class="group flex items-center gap-2.5 sm:gap-3 shrink-0">
-        <img id="nav-logo-img" src="logo-dark.png" alt="Architecture Basics Logo" class="h-9 sm:h-10 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" />
+      <a href="#" class="group flex items-center gap-2 sm:gap-3 shrink min-w-0">
+        <img id="nav-logo-img" src="logo-dark.png" alt="Architecture Basics Logo" class="h-8 sm:h-10 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" />
         <div class="flex flex-col justify-center min-w-0">
-          <span class="font-serif text-base sm:text-lg lg:text-xl tracking-[0.14em] font-normal leading-tight text-stone-900 group-hover:text-bronze-600 transition-colors uppercase whitespace-nowrap block" id="nav-brand-title">
+          <span class="font-serif text-sm sm:text-lg lg:text-xl tracking-[0.1em] sm:tracking-[0.14em] font-normal leading-tight text-stone-900 group-hover:text-bronze-600 transition-colors uppercase truncate block" id="nav-brand-title">
             Architecture Basics
           </span>
-          <span class="text-[8px] sm:text-[9px] tracking-[0.2em] text-stone-500 uppercase mt-0.5 font-sans leading-tight whitespace-nowrap block" id="nav-brand-tagline">
+          <span class="text-[7.5px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.2em] text-stone-500 uppercase mt-0.5 font-sans leading-tight truncate block" id="nav-brand-tagline">
             Fusion Architecture &bull; Circular Design
           </span>
         </div>
@@ -208,9 +222,9 @@
       </nav>
 
       <!-- Elegant Divider & Proportional CTA Button -->
-      <div class="flex items-center gap-2.5 sm:gap-3 shrink-0 ml-2">
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
         <div class="h-4 w-px bg-stone-300 mx-2 hidden xl:block shrink-0"></div>
-        <a href="#appointment" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-stone-900 hover:bg-stone-800 text-stone-100 text-[10.5px] sm:text-[11px] tracking-wider uppercase font-medium transition-all duration-200 border border-stone-800 shadow-2xs hover:shadow-xs whitespace-nowrap shrink-0 rounded-xs">
+        <a href="#appointment" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-stone-900 hover:bg-stone-800 text-stone-100 text-[10.5px] sm:text-[11px] tracking-wider uppercase font-medium transition-all duration-200 border border-stone-800 shadow-2xs hover:shadow-xs whitespace-nowrap shrink-0 rounded-xs">
           <span>Book Appointment</span>
           <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-stone-300"></i>
         </a>
@@ -256,7 +270,7 @@
       <div class="absolute bottom-0 left-0 w-full sm:w-2/3 h-80 bg-gradient-to-tr from-stone-950/85 via-stone-950/25 to-transparent pointer-events-none"></div>
 
       <!-- Scrollytelling Narrative Step 1: Genesis (Positioned Bottom-Left, Center Unobstructed) -->
-      <div id="step-1" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-8 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-100 transform translate-y-0">
+      <div id="step-1" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-100 transform translate-y-0">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <img id="hero-logo-img" src="logo-white.png" alt="Architecture Basics Logo" class="h-8 sm:h-9 w-auto mb-2 object-contain opacity-95 filter drop-shadow" />
           <span id="hero-step-1-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Architectural Manifest</span>
@@ -274,7 +288,7 @@
       </div>
 
       <!-- Scrollytelling Narrative Step 2: Fusion Architecture (Positioned Bottom-Left) -->
-      <div id="step-2" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-8 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
+      <div id="step-2" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <span id="hero-step-2-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 01 / Fusion</span>
           <h2 id="hero-step-2-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
@@ -287,7 +301,7 @@
       </div>
 
       <!-- Scrollytelling Narrative Step 3: Zero Waste (Positioned Bottom-Left) -->
-      <div id="step-3" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-8 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
+      <div id="step-3" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <span id="hero-step-3-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 02 / Sustainability</span>
           <h2 id="hero-step-3-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
@@ -300,7 +314,7 @@
       </div>
 
       <!-- Scrollytelling Narrative Step 4: Process-Driven (Positioned Bottom-Left) -->
-      <div id="step-4" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-8 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
+      <div id="step-4" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <span id="hero-step-4-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 03 / Process</span>
           <h2 id="hero-step-4-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
@@ -317,15 +331,15 @@
       </div>
 
       <!-- Scroll Progress Bar & Video Indicator at bottom -->
-      <div class="absolute bottom-6 left-8 right-8 flex items-center justify-between pointer-events-none text-stone-400 text-[11px] uppercase tracking-widest">
-        <div class="flex items-center gap-3">
+      <div class="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 flex items-center justify-between pointer-events-none text-stone-400 text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest">
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
           <span class="w-2 h-2 rounded-full bg-bronze-400"></span>
-          <span>Timeline Scrub: <span id="video-time-display" class="font-mono text-stone-200">0.00s</span></span>
+          <span>Scrub: <span id="video-time-display" class="font-mono text-stone-200">0.00s</span></span>
         </div>
-        <div class="w-48 sm:w-64 h-[2px] bg-stone-800 rounded-full overflow-hidden">
+        <div class="w-24 sm:w-64 h-[2px] bg-stone-800 rounded-full overflow-hidden shrink-0 mx-2">
           <div id="video-progress-bar" class="h-full bg-bronze-400 w-0 transition-all duration-75"></div>
         </div>
-        <div class="hidden sm:block text-stone-400 font-medium tracking-widest text-[11px]" id="hero-indicator-text">
+        <div class="hidden sm:block text-stone-400 font-medium tracking-widest text-[11px] shrink-0" id="hero-indicator-text">
           Scroll to see the change
         </div>
       </div>
@@ -335,7 +349,7 @@
   <!-- ========================================================================= -->
   <!-- SECTION 2: OUR PHILOSOPHY -->
   <!-- ========================================================================= -->
-  <section id="philosophy" class="py-28 px-6 bg-stone-100/70 border-b border-stone-200/80 relative bg-grid-subtle">
+  <section id="philosophy" class="py-28 px-4 sm:px-6 bg-stone-100/70 border-b border-stone-200/80 relative bg-grid-subtle">
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header -->
@@ -427,7 +441,7 @@
       </div>
 
       <!-- Architectural Quote Highlight -->
-      <div class="mt-16 p-8 bg-stone-200/50 border-l-2 border-bronze-500 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div class="mt-16 p-5 sm:p-8 bg-stone-200/50 border-l-2 border-bronze-500 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <blockquote id="philosophy-quote" class="font-serif text-xl sm:text-2xl text-stone-800 italic">
           "When you remove everything unnecessary, what remains is not emptiness—it is clarity, breath, and light."
         </blockquote>
@@ -440,7 +454,7 @@
   <!-- ========================================================================= -->
   <!-- SECTION 3: COLLAPSIBLE TILE PROJECTS (HOVER & CLICK TO EXPAND) -->
   <!-- ========================================================================= -->
-  <section id="projects" class="py-28 px-6 bg-stone-50">
+  <section id="projects" class="py-28 px-4 sm:px-6 bg-stone-50">
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header -->
@@ -469,7 +483,7 @@
   <!-- ========================================================================= -->
   <!-- SECTION 3.5: ARCHITECTURAL GALLERY & PROJECT ARCHIVE -->
   <!-- ========================================================================= -->
-  <section id="gallery" class="py-28 px-6 bg-stone-100/60 border-t border-stone-200/90 relative bg-grid-subtle">
+  <section id="gallery" class="py-28 px-4 sm:px-6 bg-stone-100/60 border-t border-stone-200/90 relative bg-grid-subtle">
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header -->
@@ -507,7 +521,7 @@
   <!-- ========================================================================= -->
 
   <!-- ========================================================================= -->
-  <section id="about" class="py-28 px-6 bg-stone-100/60 border-t border-b border-stone-200/80 relative">
+  <section id="about" class="py-28 px-4 sm:px-6 bg-stone-100/60 border-t border-b border-stone-200/80 relative">
     <div class="max-w-7xl mx-auto">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -607,7 +621,7 @@
   <!-- ========================================================================= -->
   <!-- SECTION 5: CONTACT US & GOOGLE MAPS LOCATION -->
   <!-- ========================================================================= -->
-  <section id="contact" class="py-28 px-6 bg-stone-50">
+  <section id="contact" class="py-28 px-4 sm:px-6 bg-stone-50">
     <div class="max-w-7xl mx-auto">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -713,7 +727,7 @@
   <!-- ========================================================================= -->
   <!-- SECTION 6: APPOINTMENT BOOKING (CLIENT vs BUSINESS TWO-TRACK SYSTEM) -->
   <!-- ========================================================================= -->
-  <section id="appointment" class="py-20 sm:py-24 px-6 bg-stone-100 border-t border-stone-200 relative bg-grid-subtle">
+  <section id="appointment" class="py-20 sm:py-24 px-4 sm:px-6 bg-stone-100 border-t border-stone-200 relative bg-grid-subtle">
     <div class="max-w-4xl mx-auto">
       
       <!-- Section Header -->
@@ -726,12 +740,12 @@
       </div>
 
       <!-- Two-Track Tab Switcher -->
-      <div class="flex justify-center mb-10">
-        <div class="inline-flex p-1.5 bg-stone-200/80 rounded-sm border border-stone-300">
+      <div class="flex justify-center mb-10 w-full">
+        <div class="flex flex-col sm:flex-row w-full sm:w-auto p-1.5 bg-stone-200/80 rounded-sm border border-stone-300 gap-1.5">
           <button
             id="tab-client-btn"
             onclick="switchBookingTab('client')"
-            class="px-6 py-3 text-xs uppercase tracking-widest font-semibold rounded-sm transition-all duration-200 bg-stone-50 text-stone-900 shadow-sm flex items-center gap-2"
+            class="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest font-semibold rounded-sm transition-all duration-200 bg-stone-50 text-stone-900 shadow-sm flex items-center justify-center gap-2"
           >
             <i data-lucide="user" class="w-4 h-4 text-bronze-600"></i>
             <span>1. Client Commission</span>
@@ -739,7 +753,7 @@
           <button
             id="tab-business-btn"
             onclick="switchBookingTab('business')"
-            class="px-6 py-3 text-xs uppercase tracking-widest font-semibold rounded-sm transition-all duration-200 text-stone-600 hover:text-stone-900 flex items-center gap-2"
+            class="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest font-semibold rounded-sm transition-all duration-200 text-stone-600 hover:text-stone-900 flex items-center justify-center gap-2"
           >
             <i data-lucide="briefcase" class="w-4 h-4 text-bronze-600"></i>
             <span>2. Business & Vendors</span>
@@ -748,7 +762,7 @@
       </div>
 
       <!-- BOOKING FORM CARD -->
-      <div class="bg-stone-50 p-8 sm:p-12 border border-stone-200 shadow-sm rounded-sm">
+      <div class="bg-stone-50 p-5 sm:p-12 border border-stone-200 shadow-sm rounded-sm">
 
         <!-- ==================== FORM 1: CLIENT CONSULTATION ==================== -->
         <div id="booking-client-panel" class="space-y-8">
@@ -852,12 +866,12 @@
 
         <!-- ==================== FORM 2: BUSINESS & VENDOR COLLABORATION ==================== -->
         <div id="booking-business-panel" class="space-y-8 hidden">
-          <div class="flex items-center justify-between pb-6 border-b border-stone-200">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-stone-200 gap-3">
             <div>
               <h3 class="font-serif text-2xl text-stone-900 font-medium">Business & Vendor Association</h3>
               <p class="text-stone-500 text-xs mt-1">For artisan guilds, sustainable material vendors, engineers, and corporate partners.</p>
             </div>
-            <div class="text-right">
+            <div class="text-left sm:text-right">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 border border-amber-300 text-[11px] font-mono text-amber-800 uppercase font-semibold">
                 <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-700"></i>
                 Strictly Saturdays: 11:00 AM &ndash; 6:00 PM
@@ -958,7 +972,7 @@
   <!-- ========================================================================= -->
   <!-- FOOTER -->
   <!-- ========================================================================= -->
-  <footer class="bg-stone-950 text-stone-400 py-16 px-6 border-t border-stone-800">
+  <footer class="bg-stone-950 text-stone-400 py-16 px-4 sm:px-6 border-t border-stone-800">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-stone-800/80">
       
       <!-- Col 1 -->
@@ -3491,7 +3505,7 @@
 
         if (layout === 'banner') {
           return `
-            <section id="custom-section-${sec.id || idx}" class="py-24 px-6 bg-stone-50 border-t border-stone-200">
+            <section id="custom-section-${sec.id || idx}" class="py-24 px-4 sm:px-6 bg-stone-50 border-t border-stone-200">
               <div class="max-w-7xl mx-auto space-y-10">
                 ${sec.img ? `<div class="w-full h-80 sm:h-96 rounded-sm overflow-hidden border border-stone-300 shadow-sm"><img src="${sec.img}" alt="${sec.title}" class="w-full h-full object-cover" /></div>` : ''}
                 <div class="max-w-3xl space-y-4">
@@ -3507,7 +3521,7 @@
 
         if (layout === 'left') {
           return `
-            <section id="custom-section-${sec.id || idx}" class="py-24 px-6 bg-stone-50 border-t border-stone-200">
+            <section id="custom-section-${sec.id || idx}" class="py-24 px-4 sm:px-6 bg-stone-50 border-t border-stone-200">
               <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 ${sec.img ? `
                   <div class="lg:col-span-6 rounded-sm overflow-hidden border border-stone-300 shadow-sm">
@@ -3529,7 +3543,7 @@
 
         if (layout === 'text') {
           return `
-            <section id="custom-section-${sec.id || idx}" class="py-24 px-6 bg-stone-100/40 border-t border-stone-200">
+            <section id="custom-section-${sec.id || idx}" class="py-24 px-4 sm:px-6 bg-stone-100/40 border-t border-stone-200">
               <div class="max-w-4xl mx-auto text-center space-y-6">
                 <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block">${sec.eyebrow || 'Studio Feature'}</span>
                 <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal">${sec.title}</h2>
@@ -3542,7 +3556,7 @@
 
         // Default 'right' layout
         return `
-          <section id="custom-section-${sec.id || idx}" class="py-24 px-6 bg-stone-50 border-t border-stone-200">
+          <section id="custom-section-${sec.id || idx}" class="py-24 px-4 sm:px-6 bg-stone-50 border-t border-stone-200">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div class="lg:col-span-6 space-y-6">
                 <div>
