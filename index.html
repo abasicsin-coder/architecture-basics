@@ -1348,61 +1348,69 @@
   <!-- ========================================================================= -->
   <!-- MODAL 3: ADMIN LOGIN & COMPREHENSIVE ADMIN PANEL -->
   <!-- ========================================================================= -->
-  <div id="admin-modal" class="fixed inset-0 z-50 bg-stone-950/85 backdrop-blur-md hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="bg-stone-50 max-w-5xl w-full border border-stone-300 shadow-2xl rounded-sm my-auto overflow-hidden relative">
+  <div id="admin-modal" class="fixed inset-0 z-50 bg-stone-950 hidden flex flex-col w-full h-full min-h-screen overflow-hidden">
+    <div class="bg-stone-50 w-full h-full flex flex-col overflow-hidden relative flex-1">
       
-      <!-- Top Bar -->
-      <div class="bg-stone-900 text-stone-100 px-6 py-4 flex items-center justify-between border-b border-stone-800">
-        <div class="flex items-center gap-3">
-          <img src="logo-white.png" alt="Architecture Basics Logo" class="h-6 w-auto object-contain" />
+      <!-- Top Bar: Edge-to-Edge Luxury Studio Header -->
+      <div class="bg-stone-900 text-stone-100 px-6 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between border-b border-stone-800 shrink-0 select-none shadow-md">
+        <div class="flex items-center gap-3.5">
+          <img src="logo-white.png" alt="Architecture Basics Logo" class="h-6 sm:h-7 w-auto object-contain" />
           <div>
-            <h3 class="font-serif text-lg tracking-wide">Studio Management & Content Console</h3>
-            <span class="text-[10px] font-mono text-stone-400">Architecture Basics Internal System</span>
+            <h3 class="font-serif text-base sm:text-lg tracking-wide text-white">Studio Management & Content Console</h3>
+            <span class="text-[10px] sm:text-[11px] font-mono text-stone-400">Architecture Basics &bull; Full-Screen Studio OS</span>
           </div>
         </div>
-        <button onclick="closeAdminModal()" class="text-stone-400 hover:text-stone-100 p-1">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <div class="flex items-center gap-3">
+          <button onclick="closeAdminModal()" class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-stone-800 hover:bg-stone-700 text-stone-200 hover:text-white rounded-sm text-xs font-mono uppercase tracking-wider transition-colors border border-stone-700 shadow-sm" title="Close Admin Panel (ESC)">
+            <i data-lucide="x" class="w-4 h-4 text-stone-300"></i>
+            <span class="hidden sm:inline">Close</span>
+          </button>
+        </div>
       </div>
 
-      <!-- ==================== STATE A: LOGIN FORM (SECURE - NO PASSWORD HINTS) ==================== -->
-      <div id="admin-login-view" class="p-8 sm:p-10 max-w-md mx-auto text-center">
-        <div class="w-12 h-12 rounded-full bg-stone-100 border border-stone-300 flex items-center justify-center mx-auto text-stone-700 mb-4">
-          <i data-lucide="lock" class="w-6 h-6"></i>
-        </div>
-        <h4 class="font-serif text-2xl text-stone-900 mb-1">Architect Access</h4>
-        <p class="text-xs text-stone-500 mb-6">Enter administrative passphrase to access studio console, works management, and client inquiries.</p>
-        
-        <form onsubmit="handleAdminLogin(event)" class="space-y-4">
-          <div class="text-left">
-            <label class="block text-[11px] font-mono uppercase text-stone-600 mb-1.5">Passphrase</label>
-            <div class="relative">
-              <input 
-                type="password" 
-                id="admin-pass-input" 
-                required 
-                placeholder="Enter admin password" 
-                autocomplete="current-password"
-                class="w-full px-4 py-3 bg-stone-100 border border-stone-300 focus:border-stone-800 focus:bg-white text-sm outline-none pr-10 rounded-sm"
-              />
-              <button type="button" onclick="togglePassVisibility('admin-pass-input', 'pass-eye-icon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1" title="Toggle password visibility">
-                <i data-lucide="eye" id="pass-eye-icon" class="w-4 h-4"></i>
-              </button>
-            </div>
-            <p id="admin-login-error" class="hidden text-xs text-red-600 mt-2 font-medium">Incorrect passphrase. Please try again.</p>
+      <!-- ==================== STATE A: LOGIN FORM (SECURE FULL-SCREEN VIEW) ==================== -->
+      <div id="admin-login-view" class="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 bg-gradient-to-b from-stone-100 to-stone-200/80 overflow-y-auto w-full">
+        <div class="bg-white border border-stone-300 rounded-sm shadow-xl p-8 sm:p-10 max-w-md w-full text-center space-y-6 my-auto">
+          <div class="w-14 h-14 rounded-full bg-stone-900 border border-stone-800 flex items-center justify-center mx-auto text-amber-300 shadow-sm">
+            <i data-lucide="lock" class="w-6 h-6 text-amber-300"></i>
           </div>
-          <button type="submit" class="w-full py-3 bg-stone-900 hover:bg-stone-800 text-stone-100 text-xs uppercase tracking-widest font-semibold transition-colors rounded-sm shadow-sm">
-            Authorize Entry
-          </button>
-        </form>
+          <div>
+            <h4 class="font-serif text-2xl text-stone-900 mb-1.5 font-medium">Architect Access</h4>
+            <p class="text-xs text-stone-500 leading-relaxed">Enter administrative passphrase to access studio console, appointments database, and live CMS controls.</p>
+          </div>
+          
+          <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+            <div>
+              <label class="block text-[11px] font-mono uppercase tracking-wider text-stone-600 mb-1.5">Passphrase</label>
+              <div class="relative">
+                <input 
+                  type="password" 
+                  id="admin-pass-input" 
+                  required 
+                  placeholder="Enter admin password" 
+                  autocomplete="current-password"
+                  class="w-full px-4 py-3 bg-stone-50 border border-stone-300 focus:border-stone-900 focus:bg-white text-sm outline-none pr-10 rounded-sm transition-colors"
+                />
+                <button type="button" onclick="togglePassVisibility('admin-pass-input', 'pass-eye-icon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1" title="Toggle password visibility">
+                  <i data-lucide="eye" id="pass-eye-icon" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <p id="admin-login-error" class="hidden text-xs text-red-600 mt-2 font-medium">Incorrect passphrase. Please try again.</p>
+            </div>
+            <button type="submit" class="w-full py-3.5 bg-stone-900 hover:bg-stone-800 text-stone-100 text-xs uppercase tracking-widest font-semibold transition-all rounded-sm shadow-md hover:shadow-lg active:scale-[0.99] flex items-center justify-center gap-2">
+              <i data-lucide="key" class="w-4 h-4 text-amber-300"></i>
+              <span>Authorize Entry</span>
+            </button>
+          </form>
+        </div>
       </div>
 
       <!-- ==================== STATE B: DASHBOARD AFTER LOGIN ==================== -->
-      <div id="admin-dashboard-view" class="hidden">
+      <div id="admin-dashboard-view" class="hidden flex-1 flex flex-col min-h-0 overflow-hidden w-full bg-stone-100">
         
         <!-- Tab Bar -->
-        <div class="bg-stone-100 border-b border-stone-200 px-6 flex items-center justify-between overflow-x-auto">
-          <div class="flex space-x-2">
+        <div class="bg-stone-100 border-b border-stone-200 px-6 sm:px-8 flex items-center justify-between overflow-x-auto shrink-0 shadow-2xs">
+          <div class="flex space-x-2 sm:space-x-4">
             <button onclick="switchAdminTab('analytics')" id="adm-tab-analytics" class="px-4 sm:px-5 py-3 text-xs uppercase tracking-wider font-semibold border-b-2 border-stone-900 text-stone-900 flex items-center gap-2 whitespace-nowrap">
               <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
               <span>Traffic & Demographics</span>
@@ -1420,13 +1428,15 @@
               <span>Security & Password</span>
             </button>
           </div>
-          <button onclick="logoutAdmin()" class="text-xs text-stone-500 hover:text-red-600 font-medium py-2 flex items-center gap-1 whitespace-nowrap shrink-0">
+          <button onclick="logoutAdmin()" class="text-xs text-stone-500 hover:text-red-600 font-medium py-2 px-3 rounded hover:bg-stone-200 flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors">
             <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
             <span>Log Out</span>
           </button>
         </div>
 
-        <div class="p-6 max-h-[70vh] overflow-y-auto">
+        <!-- Full-Screen Scrollable Content Area -->
+        <div class="flex-1 overflow-y-auto p-6 sm:p-8 md:p-10 w-full bg-stone-50">
+          <div class="max-w-7xl mx-auto space-y-8 pb-16">
           
           <!-- TAB 1: ANALYTICS & DEMOGRAPHICS -->
           <div id="adm-view-analytics" class="space-y-6">
@@ -2220,6 +2230,7 @@
             </div>
           </div>
 
+          </div>
         </div>
       </div>
     </div>
@@ -2719,6 +2730,16 @@
         document.body.style.overflow = '';
       }
     }
+
+    // Global ESC key listener to close full screen admin modal
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        const adminModal = document.getElementById('admin-modal');
+        if (adminModal && !adminModal.classList.contains('hidden')) {
+          closeAdminModal();
+        }
+      }
+    });
 
     function handleAdminLogin(e) {
       e.preventDefault();
