@@ -374,14 +374,17 @@
 
     /* Video Master HD Clarity - Seamless Edge-to-Edge Fill (Zero Black Margins) */
     #scrolly-video {
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
       object-fit: cover;
       object-position: center center;
       width: 100%;
       height: 100%;
       background-color: #0c0a09;
-      filter: contrast(104%) brightness(101%);
+      image-rendering: auto;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: contents;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     /* Subtle glassmorphism */
