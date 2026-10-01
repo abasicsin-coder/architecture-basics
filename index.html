@@ -257,6 +257,7 @@
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'serif'],
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            narrow: ['"Arial Narrow"', '"Helvetica Neue Condensed"', '"Franklin Gothic Medium Condensed"', 'sans-serif-condensed', 'sans-serif'],
           },
           colors: {
             stone: {
@@ -329,6 +330,12 @@
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #8C8474;
+    }
+
+    /* Architectural condensed/narrow contrast font */
+    .font-narrow {
+      font-family: "Arial Narrow", "Helvetica Neue Condensed", "Franklin Gothic Medium Condensed", sans-serif-condensed, sans-serif !important;
+      letter-spacing: 0.08em;
     }
 
     /* Architectural grid background subtle pattern */
@@ -443,14 +450,14 @@
           <span class="font-serif text-sm sm:text-lg lg:text-xl tracking-[0.1em] sm:tracking-[0.14em] font-normal leading-tight text-stone-900 group-hover:text-bronze-600 transition-colors uppercase truncate block" id="nav-brand-title">
             Architecture Basics
           </span>
-          <span class="text-[7.5px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.2em] text-stone-500 uppercase mt-0.5 font-sans leading-tight truncate block" id="nav-brand-tagline">
+          <span class="text-[8px] sm:text-[10px] tracking-[0.2em] text-stone-500 uppercase mt-0.5 font-narrow font-semibold leading-tight truncate block" id="nav-brand-tagline">
             Fusion Architecture &bull; Circular Design
           </span>
         </div>
       </a>
 
       <!-- Desktop Navigation Links (Breathable, activates at xl >= 1280px so 7 links never cramp) -->
-      <nav class="hidden xl:flex items-center gap-5 xl:gap-6 text-[11px] uppercase tracking-[0.14em] font-medium text-stone-700 shrink min-w-0" id="desktop-nav-menu">
+      <nav class="hidden xl:flex items-center gap-5 xl:gap-6 text-xs uppercase tracking-widest font-medium font-narrow text-stone-700 shrink min-w-0" id="desktop-nav-menu">
         <a href="#scrolly-container" class="whitespace-nowrap shrink-0 hover:text-bronze-600 transition-colors">Narrative</a>
         <a href="#philosophy" class="whitespace-nowrap shrink-0 hover:text-bronze-600 transition-colors">Philosophy</a>
         <a href="#projects" class="whitespace-nowrap shrink-0 hover:text-bronze-600 transition-colors">Works</a>
@@ -595,85 +602,85 @@
       <div class="max-w-3xl mb-16">
         <span id="philosophy-eyebrow" class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block mb-3">Foundational Principles</span>
         <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal leading-tight tracking-tight mb-6" id="philosophy-title">
-          Architectural Quietude Through Craft, Fusion & Conservation.
+          Architecture Shaped by Context, Craft, and Clarity.
         </h2>
         <p class="text-stone-600 text-base leading-relaxed" id="philosophy-description">
-          At Architecture Basics, we believe true luxury is absence of noise and excess. We design without templates, guided purely by the dialogue between geography, sunlight, cultural heritage, and zero-waste material discipline.
+          At Architecture Basics, we believe meaningful architecture begins with understanding. Every project is shaped by its context, purpose, proportion and materiality. We create spaces where thoughtful planning, refined details and a clear architectural language come together to create environments that are timeless, functional and distinctly their own.
         </p>
       </div>
 
       <!-- 4 Pillars of Philosophy -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         
-        <!-- Pillar 1: Fusion Architecture -->
-        <div class="bg-stone-50 p-8 border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-sm bg-stone-100 border border-stone-200 flex items-center justify-center text-bronze-600 mb-6 group-hover:border-bronze-400 transition-colors">
-              <i data-lucide="layers" class="w-6 h-6"></i>
-            </div>
-            <span id="phil-pillar-1-code" class="text-xs font-mono text-stone-400 block mb-2">01 / DISCIPLINE</span>
-            <h3 id="phil-pillar-1-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Fusion Architecture</h3>
-            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-1">
-              Transcending historic nostalgia and cold modernism. We weave local vernacular crafts, terracotta jalis, and vaulted brick ceilings with monolithic concrete, thermal glass, and sleek structural lines.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-stone-200/70 text-[11px] uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
-            <i data-lucide="check" class="w-3.5 h-3.5 text-bronze-500"></i>
-            <span id="phil-pillar-1-badge">Vernacular x Contemporary</span>
-          </div>
-        </div>
-
-        <!-- Pillar 2: Strict No-Waste Policy -->
-        <div class="bg-stone-50 p-8 border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-sm bg-stone-100 border border-stone-200 flex items-center justify-center text-bronze-600 mb-6 group-hover:border-bronze-400 transition-colors">
-              <i data-lucide="recycle" class="w-6 h-6"></i>
-            </div>
-            <span id="phil-pillar-2-code" class="text-xs font-mono text-stone-400 block mb-2">02 / STEWARDSHIP</span>
-            <h3 id="phil-pillar-2-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Strict No-Waste Policy</h3>
-            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-2">
-              From excavated soil transformed into compressed stabilized earth blocks (CSEB) to dry-laid stone masonry without chemical bonding, our construction methodology targets absolute zero landfill discard.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-stone-200/70 text-[11px] uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
-            <i data-lucide="check" class="w-3.5 h-3.5 text-bronze-500"></i>
-            <span id="phil-pillar-2-badge">Circular Lifecycle</span>
-          </div>
-        </div>
-
-        <!-- Pillar 3: Process Over Templates -->
+        <!-- Pillar 1: 01 / CONTEXT -->
         <div class="bg-stone-50 p-8 border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="w-12 h-12 rounded-sm bg-stone-100 border border-stone-200 flex items-center justify-center text-bronze-600 mb-6 group-hover:border-bronze-400 transition-colors">
               <i data-lucide="compass" class="w-6 h-6"></i>
             </div>
-            <span id="phil-pillar-3-code" class="text-xs font-mono text-stone-400 block mb-2">03 / HANDCRAFT</span>
-            <h3 id="phil-pillar-3-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Zero Templates</h3>
-            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-3">
-              We never replicate. Every commission begins on a blank sheet, listening to wind trajectories, celestial orientations, soil topography, and the specific daily rituals of its inhabitants.
+            <span id="phil-pillar-1-code" class="text-xs font-mono text-stone-400 block mb-2">01 / CONTEXT</span>
+            <h3 id="phil-pillar-1-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Designed for Its Place</h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-1">
+              Every project begins with an understanding of its context. We respond to the site, climate, surroundings and character of a place to create architecture that feels naturally rooted in its setting.
             </p>
           </div>
           <div class="pt-4 border-t border-stone-200/70 text-[11px] uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
             <i data-lucide="check" class="w-3.5 h-3.5 text-bronze-500"></i>
-            <span id="phil-pillar-3-badge">100% Bespoke Inception</span>
+            <span id="phil-pillar-1-badge">Site & Climate Response</span>
           </div>
         </div>
 
-        <!-- Pillar 4: Minimalist Quietude -->
+        <!-- Pillar 2: 02 / FUNCTION -->
         <div class="bg-stone-50 p-8 border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="w-12 h-12 rounded-sm bg-stone-100 border border-stone-200 flex items-center justify-center text-bronze-600 mb-6 group-hover:border-bronze-400 transition-colors">
-              <i data-lucide="sun" class="w-6 h-6"></i>
+              <i data-lucide="layout" class="w-6 h-6"></i>
             </div>
-            <span id="phil-pillar-4-code" class="text-xs font-mono text-stone-400 block mb-2">04 / HARMONY</span>
-            <h3 id="phil-pillar-4-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Subtle Materiality</h3>
-            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-4">
-              Restrained palette of raw lime wash, untreated slate, warm teak, and textured travertine. We avoid harsh synthetic coatings and loud accents in favor of natural patina that ages gracefully.
+            <span id="phil-pillar-2-code" class="text-xs font-mono text-stone-400 block mb-2">02 / FUNCTION</span>
+            <h3 id="phil-pillar-2-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Form Follows Experience</h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-2">
+              We believe thoughtful design begins with how a space is meant to be lived and experienced. Planning, circulation, proportion and functionality come together to make every space purposeful.
             </p>
           </div>
           <div class="pt-4 border-t border-stone-200/70 text-[11px] uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
             <i data-lucide="check" class="w-3.5 h-3.5 text-bronze-500"></i>
-            <span id="phil-pillar-4-badge">Living Patina</span>
+            <span id="phil-pillar-2-badge">Purposeful Planning</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: 03 / MATERIALITY -->
+        <div class="bg-stone-50 p-8 border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-sm bg-stone-100 border border-stone-200 flex items-center justify-center text-bronze-600 mb-6 group-hover:border-bronze-400 transition-colors">
+              <i data-lucide="layers" class="w-6 h-6"></i>
+            </div>
+            <span id="phil-pillar-3-code" class="text-xs font-mono text-stone-400 block mb-2">03 / MATERIALITY</span>
+            <h3 id="phil-pillar-3-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Material with Meaning</h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-3">
+              Materials are an essential part of our architectural language. We carefully consider texture, colour, scale and detailing to create spaces with depth, warmth and character.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200/70 text-[11px] uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5 text-bronze-500"></i>
+            <span id="phil-pillar-3-badge">Depth, Warmth & Character</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4: 04 / DETAIL -->
+        <div class="bg-stone-50 p-8 border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-sm bg-stone-100 border border-stone-200 flex items-center justify-center text-bronze-600 mb-6 group-hover:border-bronze-400 transition-colors">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <span id="phil-pillar-4-code" class="text-xs font-mono text-stone-400 block mb-2">04 / DETAIL</span>
+            <h3 id="phil-pillar-4-title" class="font-serif text-2xl text-stone-900 font-medium mb-3">Precision in the Details</h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-6" id="phil-item-4">
+              The character of architecture is often found in the smallest decisions. From proportions and junctions to finishes and lighting, we approach every detail with clarity and intention.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200/70 text-[11px] uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5 text-bronze-500"></i>
+            <span id="phil-pillar-4-badge">Clarity & Intention</span>
           </div>
         </div>
 
@@ -682,7 +689,7 @@
       <!-- Architectural Quote Highlight -->
       <div class="mt-16 p-5 sm:p-8 bg-stone-200/50 border-l-2 border-bronze-500 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <blockquote id="philosophy-quote" class="font-serif text-xl sm:text-2xl text-stone-800 italic">
-          "When you remove everything unnecessary, what remains is not emptiness—it is clarity, breath, and light."
+          "We believe architecture is not about adding more, but about making every element matter, in space, in proportion, in material, and in experience."
         </blockquote>
         <span id="philosophy-quote-author" class="text-xs uppercase tracking-widest text-stone-500 whitespace-nowrap">&mdash; Studio Design Ethos</span>
       </div>
@@ -700,11 +707,10 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-stone-200">
         <div>
           <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block mb-2">Curated Portfolios</span>
-          <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal">Our Architectural Typologies</h2>
+          <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal">Spaces We Create</h2>
         </div>
-        <p class="text-stone-500 text-xs uppercase tracking-widest mt-4 md:mt-0 flex items-center gap-2">
-          <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-amberstone-400"></i>
-          Hover or tap any tile to explore curated projects
+        <p class="text-stone-600 text-sm mt-4 md:mt-0 max-w-md text-left md:text-right">
+          Explore a collection of spaces shaped by context, function and detail.
         </p>
       </div>
 
@@ -739,13 +745,9 @@
 
       <!-- Filter Buttons Bar -->
       <div class="flex flex-wrap gap-2 mb-10" id="gallery-filter-bar">
-        <button onclick="filterGallery('All')" class="gallery-filter-btn active px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-900 text-stone-100 rounded-sm transition-colors">All Works</button>
-        <button onclick="filterGallery('Commercial')" class="gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Commercial</button>
-        <button onclick="filterGallery('Resorts')" class="gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Resorts</button>
-        <button onclick="filterGallery('Villas')" class="gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Villas</button>
-        <button onclick="filterGallery('Bungalows')" class="gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Bungalows</button>
-        <button onclick="filterGallery('Farmhouses')" class="gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Farmhouses</button>
-        <button onclick="filterGallery('Craft & Details')" class="gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Craft & Details</button>
+        <button onclick="filterGallery('All')" class="gallery-filter-btn active px-4 py-2 text-xs font-medium font-narrow uppercase tracking-wider bg-stone-900 text-stone-100 rounded-sm transition-colors">All</button>
+        <button onclick="filterGallery('Ongoing')" class="gallery-filter-btn px-4 py-2 text-xs font-medium font-narrow uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Ongoing</button>
+        <button onclick="filterGallery('Upcoming')" class="gallery-filter-btn px-4 py-2 text-xs font-medium font-narrow uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors">Upcoming</button>
       </div>
 
       <!-- Dynamic Gallery Grid Container -->
@@ -780,38 +782,38 @@
         <div class="lg:col-span-7 space-y-6">
           <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block">About The Studio</span>
           <h2 class="font-serif text-3xl sm:text-5xl text-stone-900 font-normal leading-tight" id="about-title">
-            Crafting Spaces That Breathe. Rejecting The Disposable.
+            Over Two Decades of Designing with Purpose.
           </h2>
           
           <div class="space-y-4 text-stone-600 text-base leading-relaxed" id="about-content">
             <p id="about-p1">
-              <strong>Architecture Basics</strong> (Atelier Ruchir) is an avant-garde architecture and master-planning studio dedicated to the synthesis of indigenous Indian craft and high-performance contemporary minimalism.
+              Founded in 2003 by <strong>Architect Ruchir Tiwari</strong>, <strong>Architecture Basics</strong> is an architecture and design practice based in Indore, India. What began as a focused architectural practice has evolved into a multidisciplinary studio working across residences, hospitality, commercial spaces, interiors and bespoke developments.
             </p>
             <p id="about-p2">
-              Where modern practice frequently relies on repetitive digital templates and high-waste finishes, we practice slow, deliberate architecture. Every project begins with a 30-day geological and solar study of the land, collaborating directly with master stonemasons, carpenters, and structural physicists.
+              Our approach is grounded in experience, yet open to evolution. We believe architecture should respond to its context rather than follow a predetermined style. Every project is studied through its function, proportion, materiality, light and relationship with its surroundings.
             </p>
             <p id="about-p3">
-              Our strict <strong>Zero-Waste Policy</strong> is not an afterthought; it is our primary structural logic. By using dry-stacked quarry offcuts, thermal earthen envelopes, and precision modular detailing, our buildings operate as carbon-negative sanctuaries that endure for centuries.
+              Over two decades, this philosophy has shaped a diverse body of work, each project different in character, yet connected by a common pursuit of clarity, functionality and thoughtful design.
             </p>
           </div>
 
           <!-- Studio Metrics -->
           <div class="pt-8 border-t border-stone-200 grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
-              <span id="about-m1-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">18+</span>
-              <span id="about-m1-lbl" class="text-[11px] uppercase tracking-wider text-stone-500 mt-1 block">Years of Craft</span>
+              <span id="about-m1-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">2003</span>
+              <span id="about-m1-lbl" class="text-[11px] font-narrow font-bold uppercase tracking-wider text-stone-500 mt-1 block">Year Established</span>
             </div>
             <div>
-              <span id="about-m2-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">0%</span>
-              <span id="about-m2-lbl" class="text-[11px] uppercase tracking-wider text-stone-500 mt-1 block">Template Usage</span>
+              <span id="about-m2-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">23+</span>
+              <span id="about-m2-lbl" class="text-[11px] font-narrow font-bold uppercase tracking-wider text-stone-500 mt-1 block">Years of Practice</span>
             </div>
             <div>
-              <span id="about-m3-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">94%</span>
-              <span id="about-m3-lbl" class="text-[11px] uppercase tracking-wider text-stone-500 mt-1 block">Waste Diverted</span>
+              <span id="about-m3-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">100%</span>
+              <span id="about-m3-lbl" class="text-[11px] font-narrow font-bold uppercase tracking-wider text-stone-500 mt-1 block">Bespoke Design</span>
             </div>
             <div>
               <span id="about-m4-val" class="font-serif text-3xl sm:text-4xl text-stone-900 block">40+</span>
-              <span id="about-m4-lbl" class="text-[11px] uppercase tracking-wider text-stone-500 mt-1 block">Masterworks</span>
+              <span id="about-m4-lbl" class="text-[11px] font-narrow font-bold uppercase tracking-wider text-stone-500 mt-1 block">Projects Completed</span>
             </div>
           </div>
         </div>
@@ -820,30 +822,30 @@
       <!-- Architectural Process Steps -->
       <div class="mt-24 pt-16 border-t border-stone-200">
         <div class="text-center max-w-2xl mx-auto mb-14">
-          <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block mb-2">Our Method</span>
-          <h3 class="font-serif text-3xl text-stone-900">The 4-Stage Architectural Process</h3>
+          <span class="text-xs font-narrow font-bold uppercase tracking-[0.3em] text-bronze-500 block mb-2" id="proc-eyebrow">OUR APPROACH</span>
+          <h3 class="font-serif text-3xl text-stone-900" id="proc-title">From Concept to Completion</h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div class="bg-stone-50 p-6 border border-stone-200">
             <span id="proc-phase-1-code" class="font-mono text-xs text-bronze-600 block mb-2">PHASE 01</span>
-            <h4 id="proc-phase-1-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Geological & Sun Dialogue</h4>
-            <p id="proc-phase-1-desc" class="text-stone-500 text-xs leading-relaxed">Topography mapping, wind vector analysis, micro-climate simulation, and indigenous flora preservation.</p>
+            <h4 id="proc-phase-1-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Understanding & Brief</h4>
+            <p id="proc-phase-1-desc" class="text-stone-500 text-xs leading-relaxed">We begin by understanding the client’s requirements, lifestyle, aspirations, site conditions and project objectives. This forms the foundation for a clear design direction.</p>
           </div>
           <div class="bg-stone-50 p-6 border border-stone-200">
             <span id="proc-phase-2-code" class="font-mono text-xs text-bronze-600 block mb-2">PHASE 02</span>
-            <h4 id="proc-phase-2-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Vernacular Material Synthesis</h4>
-            <p id="proc-phase-2-desc" class="text-stone-500 text-xs leading-relaxed">Selecting site soil for stabilized earth blocks, sourcing local quarry salvage, testing lime ratios.</p>
+            <h4 id="proc-phase-2-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Concept & Planning</h4>
+            <p id="proc-phase-2-desc" class="text-stone-500 text-xs leading-relaxed">Site studies, space planning, zoning, circulation and architectural concepts come together to establish the project’s overall form, function and character.</p>
           </div>
           <div class="bg-stone-50 p-6 border border-stone-200">
             <span id="proc-phase-3-code" class="font-mono text-xs text-bronze-600 block mb-2">PHASE 03</span>
-            <h4 id="proc-phase-3-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Fusion Detailing</h4>
-            <p id="proc-phase-3-desc" class="text-stone-500 text-xs leading-relaxed">Integrating thermal break glazing, hidden gutters, and precision steel joinery with hand-chiseled stone.</p>
+            <h4 id="proc-phase-3-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Design Development</h4>
+            <p id="proc-phase-3-desc" class="text-stone-500 text-xs leading-relaxed">The concept is refined through material selection, facade development, interior integration, detailed drawings and coordinated architectural solutions.</p>
           </div>
           <div class="bg-stone-50 p-6 border border-stone-200">
             <span id="proc-phase-4-code" class="font-mono text-xs text-bronze-600 block mb-2">PHASE 04</span>
-            <h4 id="proc-phase-4-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Zero-Waste Execution</h4>
-            <p id="proc-phase-4-desc" class="text-stone-500 text-xs leading-relaxed">Every stone trim, timber cut, and mortar batch is calibrated to eliminate landfill waste completely.</p>
+            <h4 id="proc-phase-4-title" class="font-serif text-lg text-stone-900 font-medium mb-2">Documentation & Execution</h4>
+            <p id="proc-phase-4-desc" class="text-stone-500 text-xs leading-relaxed">Detailed drawings, specifications and consultant coordination translate the design into a buildable outcome, with continued involvement through site execution to maintain design intent.</p>
           </div>
         </div>
       </div>
@@ -974,7 +976,7 @@
         <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block mb-2">Direct Engagement</span>
         <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal">Book An Appointment</h2>
         <p class="text-stone-600 text-sm mt-3 leading-relaxed">
-          Please select your profile below. Client commissions and business/vendor collaborations operate under dedicated schedules to preserve focused dialogue.
+          Please select your profile below. Client consultations and business/vendor collaborations operate under dedicated schedules to preserve focused dialogue.
         </p>
       </div>
 
@@ -984,18 +986,18 @@
           <button
             id="tab-client-btn"
             onclick="switchBookingTab('client')"
-            class="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest font-semibold rounded-sm transition-all duration-200 bg-stone-50 text-stone-900 shadow-sm flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-narrow uppercase tracking-widest font-bold rounded-sm transition-all duration-200 bg-stone-50 text-stone-900 shadow-sm flex items-center justify-center gap-2"
           >
             <i data-lucide="user" class="w-4 h-4 text-bronze-600"></i>
-            <span>1. Client Commission</span>
+            <span>Client</span>
           </button>
           <button
             id="tab-business-btn"
             onclick="switchBookingTab('business')"
-            class="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest font-semibold rounded-sm transition-all duration-200 text-stone-600 hover:text-stone-900 flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-narrow uppercase tracking-widest font-bold rounded-sm transition-all duration-200 text-stone-600 hover:text-stone-900 flex items-center justify-center gap-2"
           >
             <i data-lucide="briefcase" class="w-4 h-4 text-bronze-600"></i>
-            <span>2. Business & Vendors</span>
+            <span>Business & Vendors</span>
           </button>
         </div>
       </div>
@@ -1007,8 +1009,8 @@
         <div id="booking-client-panel" class="space-y-8">
           <div class="flex items-center justify-between pb-6 border-b border-stone-200">
             <div>
-              <h3 class="font-serif text-2xl text-stone-900 font-medium">New Client Project Consultation</h3>
-              <p class="text-stone-500 text-xs mt-1">For homeowners, institutions, and patrons looking to commission architecture.</p>
+              <h3 class="font-serif text-2xl text-stone-900 font-medium">Client Consultation</h3>
+              <p class="text-stone-500 text-xs mt-1">For homeowners, institutions, and patrons looking to collaborate with the studio.</p>
             </div>
             <div class="hidden sm:block text-right">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 border border-stone-200 text-[11px] font-mono text-stone-600 uppercase">
@@ -1911,20 +1913,30 @@
 
               <!-- ================= SECTION 4: WORKS & PROJECTS (FULL CRUD) ================= -->
               <div id="cms-panel-typologies" class="space-y-5 hidden">
-                <!-- Typology Selector -->
+                <!-- Typology Selector & Management Actions -->
                 <div class="bg-stone-100 p-4 border border-stone-200 rounded-sm flex flex-wrap items-center justify-between gap-3">
-                  <span class="text-xs font-semibold uppercase text-stone-800">Select Typology to Manage:</span>
-                  <div class="flex flex-wrap gap-1.5" id="cms-typology-btn-container">
-                    <button type="button" onclick="switchCmsTypology(0)" id="cms-typ-btn-0" class="px-3 py-1 text-xs bg-stone-900 text-stone-100 font-medium rounded-sm">01 Commercial</button>
-                    <button type="button" onclick="switchCmsTypology(1)" id="cms-typ-btn-1" class="px-3 py-1 text-xs bg-white text-stone-700 hover:bg-stone-200 font-medium rounded-sm">02 Resorts</button>
-                    <button type="button" onclick="switchCmsTypology(2)" id="cms-typ-btn-2" class="px-3 py-1 text-xs bg-white text-stone-700 hover:bg-stone-200 font-medium rounded-sm">03 Villas</button>
-                    <button type="button" onclick="switchCmsTypology(3)" id="cms-typ-btn-3" class="px-3 py-1 text-xs bg-white text-stone-700 hover:bg-stone-200 font-medium rounded-sm">04 Bungalows</button>
-                    <button type="button" onclick="switchCmsTypology(4)" id="cms-typ-btn-4" class="px-3 py-1 text-xs bg-white text-stone-700 hover:bg-stone-200 font-medium rounded-sm">05 Farmhouses</button>
+                  <div class="space-y-1">
+                    <span class="text-xs font-semibold uppercase text-stone-800 block">Select Typology to Manage:</span>
+                    <div class="flex flex-wrap gap-1.5" id="cms-typology-btn-container">
+                      <!-- Injected dynamically by loadTypologyIntoCms() -->
+                    </div>
                   </div>
+                  <button type="button" onclick="addNewTypologyCms()" class="px-3.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-100 text-xs font-narrow uppercase tracking-wider font-bold flex items-center gap-1.5 rounded-sm shadow-sm transition-colors">
+                    <i data-lucide="plus" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>Add New Typology</span>
+                  </button>
                 </div>
 
                 <!-- Active Typology Details -->
                 <div class="bg-white p-5 border border-stone-200 rounded-sm space-y-4">
+                  <div class="flex items-center justify-between pb-3 border-b border-stone-200">
+                    <span class="font-mono text-xs text-bronze-600 font-semibold" id="cms-active-typ-badge">Active Typology</span>
+                    <button type="button" onclick="deleteActiveTypologyCms()" class="text-xs text-red-600 hover:text-red-800 flex items-center gap-1 font-medium bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-1 rounded-sm transition-colors">
+                      <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                      <span>Delete This Typology</span>
+                    </button>
+                  </div>
+
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label class="block text-xs text-stone-600 uppercase mb-1">Typology Name</label>
@@ -3082,7 +3094,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v3';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v11';
 
     const DEFAULT_CMS = {
       announcement1: "Zero Waste Architecture",
@@ -3119,39 +3131,43 @@
         }
       ],
       philEyebrow: "Foundational Principles",
-      philTitle: "Architectural Quietude Through Craft, Fusion & Conservation.",
-      philDesc: "At Architecture Basics, we believe true luxury is absence of noise and excess. We design without templates, guided purely by the dialogue between geography, sunlight, cultural heritage, and zero-waste material discipline.",
+      philTitle: "Architecture Shaped by Context, Craft, and Clarity.",
+      philDesc: "At Architecture Basics, we believe meaningful architecture begins with understanding. Every project is shaped by its context, purpose, proportion and materiality. We create spaces where thoughtful planning, refined details and a clear architectural language come together to create environments that are timeless, functional and distinctly their own.",
       philPillars: [
         {
-          title: "Fusion Architecture",
-          desc: "Transcending historic nostalgia and cold modernism. We weave local vernacular crafts, terracotta jalis, and vaulted brick ceilings with monolithic concrete, thermal glass, and sleek structural lines.",
-          badge: "Vernacular x Contemporary"
+          code: "01 / CONTEXT",
+          title: "Designed for Its Place",
+          desc: "Every project begins with an understanding of its context. We respond to the site, climate, surroundings and character of a place to create architecture that feels naturally rooted in its setting.",
+          badge: "Site & Climate Response"
         },
         {
-          title: "Strict No-Waste Policy",
-          desc: "From excavated soil transformed into compressed stabilized earth blocks (CSEB) to dry-laid stone masonry without chemical bonding, our construction methodology targets absolute zero landfill discard.",
-          badge: "Circular Lifecycle"
+          code: "02 / FUNCTION",
+          title: "Form Follows Experience",
+          desc: "We believe thoughtful design begins with how a space is meant to be lived and experienced. Planning, circulation, proportion and functionality come together to make every space purposeful.",
+          badge: "Purposeful Planning"
         },
         {
-          title: "Zero Templates",
-          desc: "We never replicate. Every commission begins on a blank sheet, listening to wind trajectories, celestial orientations, soil topography, and the specific daily rituals of its inhabitants.",
-          badge: "100% Bespoke Inception"
+          code: "03 / MATERIALITY",
+          title: "Material with Meaning",
+          desc: "Materials are an essential part of our architectural language. We carefully consider texture, colour, scale and detailing to create spaces with depth, warmth and character.",
+          badge: "Depth, Warmth & Character"
         },
         {
-          title: "Subtle Materiality",
-          desc: "Restrained palette of raw lime wash, untreated slate, warm teak, and textured travertine. We avoid harsh synthetic coatings and loud accents in favor of natural patina that ages gracefully.",
-          badge: "Living Patina"
+          code: "04 / DETAIL",
+          title: "Precision in the Details",
+          desc: "The character of architecture is often found in the smallest decisions. From proportions and junctions to finishes and lighting, we approach every detail with clarity and intention.",
+          badge: "Clarity & Intention"
         }
       ],
-      philQuote: "\"When you remove everything unnecessary, what remains is not emptiness—it is clarity, breath, and light.\"",
+      philQuote: "\"We believe architecture is not about adding more, but about making every element matter, in space, in proportion, in material, and in experience.\"",
       philQuoteAuthor: "— Studio Design Ethos",
       typologies: [
         {
-          name: "Commercial & Civic",
-          sub: "Corporate Flagships • Cultural Pavilions",
+          name: "Commercial",
+          sub: "Corporate Headquarters • Workspaces & Pavilions",
           img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-          tag: "LEED & Bioclimatic",
-          desc: "Bioclimatic corporate flagships, cultural guilds, and public pavilions built with zero synthetic cladding and passive cooling courtyards.",
+          tag: "Functional Clarity",
+          desc: "Workspaces and commercial developments designed for productivity, environmental balance, and brand expression.",
           projects: [
             {
               title: "Vayu Headquarters",
@@ -3163,18 +3179,18 @@
               img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
             },
             {
-              title: "Aura Cultural Pavilion",
-              type: "Civic Auditorium & Guild",
-              location: "Jaipur Heritage Corridor",
-              area: "28,000 sq.ft.",
-              badge: "Zero Cladding",
-              desc: "Engineered with dry-stacked red sandstone lattices (jalis) creating shaded micro-climate zones and zero artificial day-lighting needs.",
+              title: "Aura Innovation Center",
+              type: "Corporate R&D Complex",
+              location: "Hyderabad Tech Zone",
+              area: "38,000 sq.ft.",
+              badge: "Daylight Optimization",
+              desc: "Optimized solar geometry with shaded high-performance glazing, internal courtyards, and biophilic open workspace pods.",
               img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
             },
             {
               title: "Ojas Bio-Innovation Center",
               type: "R&D Campus & Botanical Guild",
-              location: "Hyderabad Tech Zone",
+              location: "Pune Industrial Hub",
               area: "62,000 sq.ft.",
               badge: "Solar Thermal",
               desc: "Monolithic concrete thermal mass cooled by earth tubes, featuring 100% solar array canopy powering laboratory wings.",
@@ -3183,11 +3199,47 @@
           ]
         },
         {
-          name: "Resorts & Sanctuaries",
-          sub: "Off-Grid Eco-Lodges • Wellness Retreats",
+          name: "Residential",
+          sub: "Private Villas • Bespoke Residences",
+          img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          tag: "Context & Proportion",
+          desc: "Private residences and courtyard homes shaped around daily life, light, and tailored spatial proportions.",
+          projects: [
+            {
+              title: "The Courtyard Residence",
+              type: "Private Waterfront Villa",
+              location: "Alibaug Coastline",
+              area: "14,500 sq.ft.",
+              badge: "Thermal Mass",
+              desc: "Framed around a central water courtyard with basalt stone walls and sliding timber louvers capturing coastal ocean cross-breezes.",
+              img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+              title: "Komorebi House",
+              type: "Cantilevered Hillside Residence",
+              location: "Kasauli Hills",
+              area: "9,800 sq.ft.",
+              badge: "Passive Solar",
+              desc: "Stepped terrace layout cut into mountain contours using local slate stone and triple-glazed panoramic alpine insulation.",
+              img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+              title: "Samsara Coastal Estate",
+              type: "Seaside Bioclimatic Villa",
+              location: "North Goa",
+              area: "11,200 sq.ft.",
+              badge: "Laterite Stone",
+              desc: "Exposed laterite stone masonry, lime plaster walls, and hand-cast terrazzo floors that remain naturally cool during humid summer peaks.",
+              img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+            }
+          ]
+        },
+        {
+          name: "Hospitality",
+          sub: "Luxury Resorts • Wellness Sanctuaries",
           img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
-          tag: "Conservation Hospitality",
-          desc: "Hospitality designed to tread lightly on fragile wilderness. Zero site soil removal, stilt-mounted timber frames, and localized constructed wetlands.",
+          tag: "Experiential Design",
+          desc: "Immersive retreats, boutique lodges, and wellness stays built in harmony with nature and local terrain.",
           projects: [
             {
               title: "Ananta Wetland Sanctuary",
@@ -3219,208 +3271,98 @@
           ]
         },
         {
-          name: "Private Villas",
-          sub: "Biophilic Residences • Courtyard Homes",
-          img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-          tag: "Biophilic Living",
-          desc: "Intimate private residential estates built around central water courtyards, breathing verandahs, and raw natural stone finishes.",
+          name: "Institutional",
+          sub: "Campuses • Civic & Cultural Guilds",
+          img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+          tag: "Civic Scale & Light",
+          desc: "Institutions, academies, and public buildings designed for longevity, learning, and cultural engagement.",
           projects: [
             {
-              title: "The Courtyard Residence",
-              type: "Private Waterfront Villa",
-              location: "Alibaug Coastline",
-              area: "14,500 sq.ft.",
-              badge: "Thermal Mass",
-              desc: "Framed around a 200-year-old banyan tree with basalt stone walls and sliding timber louvers capturing coastal ocean cross-breezes.",
-              img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+              title: "Aura Cultural Pavilion",
+              type: "Civic Auditorium & Guild",
+              location: "Jaipur Heritage Corridor",
+              area: "28,000 sq.ft.",
+              badge: "Sandstone Lattice",
+              desc: "Engineered with dry-stacked red sandstone lattices (jalis) creating shaded micro-climate zones and zero artificial day-lighting needs.",
+              img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
             },
             {
-              title: "Komorebi House",
-              type: "Cantilevered Hillside Villa",
-              location: "Kasauli Hills",
-              area: "9,800 sq.ft.",
-              badge: "Passive Solar",
-              desc: "Stepped terrace layout cut into mountain contours using slate stone from local quarry offcuts and triple-glazed alpine insulation.",
-              img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
-            },
-            {
-              title: "Samsara Coastal Estate",
-              type: "Seaside Bioclimatic Villa",
-              location: "North Goa",
-              area: "11,200 sq.ft.",
-              badge: "Laterite Stone",
-              desc: "Exposed laterite stone masonry, lime plaster walls, and hand-cast terrazzo floors that remain naturally cool during humid summer peaks.",
-              img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
-            }
-          ]
-        },
-        {
-          name: "Bespoke Bungalows",
-          sub: "Fusion Urban Living • Double-Height Voids",
-          img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-          tag: "Contemporary Craft",
-          desc: "Spacious multi-generational urban bungalows blending modern architectural geometry with time-tested vernacular materials.",
-          projects: [
-            {
-              title: "The Brick Screen Bungalow",
-              type: "Urban Family Bungalow",
+              title: "Vidya Academic Center",
+              type: "Design & Arts Academy",
               location: "Ahmedabad",
-              area: "12,000 sq.ft.",
-              badge: "Parametric Brick",
-              desc: "Articulated rotated brick facade offering daylight modulation and privacy while honoring the city's celebrated brick craft lineage.",
-              img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+              area: "52,000 sq.ft.",
+              badge: "Passive Cooling",
+              desc: "Exposed brick arches, open amphitheater courtyard, and double-height studio bays flooded with glare-free north light.",
+              img: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80"
             },
             {
-              title: "Prana Light House",
-              type: "Contemporary Courtyard Bungalow",
-              location: "Lutyens Buffer, New Delhi",
-              area: "16,000 sq.ft.",
-              badge: "Geothermal HVAC",
-              desc: "High-ceiling interior voids with internal bamboo courtyards and geothermal heat pumps cutting HVAC power demand by 58%.",
-              img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
-            },
-            {
-              title: "Tattva Residence",
-              type: "Modern Multi-Tier Bungalow",
-              location: "Jubilee Hills, Hyderabad",
-              area: "18,500 sq.ft.",
-              badge: "Solar Pergola",
-              desc: "Floating concrete slabs accented with recycled teak pergolas, reflecting pools, and natural cross-ventilation shafts.",
-              img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+              title: "Sahitya Guild Hall",
+              type: "Public Library & Forum",
+              location: "Bhopal Lakefront",
+              area: "34,000 sq.ft.",
+              badge: "Timber Ribs",
+              desc: "Glulam timber rib vaults spanning broad reading halls with filtered lake breeze cross-ventilation.",
+              img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80"
             }
           ]
         },
         {
-          name: "Heritage Farmhouses",
-          sub: "Permaculture Estates • Vernacular Manors",
-          img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
-          tag: "Regenerative Living",
-          desc: "Expansive countryside farmhouses integrated with organic orchards, natural rainwater reservoirs, and self-sufficient living loops.",
+          name: "Interior",
+          sub: "Spatial Craft • Refined Detailing",
+          img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+          tag: "Tactile Character",
+          desc: "Interior spaces where architecture and detail merge through honest materiality, texture, and tailored junctions.",
           projects: [
             {
-              title: "Bhoomi Regenerative Farm",
-              type: "Permaculture Country Manor",
-              location: "Sohna Valley, Haryana",
-              area: "8 Acres / 10,000 sq.ft.",
-              badge: "Earth Blocks",
-              desc: "Constructed using 100% Compressed Stabilized Earth Blocks (CSEB) made from soil excavated on site during pool digging.",
-              img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
+              title: "The Raw Teak Penthouse",
+              type: "Duplex Interior Architecture",
+              location: "Worli, Mumbai",
+              area: "7,200 sq.ft.",
+              badge: "Solid Teak & Brass",
+              desc: "Seamless wood joinery, custom monolithic marble islands, and micro-cement surfaces with concealed atmospheric lighting.",
+              img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
             },
             {
-              title: "Aranya Hillside Farmhouse",
-              type: "Ranch Style Retreat",
-              location: "Dehradun Foothills",
-              area: "5 Acres / 7,500 sq.ft.",
-              badge: "Timber & Slate",
-              desc: "Handcrafted stone masonry combined with certified sustainably harvested pine trusses and solar micro-grid powering the entire estate.",
-              img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80"
+              title: "Monochrome Heritage Loft",
+              type: "Heritage Restoration Interior",
+              location: "Kala Ghoda, Mumbai",
+              area: "4,500 sq.ft.",
+              badge: "Lime Wash & Steel",
+              desc: "Restored 14-foot timber ceilings, raw lime wash walls, and blackened steel partitions creating quiet modern spatial flow.",
+              img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80"
             },
             {
-              title: "Vedic Grove Homestead",
-              type: "Agrarian Eco-Homestead",
-              location: "Chhatarpur, New Delhi",
-              area: "3.5 Acres / 8,200 sq.ft.",
-              badge: "Water Positive",
-              desc: "Recharged ground table with 4 interconnected retention ponds, courtyard microclimate, and lime-wash thermal cooling.",
-              img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+              title: "The Travertine Residence",
+              type: "Bespoke Villa Interior",
+              location: "Indore",
+              area: "9,000 sq.ft.",
+              badge: "Honed Travertine",
+              desc: "Continuous honed travertine floor-to-wall transitions, concealed pivot doors, and custom fluted bronze cabinet handles.",
+              img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
             }
           ]
         }
       ],
-      galleryItems: [
-        {
-          id: "gal-1",
-          title: "Dry-Stacked Laterite Masonry",
-          category: "Craft & Details",
-          caption: "Hand-dressed indigenous laterite stone without synthetic mortar, creating porous breathing wall structures.",
-          img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-2",
-          title: "Vayu Headquarters Atrium",
-          category: "Commercial",
-          caption: "Central rainwater cascade and double-skin terracotta jalis cooling the multi-tier commercial atrium.",
-          img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-3",
-          title: "Ananta Wetland Reed Pavilion",
-          category: "Resorts",
-          caption: "Elevated timber deck floating over seasonal wetland flora with zero concrete footing impact.",
-          img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-4",
-          title: "The Banyan Courtyard Void",
-          category: "Villas",
-          caption: "Living century-old banyan tree acting as the thermal core and spatial anchor for the coastal residence.",
-          img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-5",
-          title: "Parametric Brick Shadows",
-          category: "Bungalows",
-          caption: "Light study at 3:00 PM demonstrating modulated solar shading cast by rotated brick lintels.",
-          img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-6",
-          title: "Bhoomi Earth Block Vaults",
-          category: "Farmhouses",
-          caption: "Compressed stabilized earthen vaults made entirely from site excavation material.",
-          img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-7",
-          title: "Aura Red Sandstone Guild",
-          category: "Commercial",
-          caption: "Deep-recessed porticos carved from regional Rajasthan sandstone providing daylight modulation.",
-          img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-8",
-          title: "Vana Suspended Canopy Pod",
-          category: "Resorts",
-          caption: "High-tensile bamboo treehouse suspended in rainforest foliage without trimming tree branches.",
-          img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "gal-9",
-          title: "Kasauli Mountain Slate Terraces",
-          category: "Villas",
-          caption: "Cantilevered stone terraces cascading down pine slopes to optimize winter solar gain.",
-          img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
-        }
-      ],
-      customSections: [
-        {
-          id: "vernacular-lab",
-          navTitle: "Material Lab",
-          eyebrow: "Research & Synthesis",
-          title: "The Atelier Vernacular Materials Laboratory",
-          content: "Before any construction commences, our in-house materials laboratory conducts stress and thermal conductivity testing on regional soils, agricultural biomass aggregates, and lime slaking ratios.\n\nWe collaborate with third-generation master stonemasons and structural engineers to ensure every envelope achieves negative carbon embodiment while surpassing contemporary seismic and insulation standards.",
-          img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
-          layout: "right",
-          ctaText: "Inquire About Research",
-          ctaLink: "#appointment"
-        }
-      ],
-      aboutTitle: "Crafting Spaces That Breathe. Rejecting The Disposable.",
-      aboutP1: "Architecture Basics (Atelier Ruchir) is an avant-garde architecture and master-planning studio dedicated to the synthesis of indigenous Indian craft and high-performance contemporary minimalism.",
-      aboutP2: "Where modern practice frequently relies on repetitive digital templates and high-waste finishes, we practice slow, deliberate architecture. Every project begins with a 30-day geological and solar study of the land, collaborating directly with master stonemasons, carpenters, and structural physicists.",
-      aboutP3: "Our strict Zero-Waste Policy is not an afterthought; it is our primary structural logic. By using dry-stacked quarry offcuts, thermal earthen envelopes, and precision modular detailing, our buildings operate as carbon-negative sanctuaries that endure for centuries.",
+      galleryItems: [],
+      customSections: [],
+      aboutTitle: "Over Two Decades of Designing with Purpose.",
+      aboutP1: "Founded in 2003 by Architect Ruchir Tiwari, Architecture Basics is an architecture and design practice based in Indore, India. What began as a focused architectural practice has evolved into a multidisciplinary studio working across residences, hospitality, commercial spaces, interiors and bespoke developments.",
+      aboutP2: "Our approach is grounded in experience, yet open to evolution. We believe architecture should respond to its context rather than follow a predetermined style. Every project is studied through its function, proportion, materiality, light and relationship with its surroundings.",
+      aboutP3: "Over two decades, this philosophy has shaped a diverse body of work, each project different in character, yet connected by a common pursuit of clarity, functionality and thoughtful design.",
       aboutImg: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=80",
       aboutMetrics: [
-        { value: "18+", label: "Years of Craft" },
-        { value: "0%", label: "Template Usage" },
-        { value: "94%", label: "Waste Diverted" },
-        { value: "40+", label: "Masterworks" }
+        { value: "2003", label: "Year Established" },
+        { value: "23+", label: "Years of Practice" },
+        { value: "100%", label: "Bespoke Design" },
+        { value: "40+", label: "Projects Completed" }
       ],
+      processEyebrow: "OUR APPROACH",
+      processTitle: "From Concept to Completion",
       processPhases: [
-        { code: "PHASE 01", title: "Geological & Sun Dialogue", desc: "Topography mapping, wind vector analysis, micro-climate simulation, and indigenous flora preservation." },
-        { code: "PHASE 02", title: "Vernacular Material Synthesis", desc: "Selecting site soil for stabilized earth blocks, sourcing local quarry salvage, testing lime ratios." },
-        { code: "PHASE 03", title: "Fusion Detailing", desc: "Integrating thermal break glazing, hidden gutters, and precision steel joinery with hand-chiseled stone." },
-        { code: "PHASE 04", title: "Zero-Waste Execution", desc: "Every stone trim, timber cut, and mortar batch is calibrated to eliminate landfill waste completely." }
+        { code: "PHASE 01", title: "Understanding & Brief", desc: "We begin by understanding the client’s requirements, lifestyle, aspirations, site conditions and project objectives. This forms the foundation for a clear design direction." },
+        { code: "PHASE 02", title: "Concept & Planning", desc: "Site studies, space planning, zoning, circulation and architectural concepts come together to establish the project’s overall form, function and character." },
+        { code: "PHASE 03", title: "Design Development", desc: "The concept is refined through material selection, facade development, interior integration, detailed drawings and coordinated architectural solutions." },
+        { code: "PHASE 04", title: "Documentation & Execution", desc: "Detailed drawings, specifications and consultant coordination translate the design into a buildable outcome, with continued involvement through site execution to maintain design intent." }
       ],
       contactAddress: "The Urban Meadows, C-20, Kanadiya, Indore, Madhya Pradesh 452016",
       contactPhone: "098260 83996",
@@ -3601,7 +3543,7 @@
     }
 
     // =========================================================================
-    // VISUAL GALLERY SECTION RENDERER & LIGHTBOX
+    // VISUAL GALLERY SECTION RENDERER & LIGHTBOX (3 FILTERS: ALL, ONGOING, UPCOMING)
     // =========================================================================
     function renderGalleryGrid(filter = 'All') {
       currentGalleryFilter = filter;
@@ -3616,10 +3558,17 @@
 
       if (items.length === 0) {
         container.innerHTML = `
-          <div class="col-span-full py-16 text-center text-stone-400 font-mono text-xs">
-            No photography archived in this category yet. You can add images in Studio Portal.
+          <div class="col-span-full py-16 px-6 text-center bg-stone-50 border border-stone-200 rounded-sm shadow-2xs">
+            <div class="w-12 h-12 rounded-full bg-stone-100 border border-stone-300 flex items-center justify-center mx-auto text-stone-500 mb-3">
+              <i data-lucide="camera" class="w-6 h-6 text-bronze-600"></i>
+            </div>
+            <h4 class="font-serif text-xl text-stone-900 font-medium">Gallery Archive Updating</h4>
+            <p class="text-xs text-stone-500 max-w-md mx-auto mt-1.5 leading-relaxed">
+              Photographic documentation of our ${filter === 'All' ? 'ongoing and upcoming' : filter.toLowerCase()} architecture works is being curated. New project imagery will appear here shortly.
+            </p>
           </div>
         `;
+        lucide.createIcons();
         return;
       }
 
@@ -3649,9 +3598,9 @@
       const filterBtns = document.querySelectorAll('.gallery-filter-btn');
       filterBtns.forEach(btn => {
         if (btn.textContent.trim().toLowerCase() === filter.toLowerCase() || (filter === 'All' && btn.textContent.trim().toLowerCase().startsWith('all'))) {
-          btn.className = 'gallery-filter-btn active px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-900 text-stone-100 rounded-sm transition-colors';
+          btn.className = 'gallery-filter-btn active px-4 py-2 text-xs font-medium font-narrow uppercase tracking-wider bg-stone-900 text-stone-100 rounded-sm transition-colors';
         } else {
-          btn.className = 'gallery-filter-btn px-4 py-2 text-xs font-medium uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors';
+          btn.className = 'gallery-filter-btn px-4 py-2 text-xs font-medium font-narrow uppercase tracking-wider bg-stone-200 text-stone-700 hover:bg-stone-300 rounded-sm transition-colors';
         }
       });
 
@@ -3908,6 +3857,8 @@
       if (data.philPillars) {
         data.philPillars.forEach((p, idx) => {
           const pNum = idx + 1;
+          const c = document.getElementById(`phil-pillar-${pNum}-code`);
+          if (c && p.code) c.textContent = p.code;
           const t = document.getElementById(`phil-pillar-${pNum}-title`);
           if (t) t.textContent = p.title;
           const d = document.getElementById(`phil-item-${pNum}`);
@@ -3952,6 +3903,11 @@
           if (l) l.textContent = m.label;
         });
       }
+
+      const procEye = document.getElementById('proc-eyebrow');
+      if (procEye) procEye.textContent = data.processEyebrow || 'OUR APPROACH';
+      const procTitle = document.getElementById('proc-title');
+      if (procTitle) procTitle.textContent = data.processTitle || 'From Concept to Completion';
 
       if (data.processPhases) {
         data.processPhases.forEach((proc, idx) => {
@@ -4088,24 +4044,41 @@
       document.getElementById('cms-contact-map-link').value = data.contactMapLink || '';
     }
 
-    // CMS Typology Manager
-    function loadTypologyIntoCms(idx) {
-      currentEditingTypologyIndex = idx;
+    // CMS Typology Manager (Full CRUD for Typology Tiles and Projects)
+    function loadTypologyIntoCms(idx = 0) {
       const data = getCmsData();
-      const typ = data.typologies[idx];
-      if (!typ) return;
-
-      // Update active tab buttons
-      for (let i = 0; i < 5; i++) {
-        const btn = document.getElementById(`cms-typ-btn-${i}`);
-        if (btn) {
-          if (i === idx) {
-            btn.className = "px-3 py-1 text-xs bg-stone-900 text-stone-100 font-medium rounded-sm";
-          } else {
-            btn.className = "px-3 py-1 text-xs bg-white text-stone-700 hover:bg-stone-200 font-medium rounded-sm";
-          }
-        }
+      if (!data.typologies || data.typologies.length === 0) {
+        data.typologies = [{
+          name: "Commercial",
+          sub: "Corporate Headquarters • Workspaces & Pavilions",
+          tag: "Functional Clarity",
+          desc: "Workspaces and commercial developments designed for productivity, environmental balance, and brand expression.",
+          img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+          projects: []
+        }];
       }
+      if (idx < 0) idx = 0;
+      if (idx >= data.typologies.length) idx = data.typologies.length - 1;
+      currentEditingTypologyIndex = idx;
+      const typ = data.typologies[idx];
+
+      // Render all typology selector tab buttons dynamically
+      const btnContainer = document.getElementById('cms-typology-btn-container');
+      if (btnContainer) {
+        btnContainer.innerHTML = data.typologies.map((t, i) => {
+          const numStr = (i + 1).toString().padStart(2, '0');
+          const isActive = i === idx;
+          return `
+            <button type="button" onclick="switchCmsTypology(${i})" id="cms-typ-btn-${i}" class="px-3 py-1.5 text-xs font-medium rounded-sm flex items-center gap-1.5 transition-colors ${isActive ? 'bg-stone-900 text-stone-100 shadow-sm' : 'bg-white text-stone-700 hover:bg-stone-200 border border-stone-200'}">
+              <span class="font-mono text-[10px] opacity-75">${numStr}</span>
+              <span>${t.name || 'Untitled'}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      const badgeEl = document.getElementById('cms-active-typ-badge');
+      if (badgeEl) badgeEl.textContent = `Typology #${idx + 1}: ${typ.name || 'Untitled'}`;
 
       document.getElementById('cms-typ-name').value = typ.name || '';
       document.getElementById('cms-typ-sub').value = typ.sub || '';
@@ -4121,6 +4094,7 @@
       const projects = typ.projects || [];
       if (projects.length === 0) {
         container.innerHTML = '<div class="p-6 text-center text-stone-400 bg-stone-50 border border-stone-200 text-xs">No projects in this typology yet. Click "Add New Project" above to create one.</div>';
+        lucide.createIcons();
         return;
       }
 
@@ -4192,33 +4166,80 @@
 
     function saveActiveTypologyEdits() {
       const data = getCmsData();
+      if (!data.typologies || !data.typologies[currentEditingTypologyIndex]) return;
       const typ = data.typologies[currentEditingTypologyIndex];
-      if (!typ) return;
 
-      typ.name = document.getElementById('cms-typ-name').value;
-      typ.sub = document.getElementById('cms-typ-sub').value;
-      typ.desc = document.getElementById('cms-typ-desc').value;
-      typ.img = document.getElementById('cms-typ-img').value;
+      const nameEl = document.getElementById('cms-typ-name');
+      const subEl = document.getElementById('cms-typ-sub');
+      const descEl = document.getElementById('cms-typ-desc');
+      const imgEl = document.getElementById('cms-typ-img');
+
+      if (nameEl) typ.name = nameEl.value;
+      if (subEl) typ.sub = subEl.value;
+      if (descEl) typ.desc = descEl.value;
+      if (imgEl) typ.img = imgEl.value;
 
       const container = document.getElementById('cms-typology-projects-container');
-      if (!container) return;
+      if (container) {
+        const cards = container.querySelectorAll('.group');
+        typ.projects = [];
 
-      const cards = container.querySelectorAll('.group');
-      typ.projects = [];
-
-      cards.forEach((card, pIdx) => {
-        typ.projects.push({
-          title: card.querySelector('.cms-p-title').value,
-          type: typ.name,
-          location: card.querySelector('.cms-p-loc').value,
-          area: card.querySelector('.cms-p-area').value,
-          badge: card.querySelector('.cms-p-badge').value,
-          desc: card.querySelector('.cms-p-desc').value,
-          img: card.querySelector('.cms-p-img').value
+        cards.forEach((card) => {
+          typ.projects.push({
+            title: card.querySelector('.cms-p-title').value,
+            type: typ.name,
+            location: card.querySelector('.cms-p-loc').value,
+            area: card.querySelector('.cms-p-area').value,
+            badge: card.querySelector('.cms-p-badge').value,
+            desc: card.querySelector('.cms-p-desc').value,
+            img: card.querySelector('.cms-p-img').value
+          });
         });
-      });
+      }
 
       localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function addNewTypologyCms() {
+      saveActiveTypologyEdits();
+      const data = getCmsData();
+      data.typologies = data.typologies || [];
+      const newIndex = data.typologies.length;
+      data.typologies.push({
+        name: "New Typology",
+        sub: "Architectural Typology",
+        tag: "Bespoke",
+        desc: "Explore tailored architectural designs crafted with contextual reverence and sustainable discipline.",
+        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        projects: [
+          {
+            title: "New Commission Study",
+            type: "New Typology",
+            location: "Indore, India",
+            area: "10,000 sq.ft.",
+            badge: "Concept",
+            desc: "Contextual architectural study with passive solar shading and natural ventilation.",
+            img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+          }
+        ]
+      });
+      localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(data));
+      loadTypologyIntoCms(newIndex);
+    }
+
+    function deleteActiveTypologyCms() {
+      const data = getCmsData();
+      if (!data.typologies || data.typologies.length <= 1) {
+        alert('At least one typology must remain on the website.');
+        return;
+      }
+      const typ = data.typologies[currentEditingTypologyIndex];
+      if (!confirm(`Are you sure you want to delete the "${typ ? (typ.name || 'Untitled') : 'active'}" typology tile entirely?`)) return;
+
+      data.typologies.splice(currentEditingTypologyIndex, 1);
+      localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(data));
+      const targetIndex = Math.max(0, currentEditingTypologyIndex - 1);
+      loadTypologyIntoCms(targetIndex);
     }
 
     function addProjectToActiveTypology() {
@@ -4295,23 +4316,19 @@
                 <input type="text" class="cms-gal-title w-full px-2.5 py-1 bg-white border border-stone-300 text-xs font-semibold" value="${item.title || ''}" />
               </div>
               <div>
-                <label class="block text-[10px] text-stone-500 uppercase font-semibold">Category</label>
+                <label class="block text-[10px] text-stone-500 uppercase font-semibold">Category (Filter Tab)</label>
                 <select class="cms-gal-cat w-full px-2 py-1 bg-white border border-stone-300 text-xs">
-                  <option value="Commercial" ${item.category === 'Commercial' ? 'selected' : ''}>Commercial</option>
-                  <option value="Resorts" ${item.category === 'Resorts' ? 'selected' : ''}>Resorts</option>
-                  <option value="Villas" ${item.category === 'Villas' ? 'selected' : ''}>Villas</option>
-                  <option value="Bungalows" ${item.category === 'Bungalows' ? 'selected' : ''}>Bungalows</option>
-                  <option value="Farmhouses" ${item.category === 'Farmhouses' ? 'selected' : ''}>Farmhouses</option>
-                  <option value="Craft & Details" ${item.category === 'Craft & Details' ? 'selected' : ''}>Craft & Details</option>
+                  <option value="Ongoing" ${item.category === 'Ongoing' ? 'selected' : ''}>Ongoing</option>
+                  <option value="Upcoming" ${item.category === 'Upcoming' ? 'selected' : ''}>Upcoming</option>
                 </select>
               </div>
             </div>
             <div>
               <label class="block text-[10px] text-stone-500 uppercase font-semibold">Caption / Story</label>
-              <input type="text" class="cms-gal-caption w-full px-2 py-1 bg-white border border-stone-300 text-xs" value="${item.caption || ''}" />
+              <input type="text" class="cms-gal-caption w-full px-2 py-1 bg-white border border-stone-300 text-xs" value="${item.caption || ''}" placeholder="Project description or spatial note" />
             </div>
             <div class="flex items-center gap-2 pt-1">
-              <input type="text" id="cms-gal-${idx}-img" class="cms-gal-img flex-1 px-2 py-1 bg-white border border-stone-300 text-[11px] font-mono" value="${item.img || ''}" placeholder="Image URL" oninput="document.getElementById('preview-gal-${idx}').src = this.value" />
+              <input type="text" id="cms-gal-${idx}-img" class="cms-gal-img flex-1 px-2 py-1 bg-white border border-stone-300 text-[11px] font-mono" value="${item.img || ''}" placeholder="Image URL or upload button" oninput="document.getElementById('preview-gal-${idx}').src = this.value" />
               <label class="cursor-pointer shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 bg-stone-200 hover:bg-stone-300 text-stone-800 text-[11px] uppercase font-medium rounded-sm">
                 <i data-lucide="upload" class="w-3 h-3"></i>
                 <span>Upload</span>
@@ -4353,8 +4370,8 @@
       data.galleryItems.unshift({
         id: `gal-${Date.now()}`,
         title: "New Project Study",
-        category: "Craft & Details",
-        caption: "Architectural documentation of masonry craft and ambient daylight modulation.",
+        category: "Ongoing",
+        caption: "Architectural documentation of construction progress and spatial materiality.",
         img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
       });
 
