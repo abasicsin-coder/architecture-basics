@@ -3096,7 +3096,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v12';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v13';
 
     const DEFAULT_CMS = {
       announcement1: "Contextual Architecture",
@@ -3165,42 +3165,6 @@
       philQuoteAuthor: "— Studio Design Ethos",
       typologies: [
         {
-          name: "Commercial",
-          sub: "Corporate Headquarters • Workspaces & Pavilions",
-          img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-          tag: "Functional Clarity",
-          desc: "Workspaces and commercial developments designed for productivity, environmental balance, and brand expression.",
-          projects: [
-            {
-              title: "Vayu Headquarters",
-              type: "Urban Corporate Complex",
-              location: "Bengaluru, India",
-              area: "45,000 sq.ft.",
-              badge: "LEED Platinum",
-              desc: "Constructed with local granite ashlar, double-skin terracotta louvers, and a central rainwater harvesting courtyard reducing ambient temperature by 6°C.",
-              img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
-            },
-            {
-              title: "Aura Innovation Center",
-              type: "Corporate R&D Complex",
-              location: "Hyderabad Tech Zone",
-              area: "38,000 sq.ft.",
-              badge: "Daylight Optimization",
-              desc: "Optimized solar geometry with shaded high-performance glazing, internal courtyards, and biophilic open workspace pods.",
-              img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
-            },
-            {
-              title: "Ojas Bio-Innovation Center",
-              type: "R&D Campus & Botanical Guild",
-              location: "Pune Industrial Hub",
-              area: "62,000 sq.ft.",
-              badge: "Solar Thermal",
-              desc: "Monolithic concrete thermal mass cooled by earth tubes, featuring 100% solar array canopy powering laboratory wings.",
-              img: "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
-            }
-          ]
-        },
-        {
           name: "Residential",
           sub: "Private Villas • Bespoke Residences",
           img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
@@ -3248,8 +3212,8 @@
               type: "Eco-Resort & Spa",
               location: "Udaipur Wetlands",
               area: "18 Keys & Spa",
-              badge: "Zero Soil Impact",
-              desc: "Built on elevated screw-piles with zero foundation concrete poured into wetland soil. 100% biological reed-bed water recycling.",
+              badge: "Natural Materials",
+              desc: "Built on elevated screw-piles with zero foundation concrete poured into wetland soil, with biological reed-bed water recycling.",
               img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80"
             },
             {
@@ -3273,9 +3237,72 @@
           ]
         },
         {
+          name: "Commercial & Corporate",
+          sub: "Corporate Offices • Business Parks",
+          img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+          tag: "Brand & Function",
+          desc: "Corporate headquarters, business parks and mixed-use commercial buildings designed for productivity, presence and long-term performance.",
+          projects: [
+            {
+              title: "Vayu Headquarters",
+              type: "Urban Corporate Complex",
+              location: "Bengaluru, India",
+              area: "45,000 sq.ft.",
+              badge: "Contextual Design",
+              desc: "Constructed with local granite ashlar, double-skin terracotta louvers, and a central rainwater harvesting courtyard.",
+              img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+              title: "Aura Innovation Center",
+              type: "Corporate R&D Complex",
+              location: "Hyderabad Tech Zone",
+              area: "38,000 sq.ft.",
+              badge: "Daylight Optimised",
+              desc: "Optimised solar geometry with shaded high-performance glazing, internal courtyards, and biophilic open workspace pods.",
+              img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+              title: "Meridian Business Park",
+              type: "Mixed-Use Corporate Campus",
+              location: "Indore, Madhya Pradesh",
+              area: "72,000 sq.ft.",
+              badge: "Civic Edge",
+              desc: "A cohesive campus of interconnected office blocks unified by shaded colonnades, curated courtyards and a legible public edge.",
+              img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80"
+            }
+          ]
+        },
+        {
+          name: "Retail & Commercial Interiors",
+          sub: "Showrooms • Flagship Stores • Brand Spaces",
+          img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
+          tag: "Material & Experience",
+          desc: "Retail environments and commercial interiors where spatial sequence, material honesty and brand identity come together with precision.",
+          projects: [
+            {
+              title: "Atelier Showroom",
+              type: "Luxury Retail Interior",
+              location: "Indore",
+              area: "3,200 sq.ft.",
+              badge: "Custom Millwork",
+              desc: "Warm walnut panelling, honed marble surfaces and considered lighting create a calm, curated environment for bespoke retail.",
+              img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+              title: "The Linen House",
+              type: "Lifestyle Brand Flagship",
+              location: "Indore",
+              area: "2,800 sq.ft.",
+              badge: "Tactile Detail",
+              desc: "Handmade brick, linen-panelled walls and recessed display niches create a shopping environment rooted in material and craft.",
+              img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80"
+            }
+          ]
+        },
+        {
           name: "Institutional",
-          sub: "Campuses • Civic & Cultural Guilds",
-          img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+          sub: "Campuses • Civic & Cultural Buildings",
+          img: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
           tag: "Civic Scale & Light",
           desc: "Institutions, academies, and public buildings designed for longevity, learning, and cultural engagement.",
           projects: [
@@ -3285,7 +3312,7 @@
               location: "Jaipur Heritage Corridor",
               area: "28,000 sq.ft.",
               badge: "Sandstone Lattice",
-              desc: "Engineered with dry-stacked red sandstone lattices (jalis) creating shaded micro-climate zones and zero artificial day-lighting needs.",
+              desc: "Engineered with dry-stacked red sandstone lattices creating shaded micro-climate zones and zero artificial day-lighting needs.",
               img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
             },
             {
@@ -3309,7 +3336,34 @@
           ]
         },
         {
-          name: "Interior",
+          name: "Farmhouses & Retreats",
+          sub: "Rural Retreats • Weekend Farmhouses",
+          img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
+          tag: "Landscape & Repose",
+          desc: "Farmhouses and rural retreats rooted in their landscape, shaped by local material and designed for rest, simplicity and seasonal living.",
+          projects: [
+            {
+              title: "The Stone Farmhouse",
+              type: "Rural Weekend Retreat",
+              location: "Mandu Plateau, MP",
+              area: "6,500 sq.ft.",
+              badge: "Local Stone",
+              desc: "Rubble stone construction with deep verandas, pitched roofs and rain-harvesting courtyards suited to the region's seasonal rhythms.",
+              img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+              title: "Amber Valley Farm",
+              type: "Agricultural Farmhouse & Guest Wing",
+              location: "Nimar Valley, MP",
+              area: "8,200 sq.ft.",
+              badge: "Brick & Timber",
+              desc: "Traditional load-bearing brick with exposed timber trusses and wide shaded verandas responding to a warm, semi-arid climate.",
+              img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+            }
+          ]
+        },
+        {
+          name: "Interior Architecture",
           sub: "Spatial Craft • Refined Detailing",
           img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
           tag: "Tactile Character",
