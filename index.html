@@ -3095,7 +3095,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v14';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v15';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3472,10 +3472,16 @@
 
       if (videoEl && srcEl) {
         videoEl.style.objectFit = data.videoFitMode || 'cover';
-        if (srcEl.getAttribute('src') !== targetSrc) {
+        const currentSrc = srcEl.getAttribute('src') || '';
+        if (currentSrc !== targetSrc) {
+          // Src changed — reset prime so the new video gets primed on next interaction
+          isPrimed = false;
           srcEl.src = targetSrc;
           videoEl.load();
           videoEl.addEventListener('loadedmetadata', syncDuration, { once: true });
+        } else {
+          // Same src — just sync duration, don't reload
+          syncDuration();
         }
       }
     }
