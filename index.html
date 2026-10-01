@@ -239,10 +239,8 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png">
   
-  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Arial Narrow system font family — no external import needed -->
+  <!-- Arial Narrow system font family — no external import needed -->
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -255,8 +253,8 @@
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Arial Narrow"', '"Arial"', '"Helvetica Neue"', 'sans-serif'],
+            sans:  ['"Arial"', '"Helvetica Neue"', 'Helvetica', 'sans-serif'],
             narrow: ['"Arial Narrow"', '"Helvetica Neue Condensed"', '"Franklin Gothic Medium Condensed"', 'sans-serif-condensed', 'sans-serif'],
           },
           colors: {
@@ -334,7 +332,7 @@
 
     /* Architectural condensed/narrow contrast font */
     .font-narrow {
-      font-family: "Arial Narrow", "Helvetica Neue Condensed", "Franklin Gothic Medium Condensed", sans-serif-condensed, sans-serif !important;
+      font-family: "Arial Narrow", "Arial Narrow Bold", "Helvetica Neue Condensed", "Franklin Gothic Medium Condensed", sans-serif-condensed, sans-serif !important;
       letter-spacing: 0.08em;
     }
 
@@ -3098,7 +3096,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v15';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v16';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
