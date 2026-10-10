@@ -1284,8 +1284,19 @@
         <i data-lucide="x" class="w-5 h-5 text-white"></i>
       </button>
 
-      <div class="h-72 w-full overflow-hidden relative bg-stone-950">
-        <img id="modal-project-img" src="" alt="Project" class="w-full h-full object-cover" />
+      <div class="h-72 w-full overflow-hidden relative bg-stone-950 group/modal-img">
+        <img id="modal-project-img" src="" alt="Project" class="w-full h-full object-cover transition-opacity duration-300" />
+        <!-- Arrows for gallery -->
+        <button id="modal-prev-btn" onclick="prevModalImage(event)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-stone-900/60 hover:bg-stone-900/90 text-white flex items-center justify-center border border-stone-600/50 opacity-0 group-hover/modal-img:opacity-100 transition-opacity hidden z-10">
+          <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <button id="modal-next-btn" onclick="nextModalImage(event)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-stone-900/60 hover:bg-stone-900/90 text-white flex items-center justify-center border border-stone-600/50 opacity-0 group-hover/modal-img:opacity-100 transition-opacity hidden z-10">
+          <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+        <!-- Counter -->
+        <div id="modal-img-counter" class="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-stone-900/80 rounded-full text-xs font-mono text-stone-300 border border-stone-600/50 hidden z-10">
+          1 / 1
+        </div>
       </div>
 
       <div class="p-8 bg-stone-900 text-white">
@@ -1815,7 +1826,7 @@
 
                   <!-- Step 3 -->
                   <div class="bg-white p-5 border border-stone-200 rounded-sm space-y-3">
-                    <span class="font-mono text-xs text-bronze-600 block font-semibold">Step 03 / Zero Waste</span>
+                    <span class="font-mono text-xs text-bronze-600 block font-semibold">Step 03 / Process</span>
                     <div>
                       <label class="block text-xs text-stone-500 uppercase mb-1">Eyebrow</label>
                       <input type="text" id="cms-hero-3-eyebrow" class="w-full px-3 py-1.5 bg-stone-50 border border-stone-300 text-xs" />
@@ -2523,24 +2534,74 @@
     // =========================================================================
     // 3. PROJECT DETAIL MODAL
     // =========================================================================
-    function openProjectModal(title, type, location, area, desc, img) {
+    let currentModalImages = [];
+    let currentModalIndex = 0;
+
+    function openProjectModal(title, type, location, area, desc, img, imagesStr) {
       document.getElementById('modal-project-title').textContent = title;
       document.getElementById('modal-project-type').textContent = type;
       document.getElementById('modal-project-location').innerHTML = `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-stone-400 inline"></i> ${location}`;
       document.getElementById('modal-project-area').textContent = area;
       document.getElementById('modal-project-desc').textContent = desc;
-      document.getElementById('modal-project-img').src = img;
+      
+      try {
+        currentModalImages = imagesStr ? JSON.parse(decodeURIComponent(imagesStr)) : [];
+      } catch(e) {
+        currentModalImages = [];
+      }
+      
+      if (!currentModalImages || currentModalImages.length === 0) {
+        currentModalImages = [img];
+      }
+      
+      currentModalIndex = 0;
+      updateModalImage();
       
       const modal = document.getElementById('project-modal');
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       lucide.createIcons();
     }
+    
+    function updateModalImage() {
+      const imgEl = document.getElementById('modal-project-img');
+      imgEl.src = currentModalImages[currentModalIndex];
+      
+      const prevBtn = document.getElementById('modal-prev-btn');
+      const nextBtn = document.getElementById('modal-next-btn');
+      const counter = document.getElementById('modal-img-counter');
+      
+      if (currentModalImages.length > 1) {
+        prevBtn.classList.remove('hidden');
+        nextBtn.classList.remove('hidden');
+        counter.classList.remove('hidden');
+        counter.textContent = `${currentModalIndex + 1} / ${currentModalImages.length}`;
+      } else {
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        counter.classList.add('hidden');
+      }
+    }
+    
+    function prevModalImage(e) {
+      if (e) e.stopPropagation();
+      if (currentModalImages.length <= 1) return;
+      currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+      updateModalImage();
+    }
+    
+    function nextModalImage(e) {
+      if (e) e.stopPropagation();
+      if (currentModalImages.length <= 1) return;
+      currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+      updateModalImage();
+    }
 
     function closeProjectModal() {
       const modal = document.getElementById('project-modal');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+      currentModalImages = [];
     }
 
     // =========================================================================
@@ -2629,7 +2690,7 @@
             email: 'pooja.mehta@studio.com',
             category: 'Bespoke Villa',
             schedule: '2026-09-22 (04:00 PM)',
-            notes: 'Looking to commission hillside villa in Alibaug with zero waste policy.',
+            notes: 'Looking to commission hillside villa in Alibaug with a contextual design approach.',
             status: 'Pending'
           },
           {
@@ -3096,7 +3157,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v22';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v23';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3178,7 +3239,8 @@
               area: "Custom Built",
               badge: "Contextual Design",
               desc: "A thoughtfully designed private residence balancing modern living with contextual sensitivity.",
-              img: "assets/images/projects/shambhavi.webp"
+              img: "assets/images/projects/shambhavi.webp",
+              images: ["assets/images/projects/shambhavi/01.webp","assets/images/projects/shambhavi/02.webp","assets/images/projects/shambhavi/03.webp","assets/images/projects/shambhavi/04.webp","assets/images/projects/shambhavi/05.webp","assets/images/projects/shambhavi/06.webp","assets/images/projects/shambhavi/07.webp","assets/images/projects/shambhavi/08.webp","assets/images/projects/shambhavi/09.webp","assets/images/projects/shambhavi/10.webp","assets/images/projects/shambhavi/11.webp","assets/images/projects/shambhavi/12.webp","assets/images/projects/shambhavi/13.webp","assets/images/projects/shambhavi/14.webp"]
             },
             {
               title: "Nilesh Sir Residence",
@@ -3187,7 +3249,8 @@
               area: "Custom Built",
               badge: "Tailored Spaces",
               desc: "A bespoke residential project emphasizing natural light, functional layout, and refined detailing.",
-              img: "assets/images/projects/nilesh.webp"
+              img: "assets/images/projects/nilesh.webp",
+              images: ["assets/images/projects/nilesh/01.webp","assets/images/projects/nilesh/02.webp","assets/images/projects/nilesh/03.webp","assets/images/projects/nilesh/04.webp","assets/images/projects/nilesh/05.webp","assets/images/projects/nilesh/06.webp","assets/images/projects/nilesh/07.webp","assets/images/projects/nilesh/08.webp","assets/images/projects/nilesh/09.webp"]
             },
             {
               title: "Sanas Villa",
@@ -3196,7 +3259,8 @@
               area: "Custom Built",
               badge: "Bespoke Craft",
               desc: "A residential sanctuary designed for family living with a strong connection to its landscape.",
-              img: "assets/images/projects/sanas.webp"
+              img: "assets/images/projects/sanas.webp",
+              images: ["assets/images/projects/sanas/01.webp","assets/images/projects/sanas/02.webp","assets/images/projects/sanas/03.webp","assets/images/projects/sanas/04.webp","assets/images/projects/sanas/05.webp","assets/images/projects/sanas/06.webp","assets/images/projects/sanas/07.webp","assets/images/projects/sanas/08.webp","assets/images/projects/sanas/09.webp","assets/images/projects/sanas/10.webp","assets/images/projects/sanas/11.webp","assets/images/projects/sanas/12.webp","assets/images/projects/sanas/13.webp","assets/images/projects/sanas/14.webp","assets/images/projects/sanas/15.webp","assets/images/projects/sanas/16.webp","assets/images/projects/sanas/17.webp","assets/images/projects/sanas/18.webp","assets/images/projects/sanas/19.webp","assets/images/projects/sanas/20.webp","assets/images/projects/sanas/21.webp","assets/images/projects/sanas/22.webp","assets/images/projects/sanas/23.webp","assets/images/projects/sanas/24.webp","assets/images/projects/sanas/25.webp","assets/images/projects/sanas/26.webp"]
             }
           ]
         },
@@ -3214,7 +3278,8 @@
               area: "Hospitality Retreat",
               badge: "Experiential Stay",
               desc: "An immersive boutique retreat built in harmony with nature and designed for holistic wellness.",
-              img: "assets/images/projects/manmath.webp"
+              img: "assets/images/projects/manmath.webp",
+              images: ["assets/images/projects/manmath/01.webp","assets/images/projects/manmath/02.webp","assets/images/projects/manmath/03.webp","assets/images/projects/manmath/04.webp","assets/images/projects/manmath/05.webp","assets/images/projects/manmath/06.webp","assets/images/projects/manmath/07.webp","assets/images/projects/manmath/08.webp","assets/images/projects/manmath/09.webp","assets/images/projects/manmath/10.webp","assets/images/projects/manmath/11.webp","assets/images/projects/manmath/12.webp","assets/images/projects/manmath/13.webp","assets/images/projects/manmath/14.webp","assets/images/projects/manmath/15.webp"]
             },
             {
               title: "Pitchers Cafe & Bar",
@@ -3223,7 +3288,8 @@
               area: "Social Space",
               badge: "Dynamic Ambience",
               desc: "A vibrant hospitality venue characterized by engaging interiors and fluid spatial sequence.",
-              img: "assets/images/projects/pitchers.webp"
+              img: "assets/images/projects/pitchers.webp",
+              images: ["assets/images/projects/pitchers/01.webp","assets/images/projects/pitchers/02.webp","assets/images/projects/pitchers/03.webp","assets/images/projects/pitchers/04.webp","assets/images/projects/pitchers/05.webp","assets/images/projects/pitchers/06.webp","assets/images/projects/pitchers/07.webp","assets/images/projects/pitchers/08.webp","assets/images/projects/pitchers/09.webp","assets/images/projects/pitchers/10.webp","assets/images/projects/pitchers/11.webp","assets/images/projects/pitchers/12.webp","assets/images/projects/pitchers/13.webp"]
             }
           ]
         },
@@ -3241,7 +3307,8 @@
               area: "Commercial Setup",
               badge: "Productive Design",
               desc: "A corporate environment tailored for optimal workflow, professional presence, and modern aesthetics.",
-              img: "assets/images/projects/office.webp"
+              img: "assets/images/projects/office.webp",
+              images: ["assets/images/projects/office/01.webp","assets/images/projects/office/02.webp","assets/images/projects/office/03.webp","assets/images/projects/office/04.webp","assets/images/projects/office/05.webp","assets/images/projects/office/06.webp","assets/images/projects/office/07.webp","assets/images/projects/office/08.webp","assets/images/projects/office/09.webp","assets/images/projects/office/10.webp","assets/images/projects/office/11.webp","assets/images/projects/office/12.webp","assets/images/projects/office/13.webp","assets/images/projects/office/14.webp"]
             }
           ]
         },
@@ -3259,7 +3326,8 @@
               area: "Commercial Retail",
               badge: "Brand Identity",
               desc: "A bespoke retail environment designed to highlight product display and streamline customer experience.",
-              img: "assets/images/projects/patel.webp"
+              img: "assets/images/projects/patel.webp",
+              images: ["assets/images/projects/patel/01.webp","assets/images/projects/patel/02.webp","assets/images/projects/patel/03.webp","assets/images/projects/patel/04.webp","assets/images/projects/patel/05.webp","assets/images/projects/patel/06.webp","assets/images/projects/patel/07.webp","assets/images/projects/patel/08.webp"]
             }
           ]
         },
@@ -3382,7 +3450,7 @@
           const safeImg = (proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80').replace(/'/g, "\\'");
 
           cardsHtml += `
-            <div class="bg-stone-900 border border-stone-700/80 hover:border-stone-400 transition-all rounded-sm overflow-hidden group/card cursor-pointer shadow-md" onclick="openProjectModal('${safeTitle}', '${safeType}', '${safeLoc}', '${safeArea}', '${safeDesc}', '${safeImg}'); event.stopPropagation();">
+            <div class="bg-stone-900 border border-stone-700/80 hover:border-stone-400 transition-all rounded-sm overflow-hidden group/card cursor-pointer shadow-md" onclick="openProjectModal('${safeTitle}', '${safeType}', '${safeLoc}', '${safeArea}', '${safeDesc}', '${safeImg}', '${encodeURIComponent(JSON.stringify(proj.images || []))}'); event.stopPropagation();">
               <div class="h-36 overflow-hidden relative bg-stone-950">
                 <img src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
                 <span class="absolute top-2 right-2 bg-stone-950/90 text-white border border-stone-600 text-[10px] px-2.5 py-1 tracking-wider uppercase font-mono font-medium shadow-sm">${proj.badge || 'Architectural Work'}</span>
