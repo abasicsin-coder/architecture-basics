@@ -1092,7 +1092,7 @@
             <!-- Vision / Project Brief -->
             <div>
               <label class="block text-xs uppercase tracking-wider text-stone-700 font-semibold mb-2">Tell Us About Your Vision & Values</label>
-              <textarea name="message" rows="3" placeholder="Share any specific requirements, natural features of your land, or zero-waste goals you have..." class="w-full px-4 py-3 bg-stone-100/50 border border-stone-300 focus:border-stone-800 focus:bg-white text-stone-900 text-sm outline-none transition-colors"></textarea>
+              <textarea name="message" rows="3" placeholder="Share any specific requirements, natural features of your land, or specific goals you have..." class="w-full px-4 py-3 bg-stone-100/50 border border-stone-300 focus:border-stone-800 focus:bg-white text-stone-900 text-sm outline-none transition-colors"></textarea>
             </div>
 
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -1155,7 +1155,7 @@
                 <label class="block text-xs uppercase tracking-wider text-stone-700 font-semibold mb-2">Domain / Sector *</label>
                 <select name="sector" required class="w-full px-4 py-3 bg-stone-100/50 border border-stone-300 focus:border-stone-800 focus:bg-white text-stone-900 text-sm outline-none transition-colors">
                   <option value="">Select industry domain...</option>
-                  <option value="Zero-Waste Sustainable Materials">Zero-Waste Sustainable Materials</option>
+                  <option value="Sustainable Materials">Sustainable Materials</option>
                   <option value="Indigenous Stone / Clay Artisan Guild">Indigenous Stone / Clay Artisan Guild</option>
                   <option value="Structural & Environmental Engineering">Structural & Environmental Engineering</option>
                   <option value="Passive Geothermal / Solar Systems">Passive Geothermal / Solar Systems</option>
@@ -1284,8 +1284,8 @@
         <i data-lucide="x" class="w-5 h-5 text-white"></i>
       </button>
 
-      <div class="h-72 w-full overflow-hidden relative bg-stone-950 group/modal-img">
-        <img id="modal-project-img" src="" alt="Project" class="w-full h-full object-cover transition-opacity duration-300" />
+      <div class="h-[40vh] min-h-[300px] w-full flex items-center justify-center overflow-hidden relative bg-stone-950 group/modal-img">
+        <img id="modal-project-img" src="" alt="Project" class="w-full h-full object-contain transition-opacity duration-300" />
         <!-- Arrows for gallery -->
         <button id="modal-prev-btn" onclick="prevModalImage(event)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-stone-900/60 hover:bg-stone-900/90 text-white flex items-center justify-center border border-stone-600/50 opacity-0 group-hover/modal-img:opacity-100 transition-opacity hidden z-10">
           <i data-lucide="chevron-left" class="w-6 h-6"></i>
@@ -1312,7 +1312,7 @@
         <p id="modal-project-desc" class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Description</p>
 
         <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
-          <span class="text-xs text-stone-400 font-mono">Zero-Waste Material Palette</span>
+          <span id="modal-project-badge" class="text-xs text-stone-400 font-mono">Contextual Material Palette</span>
           <a href="#appointment" onclick="closeProjectModal()" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-white hover:text-amber-300 transition-colors">
             <span>Commission Similar Project</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-white"></i>
@@ -2699,9 +2699,9 @@
             name: 'Bio-Terracotta Guild Ltd (Aakash Roy)',
             phone: '+91 98450 12345',
             email: 'aakash@bioterracotta.org',
-            category: 'Zero-Waste Materials',
+            category: 'Sustainable Materials',
             schedule: 'Saturday 2026-09-19 (02:00 PM - 03:00 PM)',
-            notes: 'Presenting laboratory-certified lime-pozzolana blocks with zero carbon footprint.',
+            notes: 'Presenting laboratory-certified lime-pozzolana blocks with a sustainable footprint.',
             status: 'Confirmed'
           }
         ];
