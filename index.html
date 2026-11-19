@@ -2304,7 +2304,7 @@
     const step3 = document.getElementById('step-3');
     const step4 = document.getElementById('step-4');
 
-    let videoDuration = (window.innerWidth < 768) ? 29.33 : 27.24; // Trimmed to end on majestic villa reveal
+    let videoDuration = (window.innerWidth < 768) ? 35.40 : 33.48; // Full duration including black logo outro
     let targetTime = 0;
     let isSeeking = false;
 
@@ -2406,7 +2406,7 @@
     }
     requestAnimationFrame(renderScrollyFrame);
 
-    // Responsive scroll listener: scrubs immediately and holds the glorious completed reveal
+    // Responsive scroll listener: scrubs smoothly through full video to the black logo outro
     function onScrollUpdate() {
       if (!scrollyContainer) return;
       const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
@@ -2419,9 +2419,9 @@
       let scrollProgress = scrollY / (totalScrollable > 0 ? totalScrollable : 1);
       scrollProgress = Math.max(0, Math.min(1, scrollProgress));
 
-      // Video reaches 100% completion by 88% of scroll, holding the magnificent finished
-      // villa reveal for the final 12% so the user can admire the architecture and read Step 4
-      const videoProgress = Math.min(1, scrollProgress / 0.88);
+      // Video reaches the black logo outro by ~92% scroll and holds the iconic
+      // Architecture Basics logo on black for the final 8% of the scroll journey
+      const videoProgress = Math.min(1, scrollProgress / 0.92);
       const dur = video.duration || videoDuration;
       targetTime = videoProgress * dur;
 
@@ -2441,11 +2441,12 @@
       // Step 1: Genesis (0% to 22%)
       setStepOpacity(step1, p >= 0 && p < 0.22);
       // Step 2: Context (22% to 48%)
-      setStepOpacity(step2, p >= 0.22 && p < 0.50);
-      // Step 3: Materiality (50% to 74%)
-      setStepOpacity(step3, p >= 0.50 && p < 0.74);
-      // Step 4: Completion (74% to 100% - reveals and holds finished villa)
-      setStepOpacity(step4, p >= 0.74);
+      setStepOpacity(step2, p >= 0.22 && p < 0.48);
+      // Step 3: Materiality (48% to 70%)
+      setStepOpacity(step3, p >= 0.48 && p < 0.70);
+      // Step 4: Completion (70% to 86% - reveals completed villa)
+      setStepOpacity(step4, p >= 0.70 && p < 0.86);
+      // 86% to 100%: All narrative text fades out to cleanly present the Architecture Basics logo on pure black!
     }
 
     function setStepOpacity(el, active) {
@@ -3172,7 +3173,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v25';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v26';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3414,7 +3415,7 @@
 
       const data = getCmsData();
       const targetSrc = isMobile ? (data.videoMobileUrl || 'Sequence 02_ultrasharp.mp4') : (data.videoDesktopUrl || 'Sequence 01_ultrasharp.mp4');
-      videoDuration = isMobile ? 29.33 : 27.24;
+      videoDuration = isMobile ? 35.40 : 33.48;
 
       const videoEl = document.getElementById('scrolly-video');
       const srcEl = document.getElementById('scrolly-video-source');
