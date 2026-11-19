@@ -516,7 +516,7 @@
       <div class="absolute bottom-0 left-0 w-full sm:w-2/3 h-80 bg-gradient-to-tr from-stone-950/85 via-stone-950/25 to-transparent pointer-events-none"></div>
 
       <!-- Scrollytelling Narrative Step 1: Genesis -->
-      <div id="step-1" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-100 transform translate-y-0">
+      <div id="step-1" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-100 transform translate-y-0">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <img id="hero-logo-img" src="logo-white.png" alt="Architecture Basics Logo" class="h-8 sm:h-9 w-auto mb-2 object-contain opacity-95 filter drop-shadow" />
           <span id="hero-step-1-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Architectural Manifest</span>
@@ -534,7 +534,7 @@
       </div>
 
       <!-- Scrollytelling Narrative Step 2: Context -->
-      <div id="step-2" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
+      <div id="step-2" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-0 transform translate-y-6">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <span id="hero-step-2-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 01 / Context</span>
           <h2 id="hero-step-2-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
@@ -547,7 +547,7 @@
       </div>
 
       <!-- Scrollytelling Narrative Step 3: Materiality -->
-      <div id="step-3" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
+      <div id="step-3" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-0 transform translate-y-6">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <span id="hero-step-3-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 02 / Materiality</span>
           <h2 id="hero-step-3-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
@@ -560,7 +560,7 @@
       </div>
 
       <!-- Scrollytelling Narrative Step 4: Process & Clarity -->
-      <div id="step-4" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-700 pointer-events-none opacity-0 transform translate-y-6">
+      <div id="step-4" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-0 transform translate-y-6">
         <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
           <span id="hero-step-4-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 03 / Clarity</span>
           <h2 id="hero-step-4-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
@@ -2304,7 +2304,7 @@
     const step3 = document.getElementById('step-3');
     const step4 = document.getElementById('step-4');
 
-    let videoDuration = (window.innerWidth < 768) ? 35.40 : 33.48; // Accurate probed full video duration
+    let videoDuration = (window.innerWidth < 768) ? 29.33 : 27.24; // Trimmed to end on majestic villa reveal
     let targetTime = 0;
     let isSeeking = false;
 
@@ -2312,7 +2312,7 @@
       if (video && video.duration && !isNaN(video.duration) && video.duration > 0) {
         videoDuration = video.duration;
       } else {
-        videoDuration = (window.innerWidth < 768) ? 35.40 : 33.48;
+        videoDuration = (window.innerWidth < 768) ? 29.33 : 27.24;
       }
     }
 
@@ -2344,34 +2344,38 @@
     window.addEventListener('touchstart', primeVideo, { passive: true, once: true });
     window.addEventListener('click', primeVideo, { passive: true, once: true });
 
-    // High-performance video seeking engine with pending frame queue
+    // High-performance silky-smooth video scrubbing engine with linear interpolation (lerp)
+    let currentSmoothTime = 0;
     let pendingTargetTime = null;
     let seekSafetyTimer = null;
 
-    function doSeek(timeVal) {
-      isSeeking = true;
-      clearTimeout(seekSafetyTimer);
-      seekSafetyTimer = setTimeout(() => { isSeeking = false; }, 120);
-      video.currentTime = timeVal;
-    }
-
-    function seekToTarget() {
+    function seekToTime(timeVal) {
       if (!video) return;
       const dur = video.duration || videoDuration;
-      const clamped = Math.max(0, Math.min(targetTime, dur - 0.04));
-      
+      // Clamp to ensure we can reach the exact final frame without exceeding
+      const clamped = Math.max(0, Math.min(timeVal, dur - 0.02));
+
       if (timeDisplay) {
         timeDisplay.textContent = clamped.toFixed(2) + 's';
       }
 
+      // If a seek is currently in flight, queue the latest smoothed timestamp
       if (isSeeking) {
         pendingTargetTime = clamped;
         return;
       }
 
-      if (Math.abs(video.currentTime - clamped) > 0.015) {
-        pendingTargetTime = null;
-        doSeek(clamped);
+      // Only seek if difference exceeds half a frame (~20ms) to maximize performance
+      if (Math.abs(video.currentTime - clamped) >= 0.02) {
+        isSeeking = true;
+        clearTimeout(seekSafetyTimer);
+        seekSafetyTimer = setTimeout(() => { isSeeking = false; }, 80);
+
+        if (typeof video.fastSeek === 'function') {
+          video.fastSeek(clamped);
+        } else {
+          video.currentTime = clamped;
+        }
       }
     }
 
@@ -2381,56 +2385,67 @@
       if (pendingTargetTime !== null) {
         const next = pendingTargetTime;
         pendingTargetTime = null;
-        if (Math.abs(video.currentTime - next) > 0.015) {
-          doSeek(next);
+        if (Math.abs(video.currentTime - next) >= 0.02) {
+          seekToTime(next);
         }
       }
     });
 
-    // Animation frame loop ensures silky smooth sync with display refresh rate
+    // 60FPS animation loop provides butter-smooth interpolation between mouse wheel ticks
     function renderScrollyFrame() {
-      seekToTarget();
+      const delta = targetTime - currentSmoothTime;
+      if (Math.abs(delta) > 0.001) {
+        // 0.15 damping provides responsive yet cinematic fluid momentum
+        currentSmoothTime += delta * 0.15;
+      } else {
+        currentSmoothTime = targetTime;
+      }
+
+      seekToTime(currentSmoothTime);
       requestAnimationFrame(renderScrollyFrame);
     }
     requestAnimationFrame(renderScrollyFrame);
 
-    // Responsive scroll listener: scrubs immediately from the very first pixel (zero dead zone)
+    // Responsive scroll listener: scrubs immediately and holds the glorious completed reveal
     function onScrollUpdate() {
       if (!scrollyContainer) return;
       const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
       const containerHeight = scrollyContainer.offsetHeight;
       const windowHeight = window.innerHeight;
-      
-      const totalScrollable = containerHeight - windowHeight;
-      
-      // Start scrubbing immediately on scrollY = 0 without waiting for header/banner dead zone
-      let progress = scrollY / (totalScrollable > 0 ? totalScrollable : 1);
-      progress = Math.max(0, Math.min(1, progress));
 
-      // Update video target time
-      targetTime = progress * (video.duration || videoDuration);
+      const totalScrollable = containerHeight - windowHeight;
+
+      // Scroll progress from 0 (top) to 1 (bottom of scrolly container)
+      let scrollProgress = scrollY / (totalScrollable > 0 ? totalScrollable : 1);
+      scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+
+      // Video reaches 100% completion by 88% of scroll, holding the magnificent finished
+      // villa reveal for the final 12% so the user can admire the architecture and read Step 4
+      const videoProgress = Math.min(1, scrollProgress / 0.88);
+      const dur = video.duration || videoDuration;
+      targetTime = videoProgress * dur;
+
       if (progressBar) {
-        progressBar.style.width = (progress * 100) + '%';
+        progressBar.style.width = (scrollProgress * 100) + '%';
       }
 
       // Choreograph narrative overlay steps based on scroll progress
-      updateNarrativeSteps(progress);
+      updateNarrativeSteps(scrollProgress);
     }
 
     window.addEventListener('scroll', onScrollUpdate, { passive: true });
     window.addEventListener('touchmove', onScrollUpdate, { passive: true });
-    // Initialize initial frame at scroll position 0 immediately
     onScrollUpdate();
 
     function updateNarrativeSteps(p) {
-      // Step 1: 0% to 22%
+      // Step 1: Genesis (0% to 22%)
       setStepOpacity(step1, p >= 0 && p < 0.22);
-      // Step 2: 22% to 48%
+      // Step 2: Context (22% to 48%)
       setStepOpacity(step2, p >= 0.22 && p < 0.50);
-      // Step 3: 50% to 75%
-      setStepOpacity(step3, p >= 0.50 && p < 0.76);
-      // Step 4: 76% to 100%
-      setStepOpacity(step4, p >= 0.76);
+      // Step 3: Materiality (50% to 74%)
+      setStepOpacity(step3, p >= 0.50 && p < 0.74);
+      // Step 4: Completion (74% to 100% - reveals and holds finished villa)
+      setStepOpacity(step4, p >= 0.74);
     }
 
     function setStepOpacity(el, active) {
@@ -3157,7 +3172,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v24';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v25';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3399,7 +3414,7 @@
 
       const data = getCmsData();
       const targetSrc = isMobile ? (data.videoMobileUrl || 'Sequence 02_ultrasharp.mp4') : (data.videoDesktopUrl || 'Sequence 01_ultrasharp.mp4');
-      videoDuration = isMobile ? 35.40 : 33.48;
+      videoDuration = isMobile ? 29.33 : 27.24;
 
       const videoEl = document.getElementById('scrolly-video');
       const srcEl = document.getElementById('scrolly-video-source');
