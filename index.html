@@ -1079,7 +1079,7 @@
               <!-- Site Location -->
               <div>
                 <label class="block text-xs uppercase tracking-wider text-stone-700 font-semibold mb-2">Site / City Location *</label>
-                <input type="text" name="location" required placeholder="e.g. Alibaug, Goa, New Delhi" class="w-full px-4 py-3 bg-stone-100/50 border border-stone-300 focus:border-stone-800 focus:bg-white text-stone-900 text-sm outline-none transition-colors" />
+                <input type="text" name="location" required placeholder="e.g. Indore, Bhopal, Mumbai" class="w-full px-4 py-3 bg-stone-100/50 border border-stone-300 focus:border-stone-800 focus:bg-white text-stone-900 text-sm outline-none transition-colors" />
               </div>
 
               <!-- Preferred Date (Mon-Sat, No Sunday) -->
@@ -1504,104 +1504,85 @@
         <div class="flex-1 overflow-y-auto p-6 sm:p-8 md:p-10 w-full bg-stone-50">
           <div class="max-w-7xl mx-auto space-y-8 pb-16">
           
-          <!-- TAB 1: ANALYTICS & DEMOGRAPHICS -->
+          <!-- TAB 1: LIVE STUDIO TELEMETRY & ACTIVITY -->
           <div id="adm-view-analytics" class="space-y-6">
-            <!-- Stat Cards -->
+            <!-- Real Live Stat Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
               <div class="p-5 bg-white border border-stone-200 rounded-sm shadow-sm">
                 <span class="text-xs text-stone-500 uppercase tracking-wider block mb-1">Total Web Visits</span>
-                <span class="font-serif text-3xl text-stone-900 font-semibold" id="adm-visit-count">1,482</span>
-                <span class="text-[11px] text-emerald-600 block mt-1 flex items-center gap-1">
-                  <i data-lucide="trending-up" class="w-3 h-3"></i> +14.2% this week
+                <span class="font-serif text-3xl text-stone-900 font-semibold" id="adm-visit-count">0</span>
+                <span class="text-[11px] text-stone-500 block mt-1 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span> Live telemetry
                 </span>
               </div>
               <div class="p-5 bg-white border border-stone-200 rounded-sm shadow-sm">
                 <span class="text-xs text-stone-500 uppercase tracking-wider block mb-1">Client Inquiries</span>
-                <span class="font-serif text-3xl text-stone-900 font-semibold" id="adm-client-count">24</span>
-                <span class="text-[11px] text-stone-500 block mt-1">Mon-Sat Bookings</span>
+                <span class="font-serif text-3xl text-stone-900 font-semibold" id="adm-client-count">0</span>
+                <span class="text-[11px] text-stone-500 block mt-1">Consultation Requests</span>
               </div>
               <div class="p-5 bg-white border border-stone-200 rounded-sm shadow-sm">
                 <span class="text-xs text-stone-500 uppercase tracking-wider block mb-1">Vendor Proposals</span>
-                <span class="font-serif text-3xl text-stone-900 font-semibold" id="adm-biz-count">11</span>
-                <span class="text-[11px] text-amber-700 block mt-1">Saturday Exclusive</span>
+                <span class="font-serif text-3xl text-stone-900 font-semibold" id="adm-biz-count">0</span>
+                <span class="text-[11px] text-stone-500 block mt-1">Material & Vendor Inquiries</span>
               </div>
               <div class="p-5 bg-white border border-stone-200 rounded-sm shadow-sm">
-                <span class="text-xs text-stone-500 uppercase tracking-wider block mb-1">Avg. Scroll Depth</span>
-                <span class="font-serif text-3xl text-stone-900 font-semibold">88.4%</span>
-                <span class="text-[11px] text-stone-500 block mt-1">High scrollytelling focus</span>
+                <span class="text-xs text-stone-500 uppercase tracking-wider block mb-1">System Health</span>
+                <span class="font-serif text-3xl text-emerald-600 font-semibold">100%</span>
+                <span class="text-[11px] text-stone-500 block mt-1">Production Active</span>
               </div>
             </div>
 
-            <!-- Demographics Breakdown -->
+            <!-- Live Session & Environment Telemetry -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Geographic Demographics -->
-              <div class="p-5 bg-white border border-stone-200 rounded-sm">
+              <!-- Active Environment Info -->
+              <div class="p-5 bg-white border border-stone-200 rounded-sm shadow-sm">
                 <h4 class="font-serif text-lg text-stone-900 mb-4 flex items-center justify-between">
-                  <span>Audience Demographics by Geography</span>
-                  <span class="text-xs font-sans text-stone-400 font-normal">Active telemetry</span>
+                  <span>Live Studio Environment</span>
+                  <span class="text-xs font-mono text-emerald-600 font-medium flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block"></span>
+                    <span>ONLINE</span>
+                  </span>
                 </h4>
                 <div class="space-y-3 text-xs">
-                  <div>
-                    <div class="flex justify-between mb-1">
-                      <span class="text-stone-700">India (Delhi NCR, Mumbai, Bengaluru, Ahmedabad)</span>
-                      <span class="font-mono text-stone-900 font-semibold">62%</span>
-                    </div>
-                    <div class="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
-                      <div class="h-full bg-stone-800" style="width: 62%;"></div>
-                    </div>
+                  <div class="flex justify-between py-2 border-b border-stone-100">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Primary Domain</span>
+                    <span class="font-mono text-stone-900 font-semibold">abasics.in</span>
                   </div>
-                  <div>
-                    <div class="flex justify-between mb-1">
-                      <span class="text-stone-700">United Arab Emirates (Dubai, Abu Dhabi)</span>
-                      <span class="font-mono text-stone-900 font-semibold">18%</span>
-                    </div>
-                    <div class="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
-                      <div class="h-full bg-bronze-500" style="width: 18%;"></div>
-                    </div>
+                  <div class="flex justify-between py-2 border-b border-stone-100">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Studio Email</span>
+                    <span class="font-mono text-stone-900 font-semibold">Create@abasics.in</span>
                   </div>
-                  <div>
-                    <div class="flex justify-between mb-1">
-                      <span class="text-stone-700">United Kingdom & Europe</span>
-                      <span class="font-mono text-stone-900 font-semibold">11%</span>
-                    </div>
-                    <div class="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
-                      <div class="h-full bg-stone-500" style="width: 11%;"></div>
-                    </div>
+                  <div class="flex justify-between py-2 border-b border-stone-100">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Studio Phone</span>
+                    <span class="font-mono text-stone-900 font-semibold">098260 83996</span>
                   </div>
-                  <div>
-                    <div class="flex justify-between mb-1">
-                      <span class="text-stone-700">United States & Canada</span>
-                      <span class="font-mono text-stone-900 font-semibold">9%</span>
-                    </div>
-                    <div class="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
-                      <div class="h-full bg-stone-400" style="width: 9%;"></div>
-                    </div>
+                  <div class="flex justify-between py-2">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Location</span>
+                    <span class="font-mono text-stone-900 font-semibold">Indore, Madhya Pradesh, India</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Device & Traffic Sources -->
-              <div class="p-5 bg-white border border-stone-200 rounded-sm">
-                <h4 class="font-serif text-lg text-stone-900 mb-4">Device & Engagement Distribution</h4>
-                <div class="grid grid-cols-3 gap-3 text-center mb-6">
-                  <div class="p-3 bg-stone-50 border border-stone-200 rounded">
-                    <i data-lucide="monitor" class="w-5 h-5 mx-auto text-stone-600 mb-1"></i>
-                    <span class="text-[11px] text-stone-500 block">Desktop</span>
-                    <span class="font-mono text-sm font-semibold text-stone-800">58%</span>
+              <!-- Active Client Telemetry -->
+              <div class="p-5 bg-white border border-stone-200 rounded-sm shadow-sm">
+                <h4 class="font-serif text-lg text-stone-900 mb-4">Current Client Session Telemetry</h4>
+                <div class="space-y-3 text-xs">
+                  <div class="flex justify-between py-2 border-b border-stone-100">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Device Mode</span>
+                    <span id="adm-device-mode" class="font-mono text-stone-900 font-semibold">Adaptive Desktop</span>
                   </div>
-                  <div class="p-3 bg-stone-50 border border-stone-200 rounded">
-                    <i data-lucide="smartphone" class="w-5 h-5 mx-auto text-stone-600 mb-1"></i>
-                    <span class="text-[11px] text-stone-500 block">Mobile</span>
-                    <span class="font-mono text-sm font-semibold text-stone-800">36%</span>
+                  <div class="flex justify-between py-2 border-b border-stone-100">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Viewport Resolution</span>
+                    <span id="adm-viewport-res" class="font-mono text-stone-900 font-semibold">Detecting...</span>
                   </div>
-                  <div class="p-3 bg-stone-50 border border-stone-200 rounded">
-                    <i data-lucide="tablet" class="w-5 h-5 mx-auto text-stone-600 mb-1"></i>
-                    <span class="text-[11px] text-stone-500 block">Tablet</span>
-                    <span class="font-mono text-sm font-semibold text-stone-800">6%</span>
+                  <div class="flex justify-between py-2 border-b border-stone-100">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">Video Pipeline</span>
+                    <span class="font-mono text-stone-900 font-semibold">H.264 All-Intra Masters (Sequence 01 / 02)</span>
                   </div>
-                </div>
-                <div class="p-3 bg-stone-50 border border-stone-200 text-xs text-stone-600">
-                  <strong class="text-stone-800">Key Observation:</strong> High engagement on the Scrollytelling video player with average session duration of 3m 42s.
+                  <div class="flex justify-between py-2">
+                    <span class="text-stone-500 uppercase tracking-wider font-mono text-[11px]">CMS Engine</span>
+                    <span class="font-mono text-stone-900 font-semibold">Live Dynamic CMS v29</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2320,7 +2301,7 @@
 
     // Track total website visit count in localStorage
     (function recordVisit() {
-      let visits = parseInt(localStorage.getItem('studio_total_visits') || '1482', 10);
+      let visits = parseInt(localStorage.getItem('studio_total_visits') || '0', 10);
       visits += 1;
       localStorage.setItem('studio_total_visits', visits);
     })();
@@ -2861,47 +2842,19 @@
     // Appointment storage in localStorage
     function getStoredAppointments() {
       const raw = localStorage.getItem('studio_appointments_v1');
-      if (!raw) {
-        // Initial mock data so admin panel is never empty
-        const initial = [
-          {
-            id: 'APT-101',
-            type: 'Client',
-            name: 'Rajesh Singhal',
-            phone: '+91 98112 45890',
-            email: 'rajesh.singhal@capital.in',
-            category: 'Sustainable Farmhouse',
-            schedule: '2026-09-18 (12:00 PM)',
-            notes: '4-acre site in Chattarpur. Interested in rammed-earth construction and circular water swales.',
-            status: 'Confirmed'
-          },
-          {
-            id: 'APT-102',
-            type: 'Client',
-            name: 'Pooja & Tarun Mehta',
-            phone: '+91 99201 87654',
-            email: 'pooja.mehta@studio.com',
-            category: 'Bespoke Villa',
-            schedule: '2026-09-22 (04:00 PM)',
-            notes: 'Looking to commission hillside villa in Alibaug with a contextual design approach.',
-            status: 'Pending'
-          },
-          {
-            id: 'APT-103',
-            type: 'Business',
-            name: 'Bio-Terracotta Guild Ltd (Aakash Roy)',
-            phone: '+91 98450 12345',
-            email: 'aakash@bioterracotta.org',
-            category: 'Sustainable Materials',
-            schedule: 'Saturday 2026-09-19 (02:00 PM - 03:00 PM)',
-            notes: 'Presenting laboratory-certified lime-pozzolana blocks with a sustainable footprint.',
-            status: 'Confirmed'
-          }
-        ];
-        localStorage.setItem('studio_appointments_v1', JSON.stringify(initial));
-        return initial;
+      if (!raw) return [];
+      try {
+        const list = JSON.parse(raw);
+        if (!Array.isArray(list)) return [];
+        // Clean out any legacy mock data records
+        return list.filter(item => 
+          item && 
+          !['APT-101', 'APT-102', 'APT-103'].includes(item.id) &&
+          !item.id.startsWith('APT-10')
+        );
+      } catch(e) {
+        return [];
       }
-      return JSON.parse(raw);
     }
 
     function saveAppointments(list) {
@@ -3112,7 +3065,7 @@
 
     function updateAdminCounts() {
       const appts = getStoredAppointments();
-      const visitCount = localStorage.getItem('studio_total_visits') || '1482';
+      const visitCount = localStorage.getItem('studio_total_visits') || '1';
       
       const visitEl = document.getElementById('adm-visit-count');
       if (visitEl) visitEl.textContent = Number(visitCount).toLocaleString();
@@ -3127,6 +3080,12 @@
       if (clientCountEl) clientCountEl.textContent = clientCount;
       if (bizCountEl) bizCountEl.textContent = bizCount;
       if (badgeEl) badgeEl.textContent = appts.length;
+
+      // Populate real device & resolution telemetry
+      const resEl = document.getElementById('adm-viewport-res');
+      const devEl = document.getElementById('adm-device-mode');
+      if (resEl) resEl.textContent = window.innerWidth + ' × ' + window.innerHeight + ' px';
+      if (devEl) devEl.textContent = window.innerWidth < 768 ? 'Mobile Viewport (Sequence 02)' : 'Desktop Viewport (Sequence 01)';
     }
 
     // =========================================================================
@@ -3145,7 +3104,16 @@
       });
 
       if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-stone-400 font-mono">No appointment entries found in this category.</td></tr>`;
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="p-12 text-center text-stone-500 font-mono text-xs">
+              <i data-lucide="inbox" class="w-8 h-8 text-stone-400 mx-auto mb-2.5"></i>
+              <div class="font-medium text-stone-700 text-sm">No appointment records yet</div>
+              <div class="text-[11px] text-stone-400 mt-1 font-sans">New client consultations and vendor proposals submitted from the website will appear here in real time.</div>
+            </td>
+          </tr>
+        `;
+        lucide.createIcons();
         return;
       }
 
@@ -3350,7 +3318,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v28';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v29';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3903,7 +3871,7 @@
           const safeLoc = (proj.location || '').replace(/'/g, "\\'");
           const safeArea = (proj.area || '').replace(/'/g, "\\'");
           const safeDesc = (proj.desc || '').replace(/'/g, "\\'");
-          const safeImg = (proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80').replace(/'/g, "\\'");
+          const safeImg = (proj.img || 'assets/images/projects/shambhavi.webp').replace(/'/g, "\\'");
           const safeVideo = (proj.video || '').replace(/'/g, "\\'");
           const safeSocial = (proj.socialUrl || '').replace(/'/g, "\\'");
           const safeExternal = (proj.externalUrl || '').replace(/'/g, "\\'");
@@ -3924,7 +3892,7 @@
                       <i data-lucide="play" class="w-2.5 h-2.5 fill-amber-300"></i> Video Cover
                     </span>
                   ` : `
-                    <img src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
+                    <img src="${proj.img || 'assets/images/projects/shambhavi.webp'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
                   `}
                   
                   ${isYouTube ? `
@@ -3979,7 +3947,7 @@
             ${typ.video ? `
     <video src="${typ.video}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></video>
   ` : `
-    <img src="${typ.img || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'}" alt="${typ.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+    <img src="${typ.img || 'assets/images/projects/office.webp'}" alt="${typ.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
   `}
             <div class="absolute inset-0 bg-gradient-to-t from-stone-950/95 via-stone-900/60 to-stone-950/30 transition-opacity duration-500"></div>
 
@@ -4553,7 +4521,7 @@
           sub: "Corporate Headquarters • Workspaces & Pavilions",
           tag: "Functional Clarity",
           desc: "Workspaces and commercial developments designed for productivity, environmental balance, and brand expression.",
-          img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+          img: "assets/images/projects/office.webp",
           projects: []
         }];
       }
@@ -4637,7 +4605,7 @@
 
           <!-- Project Photo Management (Upload, Replace, Remove) -->
           <div class="p-3 bg-stone-50 border border-stone-200 rounded-sm flex flex-col sm:flex-row gap-4 items-center">
-            <img id="preview-proj-${pIdx}" src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'}" class="w-28 h-20 object-cover rounded border border-stone-300 shrink-0 bg-stone-900" />
+            <img id="preview-proj-${pIdx}" src="${proj.img || 'assets/images/projects/shambhavi.webp'}" class="w-28 h-20 object-cover rounded border border-stone-300 shrink-0 bg-stone-900" />
             <div class="flex-1 w-full space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-semibold text-stone-700 uppercase">Project Photograph</span>
@@ -4710,7 +4678,7 @@
         sub: "Architectural Typology",
         tag: "Bespoke",
         desc: "Explore tailored architectural designs crafted with contextual reverence and sustainable discipline.",
-        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        img: "assets/images/projects/shambhavi.webp",
         projects: [
           {
             title: "New Commission Study",
@@ -4719,7 +4687,7 @@
             area: "10,000 sq.ft.",
             badge: "Concept",
             desc: "Contextual architectural study with passive solar shading and natural ventilation.",
-            img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+            img: "assets/images/projects/shambhavi.webp"
           }
         ]
       });
@@ -4752,11 +4720,11 @@
       typ.projects.push({
         title: "New Commission",
         type: typ.name,
-        location: "New Delhi, India",
+        location: "Indore, Madhya Pradesh",
         area: "12,000 sq.ft.",
         badge: "Under Execution",
         desc: "Bespoke design incorporating sustainable micro-climate ventilation and local quarry craft.",
-        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+        img: "assets/images/projects/shambhavi.webp"
       });
 
       localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(data));
@@ -4779,7 +4747,7 @@
       const input = document.getElementById(`cms-proj-${pIdx}-img`);
       const prev = document.getElementById(`preview-proj-${pIdx}`);
       if (input) input.value = '';
-      if (prev) prev.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80';
+      if (prev) prev.src = 'assets/images/projects/shambhavi.webp';
     }
 
     function removeTypologyCoverImage() {
@@ -4872,7 +4840,7 @@
         title: "New Project Study",
         category: "Ongoing",
         caption: "Architectural documentation of construction progress and spatial materiality.",
-        img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+        img: "assets/images/projects/shambhavi.webp"
       });
 
       localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(data));
@@ -5008,7 +4976,7 @@
         eyebrow: "Studio Feature",
         title: "New Architectural Section",
         content: "Share insights into your architectural process, monograph publications, sustainability awards, or specialized artisans.",
-        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        img: "assets/images/projects/shambhavi.webp",
         layout: "right",
         ctaText: "Book Appointment",
         ctaLink: "#appointment"
