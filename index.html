@@ -1310,6 +1310,7 @@
       <div class="h-[52vh] sm:h-[60vh] min-h-[350px] sm:min-h-[460px] w-full flex items-center justify-center overflow-hidden relative bg-stone-950 p-2 sm:p-4 group/modal-img select-none">
         <img id="modal-project-img" src="" alt="Project" class="max-w-full max-h-full w-auto h-auto object-contain transition-opacity duration-200 drop-shadow-xl" />
         <video id="modal-project-video" src="" autoplay muted loop playsinline controls class="max-w-full max-h-full w-auto h-auto object-contain hidden"></video>
+        <iframe id="modal-project-iframe" src="" class="w-full h-full max-w-full max-h-full rounded-sm hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
         <!-- Always-Visible Navigation Arrows for Gallery Carousel -->
         <button id="modal-prev-btn" onclick="prevModalImage(event)" type="button" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-stone-900/85 hover:bg-stone-800 text-white hover:text-amber-300 flex items-center justify-center border border-stone-600/80 shadow-2xl transition-all cursor-pointer hidden z-20 active:scale-95" title="Previous Image">
@@ -1339,12 +1340,18 @@
         </span>
         <p id="modal-project-desc" class="text-stone-200 text-sm leading-relaxed mb-5 font-light">Description</p>
 
-        <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
+        <div class="pt-4 border-t border-stone-800 flex items-center justify-between flex-wrap gap-3">
           <span id="modal-project-badge" class="text-xs text-stone-400 font-mono">Architecture Basics Signature</span>
-          <a href="#appointment" onclick="closeProjectModal()" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-white hover:text-amber-300 transition-colors">
-            <span>Commission Similar Project</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-white"></i>
-          </a>
+          <div class="flex items-center gap-3">
+            <a id="modal-external-btn" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 px-4 py-2 bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all shadow cursor-pointer">
+              <span id="modal-external-text">Watch on YouTube</span>
+              <i data-lucide="external-link" id="modal-external-icon" class="w-3.5 h-3.5 text-stone-950"></i>
+            </a>
+            <a href="#appointment" onclick="closeProjectModal()" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-stone-300 hover:text-white transition-colors">
+              <span>Commission Similar Project</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-white"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -2635,7 +2642,7 @@
     let currentModalImages = [];
     let currentModalIndex = 0;
 
-    function openProjectModal(title, type, location, area, desc, img, imagesStr, videoUrl, socialUrl) {
+    function openProjectModal(title, type, location, area, desc, img, imagesStr, videoUrl, socialUrl, externalUrl, youtubeId, platform) {
       document.getElementById('modal-project-title').textContent = title;
       document.getElementById('modal-project-type').textContent = type;
       document.getElementById('modal-project-location').innerHTML = `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-stone-400 inline"></i> ${location}`;
@@ -2644,6 +2651,12 @@
 
       const modalImg = document.getElementById('modal-project-img');
       const modalVideo = document.getElementById('modal-project-video');
+      const modalIframe = document.getElementById('modal-project-iframe');
+      const externalBtn = document.getElementById('modal-external-btn');
+      const externalText = document.getElementById('modal-external-text');
+      const prevBtn = document.getElementById('modal-prev-btn');
+      const nextBtn = document.getElementById('modal-next-btn');
+      const counter = document.getElementById('modal-img-counter');
 
       try {
         currentModalImages = imagesStr ? JSON.parse(decodeURIComponent(imagesStr)) : [];
@@ -2651,18 +2664,44 @@
         currentModalImages = [];
       }
 
-      if (videoUrl && videoUrl !== 'undefined' && videoUrl !== '') {
+      // External link button configuration
+      if (externalUrl && externalUrl !== 'undefined' && externalUrl !== '') {
+        externalBtn.href = externalUrl;
+        externalBtn.classList.remove('hidden');
+        if (platform === 'youtube' || (externalUrl && externalUrl.includes('youtu'))) {
+          externalText.textContent = 'Watch Full on YouTube';
+        } else if (platform === 'instagram' || (externalUrl && externalUrl.includes('instagram'))) {
+          externalText.textContent = 'Open Instagram Profile';
+        } else {
+          externalText.textContent = 'View Feature';
+        }
+      } else {
+        externalBtn.classList.add('hidden');
+      }
+
+      // YouTube Embed handling
+      if (youtubeId && youtubeId !== 'undefined' && youtubeId !== '') {
+        if (modalVideo) { modalVideo.pause(); modalVideo.src = ''; modalVideo.classList.add('hidden'); }
+        if (modalImg) modalImg.classList.add('hidden');
+        if (modalIframe) {
+          modalIframe.src = 'https://www.youtube-nocookie.com/embed/' + youtubeId + '?autoplay=1&rel=0';
+          modalIframe.classList.remove('hidden');
+        }
+        currentModalIndex = -1;
+        if (prevBtn) prevBtn.classList.add('hidden');
+        if (nextBtn) nextBtn.classList.add('hidden');
+        if (counter) counter.classList.add('hidden');
+      } else if (videoUrl && videoUrl !== 'undefined' && videoUrl !== '') {
+        if (modalIframe) { modalIframe.src = ''; modalIframe.classList.add('hidden'); }
+        if (modalImg) modalImg.classList.add('hidden');
         modalVideo.src = videoUrl;
         modalVideo.classList.remove('hidden');
-        modalImg.classList.add('hidden');
         currentModalIndex = -1; // playing video
-        const prevBtn = document.getElementById('modal-prev-btn');
-        const nextBtn = document.getElementById('modal-next-btn');
-        const counter = document.getElementById('modal-img-counter');
         if (prevBtn) prevBtn.classList.add('hidden');
         if (nextBtn) nextBtn.classList.add('hidden');
         if (counter) counter.classList.add('hidden');
       } else {
+        if (modalIframe) { modalIframe.src = ''; modalIframe.classList.add('hidden'); }
         if (modalVideo) {
           modalVideo.pause();
           modalVideo.src = '';
@@ -2686,11 +2725,16 @@
     function updateModalImage() {
       const imgEl = document.getElementById('modal-project-img');
       const videoEl = document.getElementById('modal-project-video');
+      const iframeEl = document.getElementById('modal-project-iframe');
 
       if (currentModalIndex >= 0 && currentModalIndex < currentModalImages.length) {
         if (videoEl) {
           videoEl.pause();
           videoEl.classList.add('hidden');
+        }
+        if (iframeEl) {
+          iframeEl.src = '';
+          iframeEl.classList.add('hidden');
         }
         imgEl.classList.remove('hidden');
         imgEl.src = currentModalImages[currentModalIndex];
@@ -2735,6 +2779,10 @@
       if (modalVideo) {
         modalVideo.pause();
         modalVideo.src = '';
+      }
+      const modalIframe = document.getElementById('modal-project-iframe');
+      if (modalIframe) {
+        modalIframe.src = '';
       }
       currentModalImages = [];
     }
@@ -3302,7 +3350,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v27';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v28';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3545,91 +3593,38 @@
   },
   {
     "name": "Featured on Social Media",
-    "sub": "Trending Works • Digital Showcase",
-    "img": "assets/images/projects/gopal/01.webp",
+    "sub": "YouTube Interview • Instagram Official",
+    "img": "assets/images/social/youtube-interview.webp",
     "tag": "Social Media",
-    "desc": "Our widely celebrated architectural projects featured across digital platforms, design magazines, and social media showcases.",
+    "desc": "Watch our exclusive full-length interview on design and architecture, and follow our daily works on Instagram.",
     "projects": [
       {
-        "title": "Gopal Ji Gupta Residence",
-        "type": "Featured Residence",
-        "location": "Indore",
-        "area": "Bespoke Built",
-        "badge": "Featured on Social Media",
-        "desc": "A widely acclaimed luxury residence celebrated for its vertical timber louver facade, dynamic terrace gardens, and sophisticated spatial planning.",
-        "img": "assets/images/projects/gopal/01.webp",
+        "title": "Ar. Ruchir Tiwari on Design, Creativity & the Future of Architecture",
+        "type": "YouTube Feature • Knowledge Unplugged",
+        "location": "YouTube Exclusive",
+        "area": "Full Feature Interview",
+        "badge": "Watch on YouTube",
+        "desc": "Architect Ruchir Tiwari shares his philosophy on design, contextual architecture, and the future of creative practice in an in-depth conversation on Knowledge Unplugged by PJ.",
+        "img": "assets/images/social/youtube-interview.webp",
+        "externalUrl": "https://youtu.be/kWeyeUF2j8M?si=zI7M7HD5JpPINpoY",
+        "youtubeId": "kWeyeUF2j8M",
+        "socialPlatform": "youtube",
         "images": [
-          "assets/images/projects/gopal/01.webp",
-          "assets/images/projects/gopal/02.webp",
-          "assets/images/projects/gopal/03.webp",
-          "assets/images/projects/gopal/04.webp",
-          "assets/images/projects/gopal/05.webp",
-          "assets/images/projects/gopal/06.webp",
-          "assets/images/projects/gopal/07.webp",
-          "assets/images/projects/gopal/08.webp",
-          "assets/images/projects/gopal/09.webp",
-          "assets/images/projects/gopal/10.webp",
-          "assets/images/projects/gopal/11.webp",
-          "assets/images/projects/gopal/12.webp",
-          "assets/images/projects/gopal/13.webp",
-          "assets/images/projects/gopal/14.webp",
-          "assets/images/projects/gopal/15.webp",
-          "assets/images/projects/gopal/16.webp",
-          "assets/images/projects/gopal/17.webp",
-          "assets/images/projects/gopal/18.webp",
-          "assets/images/projects/gopal/19.webp",
-          "assets/images/projects/gopal/20.webp",
-          "assets/images/projects/gopal/21.webp",
-          "assets/images/projects/gopal/22.webp",
-          "assets/images/projects/gopal/23.webp",
-          "assets/images/projects/gopal/24.webp",
-          "assets/images/projects/gopal/25.webp",
-          "assets/images/projects/gopal/26.webp",
-          "assets/images/projects/gopal/27.webp",
-          "assets/images/projects/gopal/28.webp",
-          "assets/images/projects/gopal/29.webp",
-          "assets/images/projects/gopal/30.webp",
-          "assets/images/projects/gopal/31.webp",
-          "assets/images/projects/gopal/32.webp",
-          "assets/images/projects/gopal/33.webp",
-          "assets/images/projects/gopal/34.webp",
-          "assets/images/projects/gopal/35.webp",
-          "assets/images/projects/gopal/36.webp",
-          "assets/images/projects/gopal/37.webp",
-          "assets/images/projects/gopal/38.webp",
-          "assets/images/projects/gopal/39.webp",
-          "assets/images/projects/gopal/40.webp",
-          "assets/images/projects/gopal/41.webp",
-          "assets/images/projects/gopal/42.webp",
-          "assets/images/projects/gopal/43.webp",
-          "assets/images/projects/gopal/44.webp",
-          "assets/images/projects/gopal/45.webp",
-          "assets/images/projects/gopal/46.webp",
-          "assets/images/projects/gopal/47.webp",
-          "assets/images/projects/gopal/48.webp",
-          "assets/images/projects/gopal/49.webp",
-          "assets/images/projects/gopal/50.webp"
+          "assets/images/social/youtube-interview.webp"
         ]
       },
       {
-        "title": "Prajapati Residence",
-        "type": "Featured Interior & Architecture",
-        "location": "Indore",
-        "area": "Custom Designed",
-        "badge": "Featured on Social Media",
-        "desc": "A standout project showcasing serene interior courtyard integration, natural brick masonry, fine carpentry, and timeless contextual aesthetics.",
-        "img": "assets/images/projects/prajapati/01.webp",
+        "title": "Architecture Basics Official Instagram",
+        "type": "Instagram • @architecture.basics",
+        "location": "Social Showcase",
+        "area": "Official Channel",
+        "badge": "Follow on Instagram",
+        "desc": "Follow our daily architectural narratives, site execution chronicles, material palettes, design reels, and completed projects on our official Instagram channel.",
+        "img": "assets/images/social/instagram-feed.webp",
+        "externalUrl": "https://www.instagram.com/architecture.basics/",
+        "socialPlatform": "instagram",
         "images": [
-          "assets/images/projects/prajapati/01.webp",
-          "assets/images/projects/prajapati/02.webp",
-          "assets/images/projects/prajapati/03.webp",
-          "assets/images/projects/prajapati/04.webp",
-          "assets/images/projects/prajapati/05.webp",
-          "assets/images/projects/prajapati/06.webp",
-          "assets/images/projects/prajapati/07.webp",
-          "assets/images/projects/prajapati/08.webp",
-          "assets/images/projects/prajapati/09.webp",
-          "assets/images/projects/prajapati/10.webp"
+          "assets/images/social/instagram-feed.webp"
         ]
       }
     ]
@@ -3822,7 +3817,14 @@
       try {
         const parsed = JSON.parse(stored);
         const merged = Object.assign(JSON.parse(JSON.stringify(DEFAULT_CMS)), parsed);
-        if (!merged.typologies || !merged.typologies.some(t => t.name === 'Upcoming') || !merged.typologies.some(t => t.name === 'Featured on Social Media')) {
+        const socialTyp = (merged.typologies || []).find(t => t.name === 'Featured on Social Media');
+        const needsReset = !merged.typologies || 
+          !merged.typologies.some(t => t.name === 'Upcoming') || 
+          !socialTyp || 
+          !socialTyp.projects || 
+          socialTyp.projects.length !== 2 || 
+          !socialTyp.projects.some(p => p.externalUrl && p.externalUrl.includes('kWeyeUF2j8M'));
+        if (needsReset) {
           merged.typologies = JSON.parse(JSON.stringify(DEFAULT_CMS.typologies));
         }
         // Ensure seamless edge-to-edge fill without black margins
@@ -3902,28 +3904,67 @@
           const safeArea = (proj.area || '').replace(/'/g, "\\'");
           const safeDesc = (proj.desc || '').replace(/'/g, "\\'");
           const safeImg = (proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80').replace(/'/g, "\\'");
-
           const safeVideo = (proj.video || '').replace(/'/g, "\\'");
           const safeSocial = (proj.socialUrl || '').replace(/'/g, "\\'");
+          const safeExternal = (proj.externalUrl || '').replace(/'/g, "\\'");
+          const safeYtId = (proj.youtubeId || '').replace(/'/g, "\\'");
+          const safePlatform = (proj.socialPlatform || '').replace(/'/g, "\\'");
+
+          const isExternal = Boolean(proj.externalUrl);
+          const isYouTube = proj.socialPlatform === 'youtube' || (proj.externalUrl && proj.externalUrl.includes('youtu'));
+          const isInstagram = proj.socialPlatform === 'instagram' || (proj.externalUrl && proj.externalUrl.includes('instagram'));
 
           cardsHtml += `
-            <div class="bg-stone-900 border border-stone-700/80 hover:border-amber-400/80 transition-all rounded-sm overflow-hidden group/card cursor-pointer shadow-md" onclick="openProjectModal('${safeTitle}', '${safeType}', '${safeLoc}', '${safeArea}', '${safeDesc}', '${safeImg}', '${encodeURIComponent(JSON.stringify(proj.images || []))}', '${safeVideo}', '${safeSocial}'); event.stopPropagation();">
-              <div class="h-36 overflow-hidden relative bg-stone-950">
-                ${proj.video ? `
-                  <video src="${proj.video}" autoplay muted loop playsinline class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"></video>
-                  <span class="absolute bottom-2 left-2 bg-stone-950/90 text-amber-300 border border-amber-500/40 text-[9px] px-2 py-0.5 tracking-wider uppercase font-mono font-medium shadow flex items-center gap-1">
-                    <i data-lucide="play" class="w-2.5 h-2.5 fill-amber-300"></i> Video Cover
+            <div class="bg-stone-900 border border-stone-700/80 hover:border-amber-400/80 transition-all rounded-sm overflow-hidden group/card cursor-pointer shadow-md flex flex-col justify-between" onclick="openProjectModal('${safeTitle}', '${safeType}', '${safeLoc}', '${safeArea}', '${safeDesc}', '${safeImg}', '${encodeURIComponent(JSON.stringify(proj.images || []))}', '${safeVideo}', '${safeSocial}', '${safeExternal}', '${safeYtId}', '${safePlatform}'); event.stopPropagation();">
+              <div>
+                <div class="h-36 overflow-hidden relative bg-stone-950">
+                  ${proj.video ? `
+                    <video src="${proj.video}" autoplay muted loop playsinline class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"></video>
+                    <span class="absolute bottom-2 left-2 bg-stone-950/90 text-amber-300 border border-amber-500/40 text-[9px] px-2 py-0.5 tracking-wider uppercase font-mono font-medium shadow flex items-center gap-1">
+                      <i data-lucide="play" class="w-2.5 h-2.5 fill-amber-300"></i> Video Cover
+                    </span>
+                  ` : `
+                    <img src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
+                  `}
+                  
+                  ${isYouTube ? `
+                    <div class="absolute inset-0 bg-stone-950/30 flex items-center justify-center group-hover/card:bg-stone-950/10 transition-colors">
+                      <div class="w-12 h-12 rounded-full bg-red-600/90 group-hover/card:bg-red-600 text-white flex items-center justify-center shadow-2xl group-hover/card:scale-110 transition-transform">
+                        <i data-lucide="play" class="w-5 h-5 fill-white text-white ml-0.5"></i>
+                      </div>
+                    </div>
+                  ` : ''}
+
+                  ${isInstagram ? `
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex items-end p-2.5">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-pink-600/90 text-white text-[10px] font-mono tracking-wider shadow">
+                        <i data-lucide="instagram" class="w-3 h-3 text-white"></i> @architecture.basics
+                      </span>
+                    </div>
+                  ` : ''}
+
+                  <span class="absolute top-2 right-2 bg-stone-950/90 text-white border border-stone-600 text-[10px] px-2.5 py-1 tracking-wider uppercase font-mono font-medium shadow-sm">${proj.badge || 'Architectural Work'}</span>
+                </div>
+                
+                <div class="p-4 bg-stone-900/95 space-y-1.5">
+                  <span class="text-[11px] font-mono text-stone-200 block font-medium tracking-wide">${proj.location || ''} &bull; ${proj.area || ''}</span>
+                  <h4 class="font-serif text-base text-white font-medium group-hover/card:text-amber-200 transition-colors line-clamp-1">${proj.title}</h4>
+                  <p class="text-stone-200 text-xs line-clamp-2 leading-relaxed font-light">${proj.desc}</p>
+                </div>
+              </div>
+
+              ${isExternal ? `
+                <div class="px-4 py-2.5 bg-stone-950/60 border-t border-stone-800/80 flex items-center justify-between">
+                  <span class="text-[10px] font-mono tracking-wider uppercase font-semibold ${isYouTube ? 'text-red-400' : 'text-pink-400'} flex items-center gap-1">
+                    <i data-lucide="${isYouTube ? 'youtube' : 'instagram'}" class="w-3.5 h-3.5"></i>
+                    <span>${isYouTube ? 'YouTube Interview' : 'Instagram Channel'}</span>
                   </span>
-                ` : `
-                  <img src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
-                `}
-                <span class="absolute top-2 right-2 bg-stone-950/90 text-white border border-stone-600 text-[10px] px-2.5 py-1 tracking-wider uppercase font-mono font-medium shadow-sm">${proj.badge || 'Architectural Work'}</span>
-              </div>
-              <div class="p-4 bg-stone-900/95 space-y-1.5">
-                <span class="text-[11px] font-mono text-stone-200 block font-medium tracking-wide">${proj.location || ''} &bull; ${proj.area || ''}</span>
-                <h4 class="font-serif text-base text-white font-medium group-hover/card:text-amber-200 transition-colors line-clamp-1">${proj.title}</h4>
-                <p class="text-stone-200 text-xs line-clamp-2 leading-relaxed font-light">${proj.desc}</p>
-              </div>
+                  <a href="${proj.externalUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1 text-[10px] uppercase font-semibold text-stone-300 hover:text-amber-300 transition-colors">
+                    <span>Open ${isYouTube ? 'Video' : 'Profile'}</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-amber-400"></i>
+                  </a>
+                </div>
+              ` : ''}
             </div>
           `;
         });
