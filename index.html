@@ -722,28 +722,265 @@
   <!-- ========================================================================= -->
   <!-- SECTION 3: COLLAPSIBLE TILE PROJECTS (HOVER & CLICK TO EXPAND) -->
   <!-- ========================================================================= -->
-  <section id="projects" class="py-28 px-4 sm:px-6 bg-stone-50">
+  <section id="projects" class="py-24 sm:py-28 px-4 sm:px-6 bg-stone-50">
     <div class="max-w-7xl mx-auto">
       
-      <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-stone-200">
-        <div>
-          <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block mb-2">Curated Portfolios</span>
-          <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal">Spaces We Create</h2>
-        </div>
-        <p class="text-stone-600 text-sm mt-4 md:mt-0 max-w-md text-left md:text-right">
-          Explore a collection of spaces shaped by context, function and detail.
-        </p>
+      <!-- Portfolio Category Tabs Navigation -->
+      <div class="flex items-center gap-2 sm:gap-4 mb-10 border-b border-stone-200 overflow-x-auto pb-1 select-none">
+        <button 
+          type="button" 
+          onclick="switchPortfolioTab('spaces')" 
+          id="portfolio-tab-btn-spaces" 
+          class="portfolio-tab-btn active px-4 sm:px-6 py-3 text-xs sm:text-[13px] font-mono uppercase tracking-wider font-semibold border-b-2 border-stone-900 text-stone-900 flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap"
+        >
+          <i data-lucide="building" class="w-4 h-4 text-stone-900"></i>
+          <span>Spaces We Create</span>
+        </button>
+        <button 
+          type="button" 
+          onclick="switchPortfolioTab('upcoming')" 
+          id="portfolio-tab-btn-upcoming" 
+          class="portfolio-tab-btn px-4 sm:px-6 py-3 text-xs sm:text-[13px] font-mono uppercase tracking-wider font-semibold border-b-2 border-transparent text-stone-500 hover:text-stone-900 flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap"
+        >
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
+          <span>Upcoming</span>
+        </button>
+        <button 
+          type="button" 
+          onclick="switchPortfolioTab('social')" 
+          id="portfolio-tab-btn-social" 
+          class="portfolio-tab-btn px-4 sm:px-6 py-3 text-xs sm:text-[13px] font-mono uppercase tracking-wider font-semibold border-b-2 border-transparent text-stone-500 hover:text-stone-900 flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap"
+        >
+          <i data-lucide="share-2" class="w-4 h-4 text-pink-500"></i>
+          <span>Featured on Social Media</span>
+        </button>
       </div>
 
-      <!-- The 5 Horizontal Typology Column Tiles (Dynamically Rendered from CMS Data) -->
-      <div 
-        id="typology-shelf" 
-        class="flex flex-col lg:flex-row gap-3.5 h-auto lg:h-[620px] w-full transition-all duration-700 select-none"
-        onmouseleave="if (window.innerWidth >= 1024) collapseAllTypologies()"
-      >
-        <!-- Dynamically rendered by renderTypologyShelf() from CMS data -->
+      <!-- TAB PANEL 1: SPACES WE CREATE (THE 4 ARCHITECTURAL TYPOLOGIES) -->
+      <div id="portfolio-panel-spaces" class="portfolio-panel space-y-8 animate-in fade-in duration-300">
+        <div class="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-stone-200">
+          <div>
+            <span class="text-xs uppercase tracking-[0.3em] text-bronze-500 font-semibold block mb-2">Architectural Typologies</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal">Spaces We Create</h2>
+          </div>
+          <p class="text-stone-600 text-sm mt-4 md:mt-0 max-w-md text-left md:text-right">
+            Explore our curated residential, hospitality, corporate, and commercial portfolio.
+          </p>
+        </div>
+
+        <!-- The 4 Horizontal Typology Column Tiles -->
+        <div 
+          id="typology-shelf" 
+          class="flex flex-col lg:flex-row gap-3.5 h-auto lg:h-[620px] w-full transition-all duration-700 select-none"
+          onmouseleave="if (window.innerWidth >= 1024) collapseAllTypologies()"
+        >
+          <!-- Dynamically rendered by renderTypologyShelf() from pureTypologies -->
+        </div>
       </div>
+
+      <!-- TAB PANEL 2: UPCOMING PROJECTS -->
+      <div id="portfolio-panel-upcoming" class="portfolio-panel hidden space-y-8 animate-in fade-in duration-300">
+        <div class="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-stone-200">
+          <div>
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-600 font-semibold block mb-2 font-mono">Forthcoming Masterworks • In Development</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal">Upcoming Projects</h2>
+          </div>
+          <p class="text-stone-600 text-sm mt-4 md:mt-0 max-w-md text-left md:text-right">
+            Exclusive previews and concept motion studies of our upcoming architectural sanctuaries.
+          </p>
+        </div>
+
+        <!-- Grand Featured Video Showcase -->
+        <div class="bg-stone-950 border border-stone-800 rounded-sm overflow-hidden shadow-2xl relative">
+          <div class="relative h-[48vh] sm:h-[58vh] min-h-[380px] w-full overflow-hidden bg-black flex items-center justify-center group/upcoming-hero">
+            <video 
+              id="upcoming-cover-video"
+              src="assets/images/projects/upcoming/cover.mp4" 
+              autoplay 
+              muted 
+              loop 
+              playsinline 
+              class="w-full h-full object-cover group-hover/upcoming-hero:scale-105 transition-transform duration-700 opacity-90"
+            ></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent"></div>
+
+            <div class="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2">
+              <span class="px-3 py-1 bg-amber-400 text-stone-950 text-[10.5px] uppercase font-mono tracking-wider font-bold rounded-xs shadow">
+                Featured Cover Video
+              </span>
+              <span class="px-3 py-1 bg-stone-900/90 text-stone-200 border border-stone-700 text-[10.5px] uppercase font-mono tracking-wider rounded-xs">
+                In Development
+              </span>
+            </div>
+
+            <!-- Play Fullscreen Trigger -->
+            <button 
+              onclick="openProjectModal('Horizon Villa & Sanctuary', 'Upcoming Architectural Sanctuary', 'Indore & Central India', 'In Active Development', 'An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.', 'assets/images/projects/upcoming/01.webp', '%5B%22assets%2Fimages%2Fprojects%2Fupcoming%2F01.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F02.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F03.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F04.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F05.webp%22%5D', 'assets/images/projects/upcoming/cover.mp4');" 
+              class="absolute inset-0 flex items-center justify-center group/play cursor-pointer"
+              title="Watch full presentation"
+            >
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-stone-900/80 border border-amber-400/80 text-amber-300 flex items-center justify-center group-hover/play:scale-110 group-hover/play:bg-amber-400 group-hover/play:text-stone-950 transition-all shadow-2xl backdrop-blur-md">
+                <i data-lucide="play" class="w-7 h-7 sm:w-8 sm:h-8 fill-current ml-1"></i>
+              </div>
+            </button>
+
+            <!-- Bottom Content Overlay -->
+            <div class="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 flex flex-col md:flex-row md:items-end justify-between gap-4 pointer-events-none">
+              <div class="max-w-2xl">
+                <span class="text-amber-400 font-mono text-xs uppercase tracking-widest block mb-1">Architecture Basics Preview</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-white font-medium">Horizon Villa & Sanctuary</h3>
+                <p class="text-stone-300 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                  An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, contextual masonry integration, and bespoke living spaces.
+                </p>
+              </div>
+              <a href="#appointment" class="pointer-events-auto px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-xs uppercase tracking-wider rounded-xs transition-colors shadow whitespace-nowrap self-start md:self-end">
+                Inquire For Upcoming Works &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Preview Gallery Thumbnails -->
+          <div class="p-6 sm:p-8 bg-stone-900 border-t border-stone-800">
+            <span class="text-xs uppercase font-mono tracking-widest text-stone-400 block mb-4">Architectural Renderings & Spatial Progress</span>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
+              
+                <div 
+                  class="group/thumb relative h-28 sm:h-32 rounded-xs overflow-hidden border border-stone-700/80 hover:border-amber-400 transition-all cursor-pointer bg-stone-950" 
+                  onclick="openProjectModal('Horizon Villa & Sanctuary', 'Upcoming Architectural Sanctuary', 'Indore & Central India', 'In Active Development', 'An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.', 'assets/images/projects/upcoming/01.webp', '%5B%22assets%2Fimages%2Fprojects%2Fupcoming%2F01.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F02.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F03.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F04.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F05.webp%22%5D', '');"
+                >
+                  <img src="assets/images/projects/upcoming/01.webp" alt="Upcoming Render 01" class="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-500" />
+                  <span class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-stone-950/90 text-stone-300 font-mono text-[9px] border border-stone-700">01</span>
+                </div>
+              
+                <div 
+                  class="group/thumb relative h-28 sm:h-32 rounded-xs overflow-hidden border border-stone-700/80 hover:border-amber-400 transition-all cursor-pointer bg-stone-950" 
+                  onclick="openProjectModal('Horizon Villa & Sanctuary', 'Upcoming Architectural Sanctuary', 'Indore & Central India', 'In Active Development', 'An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.', 'assets/images/projects/upcoming/02.webp', '%5B%22assets%2Fimages%2Fprojects%2Fupcoming%2F01.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F02.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F03.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F04.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F05.webp%22%5D', '');"
+                >
+                  <img src="assets/images/projects/upcoming/02.webp" alt="Upcoming Render 02" class="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-500" />
+                  <span class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-stone-950/90 text-stone-300 font-mono text-[9px] border border-stone-700">02</span>
+                </div>
+              
+                <div 
+                  class="group/thumb relative h-28 sm:h-32 rounded-xs overflow-hidden border border-stone-700/80 hover:border-amber-400 transition-all cursor-pointer bg-stone-950" 
+                  onclick="openProjectModal('Horizon Villa & Sanctuary', 'Upcoming Architectural Sanctuary', 'Indore & Central India', 'In Active Development', 'An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.', 'assets/images/projects/upcoming/03.webp', '%5B%22assets%2Fimages%2Fprojects%2Fupcoming%2F01.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F02.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F03.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F04.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F05.webp%22%5D', '');"
+                >
+                  <img src="assets/images/projects/upcoming/03.webp" alt="Upcoming Render 03" class="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-500" />
+                  <span class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-stone-950/90 text-stone-300 font-mono text-[9px] border border-stone-700">03</span>
+                </div>
+              
+                <div 
+                  class="group/thumb relative h-28 sm:h-32 rounded-xs overflow-hidden border border-stone-700/80 hover:border-amber-400 transition-all cursor-pointer bg-stone-950" 
+                  onclick="openProjectModal('Horizon Villa & Sanctuary', 'Upcoming Architectural Sanctuary', 'Indore & Central India', 'In Active Development', 'An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.', 'assets/images/projects/upcoming/04.webp', '%5B%22assets%2Fimages%2Fprojects%2Fupcoming%2F01.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F02.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F03.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F04.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F05.webp%22%5D', '');"
+                >
+                  <img src="assets/images/projects/upcoming/04.webp" alt="Upcoming Render 04" class="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-500" />
+                  <span class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-stone-950/90 text-stone-300 font-mono text-[9px] border border-stone-700">04</span>
+                </div>
+              
+                <div 
+                  class="group/thumb relative h-28 sm:h-32 rounded-xs overflow-hidden border border-stone-700/80 hover:border-amber-400 transition-all cursor-pointer bg-stone-950" 
+                  onclick="openProjectModal('Horizon Villa & Sanctuary', 'Upcoming Architectural Sanctuary', 'Indore & Central India', 'In Active Development', 'An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.', 'assets/images/projects/upcoming/05.webp', '%5B%22assets%2Fimages%2Fprojects%2Fupcoming%2F01.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F02.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F03.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F04.webp%22%2C%22assets%2Fimages%2Fprojects%2Fupcoming%2F05.webp%22%5D', '');"
+                >
+                  <img src="assets/images/projects/upcoming/05.webp" alt="Upcoming Render 05" class="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-500" />
+                  <span class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-stone-950/90 text-stone-300 font-mono text-[9px] border border-stone-700">05</span>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB PANEL 3: FEATURED ON SOCIAL MEDIA -->
+      <div id="portfolio-panel-social" class="portfolio-panel hidden space-y-8 animate-in fade-in duration-300">
+        <div class="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-stone-200">
+          <div>
+            <span class="text-xs uppercase tracking-[0.3em] text-pink-600 font-semibold block mb-2 font-mono">Digital Showcase & Interviews</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-stone-900 font-normal">Featured on Social Media</h2>
+          </div>
+          <p class="text-stone-600 text-sm mt-4 md:mt-0 max-w-md text-left md:text-right">
+            Watch our full-length featured architectural interview and follow our daily project chronicles.
+          </p>
+        </div>
+
+        <!-- The 2 Social Media Featured Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- ITEM 1: YOUTUBE FEATURE INTERVIEW -->
+          <div class="bg-stone-900 border border-stone-700/80 hover:border-red-500/80 rounded-sm overflow-hidden shadow-xl transition-all flex flex-col justify-between group/yt cursor-pointer" onclick="openProjectModal('Ar. Ruchir Tiwari on Design, Creativity & Future of Architecture', 'YouTube Exclusive • Knowledge Unplugged', 'YouTube', 'Feature Interview', 'Architect Ruchir Tiwari shares insights on design philosophy, contextual architecture, and creative clarity in an in-depth interview on Knowledge Unplugged by PJ.', 'assets/images/social/youtube-interview.webp', '%5B%22assets%2Fimages%2Fsocial%2Fyoutube-interview.webp%22%5D', '', '', 'https://youtu.be/kWeyeUF2j8M?si=zI7M7HD5JpPINpoY', 'kWeyeUF2j8M', 'youtube');">
+            <div>
+              <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-stone-950">
+                <img src="assets/images/social/youtube-interview.webp" alt="Ar. Ruchir Tiwari YouTube Interview" class="w-full h-full object-cover group-hover/yt:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-stone-950/20 group-hover/yt:bg-stone-950/5 transition-colors flex items-center justify-center">
+                  <div class="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center shadow-2xl group-hover/yt:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-white text-white ml-1"></i>
+                  </div>
+                </div>
+                <span class="absolute top-3 left-3 bg-red-600 text-white font-mono text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-xs shadow">
+                  YouTube Exclusive
+                </span>
+                <span class="absolute bottom-3 right-3 bg-stone-950/90 text-stone-200 font-mono text-[10px] px-2 py-0.5 border border-stone-700">
+                  Full Feature
+                </span>
+              </div>
+
+              <div class="p-6 sm:p-7 space-y-2.5">
+                <span class="text-xs font-mono text-red-400 uppercase tracking-widest font-semibold block">Knowledge Unplugged by PJ</span>
+                <h3 class="font-serif text-2xl text-white font-medium group-hover/yt:text-amber-200 transition-colors">
+                  Ar. Ruchir Tiwari on Design, Creativity & the Future of Architecture
+                </h3>
+                <p class="text-stone-300 text-xs sm:text-sm font-light leading-relaxed">
+                  Architect Ruchir Tiwari discusses studio philosophy, vernacular material honesty, contextual discipline, and the evolving spirit of contemporary architecture.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 flex items-center justify-between border-t border-stone-800/80 mt-4">
+              <span class="text-xs font-mono text-stone-400">Streamed on YouTube</span>
+              <a href="https://youtu.be/kWeyeUF2j8M?si=zI7M7HD5JpPINpoY" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold uppercase tracking-wider rounded-xs transition-colors shadow">
+                <span>Watch on YouTube</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- ITEM 2: OFFICIAL INSTAGRAM CHANNEL -->
+          <div class="bg-stone-900 border border-stone-700/80 hover:border-pink-500/80 rounded-sm overflow-hidden shadow-xl transition-all flex flex-col justify-between group/ig cursor-pointer" onclick="openProjectModal('Architecture Basics Official Instagram', 'Instagram • @architecture.basics', 'Instagram', 'Official Channel', 'Follow our daily architectural narratives, site execution chronicles, material palettes, design reels, and completed projects on our official Instagram channel.', 'assets/images/social/instagram-feed.webp', '%5B%22assets%2Fimages%2Fsocial%2Finstagram-feed.webp%22%5D', '', '', 'https://www.instagram.com/architecture.basics/', '', 'instagram');">
+            <div>
+              <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-stone-950">
+                <img src="assets/images/social/instagram-feed.webp" alt="Architecture Basics Instagram" class="w-full h-full object-cover group-hover/ig:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-stone-950/30 flex flex-col justify-between p-4">
+                  <span class="self-start px-2.5 py-1 bg-gradient-to-r from-pink-600 to-amber-600 text-white font-mono text-[10px] uppercase tracking-wider font-bold rounded-xs shadow">
+                    Official Channel
+                  </span>
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/90 text-white text-xs font-mono border border-stone-700 w-fit backdrop-blur-md shadow">
+                    <i data-lucide="instagram" class="w-4 h-4 text-pink-400"></i>
+                    <span class="font-semibold">@architecture.basics</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-7 space-y-2.5">
+                <span class="text-xs font-mono text-pink-400 uppercase tracking-widest font-semibold block">Instagram Feed &amp; Stories</span>
+                <h3 class="font-serif text-2xl text-white font-medium group-hover/ig:text-amber-200 transition-colors">
+                  Architecture Basics on Instagram
+                </h3>
+                <p class="text-stone-300 text-xs sm:text-sm font-light leading-relaxed">
+                  Join our design community on Instagram for daily construction site updates, architectural reels, material explorations, and behind-the-scenes spatial craft.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 flex items-center justify-between border-t border-stone-800/80 mt-4">
+              <span class="text-xs font-mono text-stone-400">@architecture.basics</span>
+              <a href="https://www.instagram.com/architecture.basics/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white text-xs font-semibold uppercase tracking-wider rounded-xs transition-colors shadow">
+                <span>View Instagram</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2306,6 +2543,47 @@
       localStorage.setItem('studio_total_visits', visits);
     })();
 
+    
+    // =========================================================================
+    // PORTFOLIO TABS ENGINE (SPACES WE CREATE / UPCOMING / SOCIAL MEDIA)
+    // =========================================================================
+    function switchPortfolioTab(tabKey) {
+      const tabs = ['spaces', 'upcoming', 'social'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('portfolio-tab-btn-' + t);
+        const panel = document.getElementById('portfolio-panel-' + t);
+        if (btn) {
+          if (t === tabKey) {
+            btn.classList.add('border-stone-900', 'text-stone-900', 'active');
+            btn.classList.remove('border-transparent', 'text-stone-500');
+          } else {
+            btn.classList.remove('border-stone-900', 'text-stone-900', 'active');
+            btn.classList.add('border-transparent', 'text-stone-500');
+          }
+        }
+        if (panel) {
+          if (t === tabKey) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // Auto-activate tab based on URL hash
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#upcoming') {
+        switchPortfolioTab('upcoming');
+      } else if (hash === '#social' || hash === '#featured') {
+        switchPortfolioTab('social');
+      } else {
+        switchPortfolioTab('spaces');
+      }
+    });
+
     // =========================================================================
     // 1. SCROLLYTELLING VIDEO TIMELINE ENGINE
     // =========================================================================
@@ -3318,7 +3596,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v29';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v30';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3560,71 +3838,6 @@
     ]
   },
   {
-    "name": "Featured on Social Media",
-    "sub": "YouTube Interview • Instagram Official",
-    "img": "assets/images/social/youtube-interview.webp",
-    "tag": "Social Media",
-    "desc": "Watch our exclusive full-length interview on design and architecture, and follow our daily works on Instagram.",
-    "projects": [
-      {
-        "title": "Ar. Ruchir Tiwari on Design, Creativity & the Future of Architecture",
-        "type": "YouTube Feature • Knowledge Unplugged",
-        "location": "YouTube Exclusive",
-        "area": "Full Feature Interview",
-        "badge": "Watch on YouTube",
-        "desc": "Architect Ruchir Tiwari shares his philosophy on design, contextual architecture, and the future of creative practice in an in-depth conversation on Knowledge Unplugged by PJ.",
-        "img": "assets/images/social/youtube-interview.webp",
-        "externalUrl": "https://youtu.be/kWeyeUF2j8M?si=zI7M7HD5JpPINpoY",
-        "youtubeId": "kWeyeUF2j8M",
-        "socialPlatform": "youtube",
-        "images": [
-          "assets/images/social/youtube-interview.webp"
-        ]
-      },
-      {
-        "title": "Architecture Basics Official Instagram",
-        "type": "Instagram • @architecture.basics",
-        "location": "Social Showcase",
-        "area": "Official Channel",
-        "badge": "Follow on Instagram",
-        "desc": "Follow our daily architectural narratives, site execution chronicles, material palettes, design reels, and completed projects on our official Instagram channel.",
-        "img": "assets/images/social/instagram-feed.webp",
-        "externalUrl": "https://www.instagram.com/architecture.basics/",
-        "socialPlatform": "instagram",
-        "images": [
-          "assets/images/social/instagram-feed.webp"
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Upcoming",
-    "sub": "Under Construction • In Development",
-    "img": "assets/images/projects/upcoming/01.webp",
-    "video": "assets/images/projects/upcoming/cover.mp4",
-    "tag": "Upcoming Works",
-    "desc": "Sneak peeks and concept animations of our forthcoming architectural and interior masterworks currently in active development.",
-    "projects": [
-      {
-        "title": "Horizon Villa & Sanctuary",
-        "type": "Upcoming Architectural Project",
-        "location": "Indore & Central India",
-        "area": "In Development",
-        "badge": "Upcoming Project",
-        "video": "assets/images/projects/upcoming/cover.mp4",
-        "img": "assets/images/projects/upcoming/01.webp",
-        "desc": "An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.",
-        "images": [
-          "assets/images/projects/upcoming/01.webp",
-          "assets/images/projects/upcoming/02.webp",
-          "assets/images/projects/upcoming/03.webp",
-          "assets/images/projects/upcoming/04.webp",
-          "assets/images/projects/upcoming/05.webp"
-        ]
-      }
-    ]
-  },
-  {
     "name": "Hospitality",
     "sub": "Luxury Resorts • Wellness Sanctuaries",
     "img": "assets/images/projects/manmath.webp",
@@ -3785,14 +3998,9 @@
       try {
         const parsed = JSON.parse(stored);
         const merged = Object.assign(JSON.parse(JSON.stringify(DEFAULT_CMS)), parsed);
-        const socialTyp = (merged.typologies || []).find(t => t.name === 'Featured on Social Media');
-        const needsReset = !merged.typologies || 
-          !merged.typologies.some(t => t.name === 'Upcoming') || 
-          !socialTyp || 
-          !socialTyp.projects || 
-          socialTyp.projects.length !== 2 || 
-          !socialTyp.projects.some(p => p.externalUrl && p.externalUrl.includes('kWeyeUF2j8M'));
-        if (needsReset) {
+        // Ensure Spaces We Create strictly contains only the 4 authentic architectural typologies
+        const hasExtra = (merged.typologies || []).some(t => t.name === 'Featured on Social Media' || t.name === 'Upcoming');
+        if (!merged.typologies || merged.typologies.length !== 4 || hasExtra) {
           merged.typologies = JSON.parse(JSON.stringify(DEFAULT_CMS.typologies));
         }
         // Ensure seamless edge-to-edge fill without black margins
@@ -3824,6 +4032,7 @@
       const data = getCmsData();
       const targetSrc = isMobile ? (data.videoMobileUrl || 'Sequence 02_ultrasharp.mp4') : (data.videoDesktopUrl || 'Sequence 01_ultrasharp.mp4');
       videoDuration = isMobile ? 35.40 : 33.48;
+      preloadHeroVideoBlob(targetSrc);
 
       const videoEl = document.getElementById('scrolly-video');
       const srcEl = document.getElementById('scrolly-video-source');
