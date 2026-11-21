@@ -500,6 +500,13 @@
   <!-- ========================================================================= -->
   <section id="scrolly-container">
     <div class="sticky-video-viewport flex items-center justify-center bg-stone-950">
+      <!-- Quick Skip Video / Direct Navigation Pill -->
+      <div class="absolute top-5 right-5 sm:top-7 sm:right-8 z-30 pointer-events-auto">
+        <a href="#projects" class="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/85 hover:bg-stone-900 text-stone-200 hover:text-white border border-stone-700/80 backdrop-blur-md text-[11px] uppercase tracking-widest font-semibold shadow-2xl transition-all duration-200 hover:scale-105 hover:border-amber-400">
+          <span>Skip Video</span>
+          <i data-lucide="arrow-down" class="w-3.5 h-3.5 text-amber-400 group-hover:translate-y-0.5 transition-transform"></i>
+        </a>
+      </div>
       <!-- HTML5 Video Scrubbed via Scroll (Desktop Sequence 01 / Mobile Sequence 02) -->
       <video
         id="scrolly-video"
@@ -527,8 +534,10 @@
             At Architecture Basics, we believe every project deserves a considered response. We design through an understanding of context, function, proportion and material, creating spaces that are purposeful, refined and distinctly their own.
           </p>
           <div class="mt-4 flex items-center gap-2 text-stone-400 text-[10px] tracking-widest uppercase">
-            <span>Scroll down to experience the timeline</span>
+            <span>Scroll down to experience timeline</span>
             <i data-lucide="chevron-down" class="w-3.5 h-3.5 animate-bounce text-amberstone-400"></i>
+            <span class="text-stone-600 mx-1">|</span>
+            <a href="#projects" class="pointer-events-auto text-stone-200 hover:text-amber-300 font-semibold underline underline-offset-4 transition-colors">Skip Intro &rarr;</a>
           </div>
         </div>
       </div>
@@ -576,17 +585,30 @@
         </div>
       </div>
 
-      <!-- Scroll Progress Bar & Video Indicator at bottom -->
-      <div class="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 flex items-center justify-between pointer-events-none text-stone-400 text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest">
-        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-          <span class="w-2 h-2 rounded-full bg-bronze-400"></span>
+      <!-- Scroll Progress Bar, Play/Pause Toggle & Skip Intro at bottom -->
+      <div class="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 flex items-center justify-between pointer-events-none text-stone-400 text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest z-30">
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0 pointer-events-auto">
+          <!-- Play / Pause Autoplay Toggle -->
+          <button id="hero-play-toggle-btn" onclick="toggleHeroVideoPlay(event)" type="button" class="flex items-center gap-1.5 px-3 py-1 bg-stone-900/90 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-700/80 rounded-sm shadow-sm transition-all cursor-pointer" title="Toggle Play / Pause Video">
+            <i data-lucide="play" id="hero-play-icon" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span id="hero-play-text" class="text-[10.5px] font-semibold">Play</span>
+          </button>
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
           <span>Scrub: <span id="video-time-display" class="font-mono text-stone-200">0.00s</span></span>
         </div>
-        <div class="w-24 sm:w-64 h-[2px] bg-stone-800 rounded-full overflow-hidden shrink-0 mx-2">
-          <div id="video-progress-bar" class="h-full bg-bronze-400 w-0 transition-all duration-75"></div>
+
+        <div class="w-20 sm:w-56 md:w-72 h-[3px] bg-stone-800/90 rounded-full overflow-hidden shrink-0 mx-2">
+          <div id="video-progress-bar" class="h-full bg-amber-400 w-0 transition-all duration-75"></div>
         </div>
-        <div class="hidden sm:block text-stone-400 font-medium tracking-widest text-[11px] shrink-0" id="hero-indicator-text">
-          Scroll to see the change
+
+        <div class="flex items-center gap-3 shrink-0 pointer-events-auto">
+          <div class="hidden md:block text-stone-400 font-medium tracking-widest text-[10px]" id="hero-indicator-text">
+            Scroll to scrub &bull; or click Play
+          </div>
+          <a href="#projects" class="inline-flex items-center gap-1 px-3 py-1 bg-stone-900/90 hover:bg-stone-800 text-white hover:text-amber-300 border border-stone-700/80 text-[10px] font-semibold uppercase tracking-wider rounded-sm transition-all shadow-sm cursor-pointer">
+            <span>Skip Video</span>
+            <i data-lucide="arrow-down" class="w-3 h-3 text-amber-400"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -1277,42 +1299,48 @@
   <!-- ========================================================================= -->
   <!-- MODAL 1: PROJECT DETAIL MODAL -->
   <!-- ========================================================================= -->
-  <div id="project-modal" class="fixed inset-0 z-50 bg-stone-950/85 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeProjectModal()">
-    <div class="bg-stone-900 max-w-2xl w-full border border-stone-700 shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200" onclick="event.stopPropagation()">
+  <div id="project-modal" class="fixed inset-0 z-50 bg-stone-950/90 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6" onclick="closeProjectModal()">
+    <div class="bg-stone-900 max-w-4xl lg:max-w-5xl w-full border border-stone-700 shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200 rounded-sm" onclick="event.stopPropagation()">
       <!-- Close Button -->
-      <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-stone-900/90 text-white hover:bg-stone-800 border border-stone-600 flex items-center justify-center transition-colors shadow">
+      <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-stone-900/90 text-white hover:bg-stone-800 border border-stone-600 flex items-center justify-center transition-colors shadow cursor-pointer">
         <i data-lucide="x" class="w-5 h-5 text-white"></i>
       </button>
 
-      <div class="h-[40vh] min-h-[300px] w-full flex items-center justify-center overflow-hidden relative bg-stone-950 group/modal-img">
-        <img id="modal-project-img" src="" alt="Project" class="w-full h-full object-contain transition-opacity duration-300" />
-        <!-- Arrows for gallery -->
-        <button id="modal-prev-btn" onclick="prevModalImage(event)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-stone-900/60 hover:bg-stone-900/90 text-white flex items-center justify-center border border-stone-600/50 opacity-0 group-hover/modal-img:opacity-100 transition-opacity hidden z-10">
-          <i data-lucide="chevron-left" class="w-6 h-6"></i>
+      <!-- Uncropped Image & Video Container -->
+      <div class="h-[52vh] sm:h-[60vh] min-h-[350px] sm:min-h-[460px] w-full flex items-center justify-center overflow-hidden relative bg-stone-950 p-2 sm:p-4 group/modal-img select-none">
+        <img id="modal-project-img" src="" alt="Project" class="max-w-full max-h-full w-auto h-auto object-contain transition-opacity duration-200 drop-shadow-xl" />
+        <video id="modal-project-video" src="" autoplay muted loop playsinline controls class="max-w-full max-h-full w-auto h-auto object-contain hidden"></video>
+
+        <!-- Always-Visible Navigation Arrows for Gallery Carousel -->
+        <button id="modal-prev-btn" onclick="prevModalImage(event)" type="button" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-stone-900/85 hover:bg-stone-800 text-white hover:text-amber-300 flex items-center justify-center border border-stone-600/80 shadow-2xl transition-all cursor-pointer hidden z-20 active:scale-95" title="Previous Image">
+          <i data-lucide="chevron-left" class="w-6 h-6 text-white"></i>
         </button>
-        <button id="modal-next-btn" onclick="nextModalImage(event)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-stone-900/60 hover:bg-stone-900/90 text-white flex items-center justify-center border border-stone-600/50 opacity-0 group-hover/modal-img:opacity-100 transition-opacity hidden z-10">
-          <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        <button id="modal-next-btn" onclick="nextModalImage(event)" type="button" class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-stone-900/85 hover:bg-stone-800 text-white hover:text-amber-300 flex items-center justify-center border border-stone-600/80 shadow-2xl transition-all cursor-pointer hidden z-20 active:scale-95" title="Next Image">
+          <i data-lucide="chevron-right" class="w-6 h-6 text-white"></i>
         </button>
-        <!-- Counter -->
-        <div id="modal-img-counter" class="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-stone-900/80 rounded-full text-xs font-mono text-stone-300 border border-stone-600/50 hidden z-10">
-          1 / 1
+
+        <!-- Image Counter -->
+        <div id="modal-img-counter" class="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-stone-900/85 backdrop-blur-md rounded-full text-xs font-mono text-stone-200 border border-stone-600/80 shadow-lg hidden z-20 flex items-center gap-1.5">
+          <i data-lucide="image" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="modal-counter-text">1 / 1</span>
         </div>
       </div>
 
-      <div class="p-8 bg-stone-900 text-white">
+      <!-- Project Details Bar -->
+      <div class="p-6 sm:p-8 bg-stone-900 text-white border-t border-stone-800">
         <div class="flex items-center justify-between mb-2">
           <span id="modal-project-type" class="text-xs font-mono text-amber-300 uppercase tracking-widest font-semibold">Type</span>
           <span id="modal-project-area" class="text-xs font-mono text-stone-300">Area</span>
         </div>
-        <h3 id="modal-project-title" class="font-serif text-3xl text-white font-medium mb-1">Project Name</h3>
-        <span id="modal-project-location" class="text-xs text-stone-300 block mb-4 flex items-center gap-1 font-medium">
+        <h3 id="modal-project-title" class="font-serif text-2xl sm:text-3xl text-white font-medium mb-1">Project Name</h3>
+        <span id="modal-project-location" class="text-xs text-stone-300 block mb-3 flex items-center gap-1 font-medium">
           <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-300"></i>
           Location
         </span>
-        <p id="modal-project-desc" class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Description</p>
+        <p id="modal-project-desc" class="text-stone-200 text-sm leading-relaxed mb-5 font-light">Description</p>
 
         <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
-          <span id="modal-project-badge" class="text-xs text-stone-400 font-mono">Contextual Material Palette</span>
+          <span id="modal-project-badge" class="text-xs text-stone-400 font-mono">Architecture Basics Signature</span>
           <a href="#appointment" onclick="closeProjectModal()" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-white hover:text-amber-300 transition-colors">
             <span>Commission Similar Project</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-white"></i>
@@ -2312,7 +2340,7 @@
       if (video && video.duration && !isNaN(video.duration) && video.duration > 0) {
         videoDuration = video.duration;
       } else {
-        videoDuration = (window.innerWidth < 768) ? 29.33 : 27.24;
+        videoDuration = (window.innerWidth < 768) ? 35.40 : 33.48;
       }
     }
 
@@ -2421,7 +2449,7 @@
 
       // Video reaches the black logo outro by ~92% scroll and holds the iconic
       // Architecture Basics logo on black for the final 8% of the scroll journey
-      const videoProgress = Math.min(1, scrollProgress / 0.92);
+      const videoProgress = Math.min(1, scrollProgress / 0.82);
       const dur = video.duration || videoDuration;
       targetTime = videoProgress * dur;
 
@@ -2433,8 +2461,62 @@
       updateNarrativeSteps(scrollProgress);
     }
 
-    window.addEventListener('scroll', onScrollUpdate, { passive: true });
-    window.addEventListener('touchmove', onScrollUpdate, { passive: true });
+    let isAutoplaying = false;
+
+    function toggleHeroVideoPlay(e) {
+      if (e) e.stopPropagation();
+      const playIcon = document.getElementById('hero-play-icon');
+      const playText = document.getElementById('hero-play-text');
+      
+      if (!isAutoplaying) {
+        isAutoplaying = true;
+        if (playText) playText.textContent = 'Pause';
+        if (playIcon) playIcon.setAttribute('data-lucide', 'pause');
+        video.muted = true;
+        const p = video.play();
+        if (p !== undefined) {
+          p.catch(err => {
+            console.warn("Video play interrupted:", err);
+          });
+        }
+      } else {
+        pauseHeroVideo();
+      }
+      lucide.createIcons();
+    }
+
+    function pauseHeroVideo() {
+      if (!isAutoplaying) return;
+      isAutoplaying = false;
+      const playIcon = document.getElementById('hero-play-icon');
+      const playText = document.getElementById('hero-play-text');
+      if (playText) playText.textContent = 'Play';
+      if (playIcon) playIcon.setAttribute('data-lucide', 'play');
+      if (video) video.pause();
+      lucide.createIcons();
+    }
+
+    video.addEventListener('timeupdate', () => {
+      if (!isAutoplaying) return;
+      const dur = video.duration || videoDuration;
+      const cur = video.currentTime;
+      if (timeDisplay) timeDisplay.textContent = cur.toFixed(2) + 's';
+      const p = Math.min(1, cur / dur);
+      if (progressBar) progressBar.style.width = (p * 100) + '%';
+      updateNarrativeSteps(p);
+      if (cur >= dur - 0.05) {
+        pauseHeroVideo();
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      if (isAutoplaying) pauseHeroVideo();
+      onScrollUpdate();
+    }, { passive: true });
+    window.addEventListener('touchmove', () => {
+      if (isAutoplaying) pauseHeroVideo();
+      onScrollUpdate();
+    }, { passive: true });
     onScrollUpdate();
 
     function updateNarrativeSteps(p) {
@@ -2445,7 +2527,7 @@
       // Step 3: Materiality (48% to 70%)
       setStepOpacity(step3, p >= 0.48 && p < 0.70);
       // Step 4: Completion (70% to 86% - reveals completed villa)
-      setStepOpacity(step4, p >= 0.70 && p < 0.86);
+      setStepOpacity(step4, p >= 0.70 && p < 0.82);
       // 86% to 100%: All narrative text fades out to cleanly present the Architecture Basics logo on pure black!
     }
 
@@ -2553,59 +2635,91 @@
     let currentModalImages = [];
     let currentModalIndex = 0;
 
-    function openProjectModal(title, type, location, area, desc, img, imagesStr) {
+    function openProjectModal(title, type, location, area, desc, img, imagesStr, videoUrl, socialUrl) {
       document.getElementById('modal-project-title').textContent = title;
       document.getElementById('modal-project-type').textContent = type;
       document.getElementById('modal-project-location').innerHTML = `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-stone-400 inline"></i> ${location}`;
       document.getElementById('modal-project-area').textContent = area;
       document.getElementById('modal-project-desc').textContent = desc;
-      
+
+      const modalImg = document.getElementById('modal-project-img');
+      const modalVideo = document.getElementById('modal-project-video');
+
       try {
         currentModalImages = imagesStr ? JSON.parse(decodeURIComponent(imagesStr)) : [];
       } catch(e) {
         currentModalImages = [];
       }
-      
-      if (!currentModalImages || currentModalImages.length === 0) {
-        currentModalImages = [img];
+
+      if (videoUrl && videoUrl !== 'undefined' && videoUrl !== '') {
+        modalVideo.src = videoUrl;
+        modalVideo.classList.remove('hidden');
+        modalImg.classList.add('hidden');
+        currentModalIndex = -1; // playing video
+        const prevBtn = document.getElementById('modal-prev-btn');
+        const nextBtn = document.getElementById('modal-next-btn');
+        const counter = document.getElementById('modal-img-counter');
+        if (prevBtn) prevBtn.classList.add('hidden');
+        if (nextBtn) nextBtn.classList.add('hidden');
+        if (counter) counter.classList.add('hidden');
+      } else {
+        if (modalVideo) {
+          modalVideo.pause();
+          modalVideo.src = '';
+          modalVideo.classList.add('hidden');
+        }
+        modalImg.classList.remove('hidden');
+
+        if (!currentModalImages || currentModalImages.length === 0) {
+          currentModalImages = [img];
+        }
+        currentModalIndex = 0;
+        updateModalImage();
       }
-      
-      currentModalIndex = 0;
-      updateModalImage();
-      
+
       const modal = document.getElementById('project-modal');
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       lucide.createIcons();
     }
-    
+
     function updateModalImage() {
       const imgEl = document.getElementById('modal-project-img');
-      imgEl.src = currentModalImages[currentModalIndex];
-      
+      const videoEl = document.getElementById('modal-project-video');
+
+      if (currentModalIndex >= 0 && currentModalIndex < currentModalImages.length) {
+        if (videoEl) {
+          videoEl.pause();
+          videoEl.classList.add('hidden');
+        }
+        imgEl.classList.remove('hidden');
+        imgEl.src = currentModalImages[currentModalIndex];
+      }
+
       const prevBtn = document.getElementById('modal-prev-btn');
       const nextBtn = document.getElementById('modal-next-btn');
       const counter = document.getElementById('modal-img-counter');
-      
+      const counterText = document.getElementById('modal-counter-text');
+
       if (currentModalImages.length > 1) {
-        prevBtn.classList.remove('hidden');
-        nextBtn.classList.remove('hidden');
-        counter.classList.remove('hidden');
-        counter.textContent = `${currentModalIndex + 1} / ${currentModalImages.length}`;
+        if (prevBtn) prevBtn.classList.remove('hidden');
+        if (nextBtn) nextBtn.classList.remove('hidden');
+        if (counter) counter.classList.remove('hidden');
+        if (counterText) counterText.textContent = `${currentModalIndex + 1} / ${currentModalImages.length}`;
       } else {
-        prevBtn.classList.add('hidden');
-        nextBtn.classList.add('hidden');
-        counter.classList.add('hidden');
+        if (prevBtn) prevBtn.classList.add('hidden');
+        if (nextBtn) nextBtn.classList.add('hidden');
+        if (counter) counter.classList.add('hidden');
       }
     }
-    
+
     function prevModalImage(e) {
       if (e) e.stopPropagation();
       if (currentModalImages.length <= 1) return;
       currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
       updateModalImage();
     }
-    
+
     function nextModalImage(e) {
       if (e) e.stopPropagation();
       if (currentModalImages.length <= 1) return;
@@ -2617,8 +2731,23 @@
       const modal = document.getElementById('project-modal');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+      const modalVideo = document.getElementById('modal-project-video');
+      if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.src = '';
+      }
       currentModalImages = [];
     }
+
+    // Keyboard navigation for project modal
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('project-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        if (e.key === 'ArrowLeft') prevModalImage(e);
+        else if (e.key === 'ArrowRight') nextModalImage(e);
+        else if (e.key === 'Escape') closeProjectModal();
+      }
+    });
 
     // =========================================================================
     // 4. APPOINTMENT BOOKING SYSTEM (CLIENT vs BUSINESS TWO-TRACK)
@@ -3173,7 +3302,7 @@
     // =========================================================================
     // 6. LIVE CMS ENGINE FOR EDITING & UPLOADING EVERY ASPECT
     // =========================================================================
-    const CMS_STORAGE_KEY = 'studio_cms_content_v26';
+    const CMS_STORAGE_KEY = 'studio_cms_content_v27';
 
     const DEFAULT_CMS = {
       announcement1: "ESTABLISHED 2003 · INDORE, INDIA",
@@ -3241,113 +3370,419 @@
       philQuote: "\"We believe architecture is not about adding more, but about making every element matter, in space, in proportion, in material, and in experience.\"",
       philQuoteAuthor: "— Studio Design Ethos",
       typologies: [
-        {
-          name: "Residential",
-          sub: "Private Villas • Bespoke Residences",
-          img: "assets/images/projects/shambhavi.webp",
-          tag: "Context & Proportion",
-          desc: "Private residences and courtyard homes shaped around daily life, light, and tailored spatial proportions.",
-          projects: [
-            {
-              title: "Shambhavi Residence",
-              type: "Bespoke Residence",
-              location: "Indore",
-              area: "Custom Built",
-              badge: "Contextual Design",
-              desc: "A thoughtfully designed private residence balancing modern living with contextual sensitivity.",
-              img: "assets/images/projects/shambhavi.webp",
-              images: ["assets/images/projects/shambhavi/01.webp","assets/images/projects/shambhavi/02.webp","assets/images/projects/shambhavi/03.webp","assets/images/projects/shambhavi/04.webp","assets/images/projects/shambhavi/05.webp","assets/images/projects/shambhavi/06.webp","assets/images/projects/shambhavi/07.webp","assets/images/projects/shambhavi/08.webp","assets/images/projects/shambhavi/09.webp","assets/images/projects/shambhavi/10.webp","assets/images/projects/shambhavi/11.webp","assets/images/projects/shambhavi/12.webp","assets/images/projects/shambhavi/13.webp","assets/images/projects/shambhavi/14.webp"]
-            },
-            {
-              title: "Nilesh Sir Residence",
-              type: "Private Villa",
-              location: "Indore",
-              area: "Custom Built",
-              badge: "Tailored Spaces",
-              desc: "A bespoke residential project emphasizing natural light, functional layout, and refined detailing.",
-              img: "assets/images/projects/nilesh.webp",
-              images: ["assets/images/projects/nilesh/01.webp","assets/images/projects/nilesh/02.webp","assets/images/projects/nilesh/03.webp","assets/images/projects/nilesh/04.webp","assets/images/projects/nilesh/05.webp","assets/images/projects/nilesh/06.webp","assets/images/projects/nilesh/07.webp","assets/images/projects/nilesh/08.webp","assets/images/projects/nilesh/09.webp"]
-            },
-            {
-              title: "Sanas Villa",
-              type: "Private Residence",
-              location: "Shujalpur",
-              area: "Custom Built",
-              badge: "Bespoke Craft",
-              desc: "A residential sanctuary designed for family living with a strong connection to its landscape.",
-              img: "assets/images/projects/sanas.webp",
-              images: ["assets/images/projects/sanas/01.webp","assets/images/projects/sanas/02.webp","assets/images/projects/sanas/03.webp","assets/images/projects/sanas/04.webp","assets/images/projects/sanas/05.webp","assets/images/projects/sanas/06.webp","assets/images/projects/sanas/07.webp","assets/images/projects/sanas/08.webp","assets/images/projects/sanas/09.webp","assets/images/projects/sanas/10.webp","assets/images/projects/sanas/11.webp","assets/images/projects/sanas/12.webp","assets/images/projects/sanas/13.webp","assets/images/projects/sanas/14.webp","assets/images/projects/sanas/15.webp","assets/images/projects/sanas/16.webp","assets/images/projects/sanas/17.webp","assets/images/projects/sanas/18.webp","assets/images/projects/sanas/19.webp","assets/images/projects/sanas/20.webp","assets/images/projects/sanas/21.webp","assets/images/projects/sanas/22.webp","assets/images/projects/sanas/23.webp","assets/images/projects/sanas/24.webp","assets/images/projects/sanas/25.webp","assets/images/projects/sanas/26.webp"]
-            }
-          ]
-        },
-        {
-          name: "Hospitality",
-          sub: "Luxury Resorts • Wellness Sanctuaries",
-          img: "assets/images/projects/manmath.webp",
-          tag: "Experiential Design",
-          desc: "Immersive retreats, boutique lodges, and wellness stays built in harmony with nature and local terrain.",
-          projects: [
-            {
-              title: "Manmath Retreat",
-              type: "Boutique Hotel",
-              location: "Madhya Pradesh",
-              area: "Hospitality Retreat",
-              badge: "Experiential Stay",
-              desc: "An immersive boutique retreat built in harmony with nature and designed for holistic wellness.",
-              img: "assets/images/projects/manmath.webp",
-              images: ["assets/images/projects/manmath/01.webp","assets/images/projects/manmath/02.webp","assets/images/projects/manmath/03.webp","assets/images/projects/manmath/04.webp","assets/images/projects/manmath/05.webp","assets/images/projects/manmath/06.webp","assets/images/projects/manmath/07.webp","assets/images/projects/manmath/08.webp","assets/images/projects/manmath/09.webp","assets/images/projects/manmath/10.webp","assets/images/projects/manmath/11.webp","assets/images/projects/manmath/12.webp","assets/images/projects/manmath/13.webp","assets/images/projects/manmath/14.webp","assets/images/projects/manmath/15.webp"]
-            },
-            {
-              title: "Pitchers Cafe & Bar",
-              type: "Cafe & Lounge",
-              location: "Indore",
-              area: "Social Space",
-              badge: "Dynamic Ambience",
-              desc: "A vibrant hospitality venue characterized by engaging interiors and fluid spatial sequence.",
-              img: "assets/images/projects/pitchers.webp",
-              images: ["assets/images/projects/pitchers/01.webp","assets/images/projects/pitchers/02.webp","assets/images/projects/pitchers/03.webp","assets/images/projects/pitchers/04.webp","assets/images/projects/pitchers/05.webp","assets/images/projects/pitchers/06.webp","assets/images/projects/pitchers/07.webp","assets/images/projects/pitchers/08.webp","assets/images/projects/pitchers/09.webp","assets/images/projects/pitchers/10.webp","assets/images/projects/pitchers/11.webp","assets/images/projects/pitchers/12.webp","assets/images/projects/pitchers/13.webp"]
-            }
-          ]
-        },
-        {
-          name: "Commercial & Corporate",
-          sub: "Corporate Offices • Business Parks",
-          img: "assets/images/projects/office.webp",
-          tag: "Brand & Function",
-          desc: "Corporate headquarters, business parks and mixed-use commercial buildings designed for productivity, presence and long-term performance.",
-          projects: [
-            {
-              title: "Corporate Office Space",
-              type: "Office Interior",
-              location: "Indore",
-              area: "Commercial Setup",
-              badge: "Productive Design",
-              desc: "A corporate environment tailored for optimal workflow, professional presence, and modern aesthetics.",
-              img: "assets/images/projects/office.webp",
-              images: ["assets/images/projects/office/01.webp","assets/images/projects/office/02.webp","assets/images/projects/office/03.webp","assets/images/projects/office/04.webp","assets/images/projects/office/05.webp","assets/images/projects/office/06.webp","assets/images/projects/office/07.webp","assets/images/projects/office/08.webp","assets/images/projects/office/09.webp","assets/images/projects/office/10.webp","assets/images/projects/office/11.webp","assets/images/projects/office/12.webp","assets/images/projects/office/13.webp","assets/images/projects/office/14.webp"]
-            }
-          ]
-        },
-        {
-          name: "Retail & Commercial Interiors",
-          sub: "Showrooms • Flagship Stores • Brand Spaces",
-          img: "assets/images/projects/patel.webp",
-          tag: "Material & Experience",
-          desc: "Retail environments and commercial interiors where spatial sequence, material honesty and brand identity come together with precision.",
-          projects: [
-            {
-              title: "Patel Car Decor",
-              type: "Retail Showroom",
-              location: "Indore",
-              area: "Commercial Retail",
-              badge: "Brand Identity",
-              desc: "A bespoke retail environment designed to highlight product display and streamline customer experience.",
-              img: "assets/images/projects/patel.webp",
-              images: ["assets/images/projects/patel/01.webp","assets/images/projects/patel/02.webp","assets/images/projects/patel/03.webp","assets/images/projects/patel/04.webp","assets/images/projects/patel/05.webp","assets/images/projects/patel/06.webp","assets/images/projects/patel/07.webp","assets/images/projects/patel/08.webp"]
-            }
-          ]
-        },
-        ],
+  {
+    "name": "Residential",
+    "sub": "Private Villas • Bespoke Residences",
+    "img": "assets/images/projects/shambhavi.webp",
+    "tag": "Context & Proportion",
+    "desc": "Private residences and courtyard homes shaped around daily life, light, and tailored spatial proportions.",
+    "projects": [
+      {
+        "title": "Shambhavi Residence",
+        "type": "Bespoke Residence",
+        "location": "Indore",
+        "area": "Custom Built",
+        "badge": "Contextual Design",
+        "desc": "A thoughtfully designed private residence balancing modern living with contextual sensitivity.",
+        "img": "assets/images/projects/shambhavi.webp",
+        "images": [
+          "assets/images/projects/shambhavi/01.webp",
+          "assets/images/projects/shambhavi/02.webp",
+          "assets/images/projects/shambhavi/03.webp",
+          "assets/images/projects/shambhavi/04.webp",
+          "assets/images/projects/shambhavi/05.webp",
+          "assets/images/projects/shambhavi/06.webp",
+          "assets/images/projects/shambhavi/07.webp",
+          "assets/images/projects/shambhavi/08.webp",
+          "assets/images/projects/shambhavi/09.webp",
+          "assets/images/projects/shambhavi/10.webp",
+          "assets/images/projects/shambhavi/11.webp",
+          "assets/images/projects/shambhavi/12.webp",
+          "assets/images/projects/shambhavi/13.webp",
+          "assets/images/projects/shambhavi/14.webp"
+        ]
+      },
+      {
+        "title": "Nilesh Sir Residence",
+        "type": "Private Residence",
+        "location": "Indore",
+        "area": "6,500 sq.ft",
+        "badge": "Under Construction",
+        "desc": "A contemporary residential project integrating indoor-outdoor living with natural illumination.",
+        "img": "assets/images/projects/nilesh.webp",
+        "images": [
+          "assets/images/projects/nilesh/01.webp",
+          "assets/images/projects/nilesh/02.webp",
+          "assets/images/projects/nilesh/03.webp",
+          "assets/images/projects/nilesh/04.webp",
+          "assets/images/projects/nilesh/05.webp",
+          "assets/images/projects/nilesh/06.webp",
+          "assets/images/projects/nilesh/07.webp",
+          "assets/images/projects/nilesh/08.webp",
+          "assets/images/projects/nilesh/09.webp"
+        ]
+      },
+      {
+        "title": "Sanas Villa",
+        "type": "Private Sanctuary",
+        "location": "Shujalpur",
+        "area": "8,200 sq.ft",
+        "badge": "Private Estate",
+        "desc": "A grand residential estate crafted with contextual masonry, generous verandas, and native landscape integration.",
+        "img": "assets/images/projects/sanas.webp",
+        "images": [
+          "assets/images/projects/sanas/01.webp",
+          "assets/images/projects/sanas/02.webp",
+          "assets/images/projects/sanas/03.webp",
+          "assets/images/projects/sanas/04.webp",
+          "assets/images/projects/sanas/05.webp",
+          "assets/images/projects/sanas/06.webp",
+          "assets/images/projects/sanas/07.webp",
+          "assets/images/projects/sanas/08.webp",
+          "assets/images/projects/sanas/09.webp",
+          "assets/images/projects/sanas/10.webp",
+          "assets/images/projects/sanas/11.webp",
+          "assets/images/projects/sanas/12.webp",
+          "assets/images/projects/sanas/13.webp",
+          "assets/images/projects/sanas/14.webp",
+          "assets/images/projects/sanas/15.webp",
+          "assets/images/projects/sanas/16.webp",
+          "assets/images/projects/sanas/17.webp",
+          "assets/images/projects/sanas/18.webp",
+          "assets/images/projects/sanas/19.webp",
+          "assets/images/projects/sanas/20.webp",
+          "assets/images/projects/sanas/21.webp",
+          "assets/images/projects/sanas/22.webp",
+          "assets/images/projects/sanas/23.webp",
+          "assets/images/projects/sanas/24.webp",
+          "assets/images/projects/sanas/25.webp",
+          "assets/images/projects/sanas/26.webp"
+        ]
+      },
+      {
+        "title": "Gopal Ji Gupta Residence",
+        "type": "Contemporary Luxury Residence",
+        "location": "Indore",
+        "area": "Multi-Level Villa",
+        "badge": "Bespoke Residence",
+        "desc": "A commanding contemporary luxury residence featuring striking vertical timber louvers, grand layered terraces, and bespoke architectural craftsmanship.",
+        "img": "assets/images/projects/gopal/01.webp",
+        "images": [
+          "assets/images/projects/gopal/01.webp",
+          "assets/images/projects/gopal/02.webp",
+          "assets/images/projects/gopal/03.webp",
+          "assets/images/projects/gopal/04.webp",
+          "assets/images/projects/gopal/05.webp",
+          "assets/images/projects/gopal/06.webp",
+          "assets/images/projects/gopal/07.webp",
+          "assets/images/projects/gopal/08.webp",
+          "assets/images/projects/gopal/09.webp",
+          "assets/images/projects/gopal/10.webp",
+          "assets/images/projects/gopal/11.webp",
+          "assets/images/projects/gopal/12.webp",
+          "assets/images/projects/gopal/13.webp",
+          "assets/images/projects/gopal/14.webp",
+          "assets/images/projects/gopal/15.webp",
+          "assets/images/projects/gopal/16.webp",
+          "assets/images/projects/gopal/17.webp",
+          "assets/images/projects/gopal/18.webp",
+          "assets/images/projects/gopal/19.webp",
+          "assets/images/projects/gopal/20.webp",
+          "assets/images/projects/gopal/21.webp",
+          "assets/images/projects/gopal/22.webp",
+          "assets/images/projects/gopal/23.webp",
+          "assets/images/projects/gopal/24.webp",
+          "assets/images/projects/gopal/25.webp",
+          "assets/images/projects/gopal/26.webp",
+          "assets/images/projects/gopal/27.webp",
+          "assets/images/projects/gopal/28.webp",
+          "assets/images/projects/gopal/29.webp",
+          "assets/images/projects/gopal/30.webp",
+          "assets/images/projects/gopal/31.webp",
+          "assets/images/projects/gopal/32.webp",
+          "assets/images/projects/gopal/33.webp",
+          "assets/images/projects/gopal/34.webp",
+          "assets/images/projects/gopal/35.webp",
+          "assets/images/projects/gopal/36.webp",
+          "assets/images/projects/gopal/37.webp",
+          "assets/images/projects/gopal/38.webp",
+          "assets/images/projects/gopal/39.webp",
+          "assets/images/projects/gopal/40.webp",
+          "assets/images/projects/gopal/41.webp",
+          "assets/images/projects/gopal/42.webp",
+          "assets/images/projects/gopal/43.webp",
+          "assets/images/projects/gopal/44.webp",
+          "assets/images/projects/gopal/45.webp",
+          "assets/images/projects/gopal/46.webp",
+          "assets/images/projects/gopal/47.webp",
+          "assets/images/projects/gopal/48.webp",
+          "assets/images/projects/gopal/49.webp",
+          "assets/images/projects/gopal/50.webp"
+        ]
+      },
+      {
+        "title": "Prajapati Residence",
+        "type": "Courtyard Living & Interiors",
+        "location": "Indore",
+        "area": "Custom Built",
+        "badge": "Interior Architecture",
+        "desc": "An elegant residence defined by warm wood-clad ceilings, exposed brick courtyard textures, expansive glass partitions, and signature Architecture Basics detailing.",
+        "img": "assets/images/projects/prajapati/01.webp",
+        "images": [
+          "assets/images/projects/prajapati/01.webp",
+          "assets/images/projects/prajapati/02.webp",
+          "assets/images/projects/prajapati/03.webp",
+          "assets/images/projects/prajapati/04.webp",
+          "assets/images/projects/prajapati/05.webp",
+          "assets/images/projects/prajapati/06.webp",
+          "assets/images/projects/prajapati/07.webp",
+          "assets/images/projects/prajapati/08.webp",
+          "assets/images/projects/prajapati/09.webp",
+          "assets/images/projects/prajapati/10.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Featured on Social Media",
+    "sub": "Trending Works • Digital Showcase",
+    "img": "assets/images/projects/gopal/01.webp",
+    "tag": "Social Media",
+    "desc": "Our widely celebrated architectural projects featured across digital platforms, design magazines, and social media showcases.",
+    "projects": [
+      {
+        "title": "Gopal Ji Gupta Residence",
+        "type": "Featured Residence",
+        "location": "Indore",
+        "area": "Bespoke Built",
+        "badge": "Featured on Social Media",
+        "desc": "A widely acclaimed luxury residence celebrated for its vertical timber louver facade, dynamic terrace gardens, and sophisticated spatial planning.",
+        "img": "assets/images/projects/gopal/01.webp",
+        "images": [
+          "assets/images/projects/gopal/01.webp",
+          "assets/images/projects/gopal/02.webp",
+          "assets/images/projects/gopal/03.webp",
+          "assets/images/projects/gopal/04.webp",
+          "assets/images/projects/gopal/05.webp",
+          "assets/images/projects/gopal/06.webp",
+          "assets/images/projects/gopal/07.webp",
+          "assets/images/projects/gopal/08.webp",
+          "assets/images/projects/gopal/09.webp",
+          "assets/images/projects/gopal/10.webp",
+          "assets/images/projects/gopal/11.webp",
+          "assets/images/projects/gopal/12.webp",
+          "assets/images/projects/gopal/13.webp",
+          "assets/images/projects/gopal/14.webp",
+          "assets/images/projects/gopal/15.webp",
+          "assets/images/projects/gopal/16.webp",
+          "assets/images/projects/gopal/17.webp",
+          "assets/images/projects/gopal/18.webp",
+          "assets/images/projects/gopal/19.webp",
+          "assets/images/projects/gopal/20.webp",
+          "assets/images/projects/gopal/21.webp",
+          "assets/images/projects/gopal/22.webp",
+          "assets/images/projects/gopal/23.webp",
+          "assets/images/projects/gopal/24.webp",
+          "assets/images/projects/gopal/25.webp",
+          "assets/images/projects/gopal/26.webp",
+          "assets/images/projects/gopal/27.webp",
+          "assets/images/projects/gopal/28.webp",
+          "assets/images/projects/gopal/29.webp",
+          "assets/images/projects/gopal/30.webp",
+          "assets/images/projects/gopal/31.webp",
+          "assets/images/projects/gopal/32.webp",
+          "assets/images/projects/gopal/33.webp",
+          "assets/images/projects/gopal/34.webp",
+          "assets/images/projects/gopal/35.webp",
+          "assets/images/projects/gopal/36.webp",
+          "assets/images/projects/gopal/37.webp",
+          "assets/images/projects/gopal/38.webp",
+          "assets/images/projects/gopal/39.webp",
+          "assets/images/projects/gopal/40.webp",
+          "assets/images/projects/gopal/41.webp",
+          "assets/images/projects/gopal/42.webp",
+          "assets/images/projects/gopal/43.webp",
+          "assets/images/projects/gopal/44.webp",
+          "assets/images/projects/gopal/45.webp",
+          "assets/images/projects/gopal/46.webp",
+          "assets/images/projects/gopal/47.webp",
+          "assets/images/projects/gopal/48.webp",
+          "assets/images/projects/gopal/49.webp",
+          "assets/images/projects/gopal/50.webp"
+        ]
+      },
+      {
+        "title": "Prajapati Residence",
+        "type": "Featured Interior & Architecture",
+        "location": "Indore",
+        "area": "Custom Designed",
+        "badge": "Featured on Social Media",
+        "desc": "A standout project showcasing serene interior courtyard integration, natural brick masonry, fine carpentry, and timeless contextual aesthetics.",
+        "img": "assets/images/projects/prajapati/01.webp",
+        "images": [
+          "assets/images/projects/prajapati/01.webp",
+          "assets/images/projects/prajapati/02.webp",
+          "assets/images/projects/prajapati/03.webp",
+          "assets/images/projects/prajapati/04.webp",
+          "assets/images/projects/prajapati/05.webp",
+          "assets/images/projects/prajapati/06.webp",
+          "assets/images/projects/prajapati/07.webp",
+          "assets/images/projects/prajapati/08.webp",
+          "assets/images/projects/prajapati/09.webp",
+          "assets/images/projects/prajapati/10.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Upcoming",
+    "sub": "Under Construction • In Development",
+    "img": "assets/images/projects/upcoming/01.webp",
+    "video": "assets/images/projects/upcoming/cover.mp4",
+    "tag": "Upcoming Works",
+    "desc": "Sneak peeks and concept animations of our forthcoming architectural and interior masterworks currently in active development.",
+    "projects": [
+      {
+        "title": "Horizon Villa & Sanctuary",
+        "type": "Upcoming Architectural Project",
+        "location": "Indore & Central India",
+        "area": "In Development",
+        "badge": "Upcoming Project",
+        "video": "assets/images/projects/upcoming/cover.mp4",
+        "img": "assets/images/projects/upcoming/01.webp",
+        "desc": "An exclusive look at our forthcoming residential sanctuary, showcasing progressive form studies, sustainable integration, and bespoke living spaces.",
+        "images": [
+          "assets/images/projects/upcoming/01.webp",
+          "assets/images/projects/upcoming/02.webp",
+          "assets/images/projects/upcoming/03.webp",
+          "assets/images/projects/upcoming/04.webp",
+          "assets/images/projects/upcoming/05.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Hospitality",
+    "sub": "Luxury Resorts • Wellness Sanctuaries",
+    "img": "assets/images/projects/manmath.webp",
+    "tag": "Atmospheric & Cultural",
+    "desc": "Destination resorts, boutique hotels, and serene retreats crafted to evoke peace and connection.",
+    "projects": [
+      {
+        "title": "Manmath Retreat",
+        "type": "Boutique Hotel & Resort",
+        "location": "Boutique Retreat",
+        "area": "14 Keys + Spa",
+        "badge": "Completed Work",
+        "desc": "A tranquil boutique hotel in harmony with nature, prioritizing natural materials and calming proportions.",
+        "img": "assets/images/projects/manmath.webp",
+        "images": [
+          "assets/images/projects/manmath/01.webp",
+          "assets/images/projects/manmath/02.webp",
+          "assets/images/projects/manmath/03.webp",
+          "assets/images/projects/manmath/04.webp",
+          "assets/images/projects/manmath/05.webp",
+          "assets/images/projects/manmath/06.webp",
+          "assets/images/projects/manmath/07.webp",
+          "assets/images/projects/manmath/08.webp",
+          "assets/images/projects/manmath/09.webp",
+          "assets/images/projects/manmath/10.webp",
+          "assets/images/projects/manmath/11.webp",
+          "assets/images/projects/manmath/12.webp",
+          "assets/images/projects/manmath/13.webp",
+          "assets/images/projects/manmath/14.webp",
+          "assets/images/projects/manmath/15.webp"
+        ]
+      },
+      {
+        "title": "Pitchers Cafe & Bar",
+        "type": "Bespoke Hospitality",
+        "location": "Indore",
+        "area": "Social Space",
+        "badge": "Completed Work",
+        "desc": "A vibrant hospitality venue characterized by engaging interiors and fluid spatial sequence.",
+        "img": "assets/images/projects/pitchers.webp",
+        "images": [
+          "assets/images/projects/pitchers/01.webp",
+          "assets/images/projects/pitchers/02.webp",
+          "assets/images/projects/pitchers/03.webp",
+          "assets/images/projects/pitchers/04.webp",
+          "assets/images/projects/pitchers/05.webp",
+          "assets/images/projects/pitchers/06.webp",
+          "assets/images/projects/pitchers/07.webp",
+          "assets/images/projects/pitchers/08.webp",
+          "assets/images/projects/pitchers/09.webp",
+          "assets/images/projects/pitchers/10.webp",
+          "assets/images/projects/pitchers/11.webp",
+          "assets/images/projects/pitchers/12.webp",
+          "assets/images/projects/pitchers/13.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Commercial & Corporate",
+    "sub": "Corporate Offices • Business Parks",
+    "img": "assets/images/projects/office.webp",
+    "tag": "Efficiency & Form",
+    "desc": "Thoughtful office spaces engineered for productivity, natural daylight, and enduring quality.",
+    "projects": [
+      {
+        "title": "Corporate Office Space",
+        "type": "Corporate Workspace",
+        "location": "Indore",
+        "area": "4,200 sq.ft",
+        "badge": "Commercial Space",
+        "desc": "Modern corporate interior space designed for fluid collaboration and acoustic comfort.",
+        "img": "assets/images/projects/office.webp",
+        "images": [
+          "assets/images/projects/office/01.webp",
+          "assets/images/projects/office/02.webp",
+          "assets/images/projects/office/03.webp",
+          "assets/images/projects/office/04.webp",
+          "assets/images/projects/office/05.webp",
+          "assets/images/projects/office/06.webp",
+          "assets/images/projects/office/07.webp",
+          "assets/images/projects/office/08.webp",
+          "assets/images/projects/office/09.webp",
+          "assets/images/projects/office/10.webp",
+          "assets/images/projects/office/11.webp",
+          "assets/images/projects/office/12.webp",
+          "assets/images/projects/office/13.webp",
+          "assets/images/projects/office/14.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Retail & Commercial Interiors",
+    "sub": "Showrooms • Flagship Stores • Brand Spaces",
+    "img": "assets/images/projects/patel.webp",
+    "tag": "Experiential Retail",
+    "desc": "Immersive retail environments and experiential interiors curated to elevate brand presence.",
+    "projects": [
+      {
+        "title": "Patel Car Decor",
+        "type": "Retail & Commercial Interior",
+        "location": "Indore",
+        "area": "Premium Retail",
+        "badge": "Commercial Interior",
+        "desc": "A contemporary commercial showroom optimizing product presentation through focused lighting and clean geometry.",
+        "img": "assets/images/projects/patel.webp",
+        "images": [
+          "assets/images/projects/patel/01.webp",
+          "assets/images/projects/patel/02.webp",
+          "assets/images/projects/patel/03.webp",
+          "assets/images/projects/patel/04.webp",
+          "assets/images/projects/patel/05.webp",
+          "assets/images/projects/patel/06.webp",
+          "assets/images/projects/patel/07.webp",
+          "assets/images/projects/patel/08.webp"
+        ]
+      }
+    ]
+  }
+],
       galleryItems: [],
       customSections: [],
       aboutTitle: "Over Two Decades of Designing with Purpose.",
@@ -3387,6 +3822,9 @@
       try {
         const parsed = JSON.parse(stored);
         const merged = Object.assign(JSON.parse(JSON.stringify(DEFAULT_CMS)), parsed);
+        if (!merged.typologies || !merged.typologies.some(t => t.name === 'Upcoming') || !merged.typologies.some(t => t.name === 'Featured on Social Media')) {
+          merged.typologies = JSON.parse(JSON.stringify(DEFAULT_CMS.typologies));
+        }
         // Ensure seamless edge-to-edge fill without black margins
         if (!merged.videoFitMode || merged.videoFitMode === 'contain') {
           merged.videoFitMode = 'cover';
@@ -3465,10 +3903,20 @@
           const safeDesc = (proj.desc || '').replace(/'/g, "\\'");
           const safeImg = (proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80').replace(/'/g, "\\'");
 
+          const safeVideo = (proj.video || '').replace(/'/g, "\\'");
+          const safeSocial = (proj.socialUrl || '').replace(/'/g, "\\'");
+
           cardsHtml += `
-            <div class="bg-stone-900 border border-stone-700/80 hover:border-stone-400 transition-all rounded-sm overflow-hidden group/card cursor-pointer shadow-md" onclick="openProjectModal('${safeTitle}', '${safeType}', '${safeLoc}', '${safeArea}', '${safeDesc}', '${safeImg}', '${encodeURIComponent(JSON.stringify(proj.images || []))}'); event.stopPropagation();">
+            <div class="bg-stone-900 border border-stone-700/80 hover:border-amber-400/80 transition-all rounded-sm overflow-hidden group/card cursor-pointer shadow-md" onclick="openProjectModal('${safeTitle}', '${safeType}', '${safeLoc}', '${safeArea}', '${safeDesc}', '${safeImg}', '${encodeURIComponent(JSON.stringify(proj.images || []))}', '${safeVideo}', '${safeSocial}'); event.stopPropagation();">
               <div class="h-36 overflow-hidden relative bg-stone-950">
-                <img src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
+                ${proj.video ? `
+                  <video src="${proj.video}" autoplay muted loop playsinline class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"></video>
+                  <span class="absolute bottom-2 left-2 bg-stone-950/90 text-amber-300 border border-amber-500/40 text-[9px] px-2 py-0.5 tracking-wider uppercase font-mono font-medium shadow flex items-center gap-1">
+                    <i data-lucide="play" class="w-2.5 h-2.5 fill-amber-300"></i> Video Cover
+                  </span>
+                ` : `
+                  <img src="${proj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'}" alt="${proj.title}" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" />
+                `}
                 <span class="absolute top-2 right-2 bg-stone-950/90 text-white border border-stone-600 text-[10px] px-2.5 py-1 tracking-wider uppercase font-mono font-medium shadow-sm">${proj.badge || 'Architectural Work'}</span>
               </div>
               <div class="p-4 bg-stone-900/95 space-y-1.5">
@@ -3487,11 +3935,11 @@
             onmouseenter="if (window.innerWidth >= 1024) expandTypology(${idx})"
             onclick="handleTypologyClick(${idx})"
           >
-            <img 
-              src="${typ.img || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'}" 
-              alt="${typ.name}" 
-              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-            />
+            ${typ.video ? `
+    <video src="${typ.video}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></video>
+  ` : `
+    <img src="${typ.img || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'}" alt="${typ.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+  `}
             <div class="absolute inset-0 bg-gradient-to-t from-stone-950/95 via-stone-900/60 to-stone-950/30 transition-opacity duration-500"></div>
 
             <!-- COMPACT VIEW -->
