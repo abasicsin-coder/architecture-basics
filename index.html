@@ -348,19 +348,11 @@
         linear-gradient(to bottom, rgba(140, 132, 116, 0.05) 1px, transparent 1px);
     }
 
-    /* Video scrollytelling container: 500vh ensures generous scroll travel so video plays completely before unpinning */
+    /* Hero cinematic video container: 100vh full-screen panel that autoplays smoothly and scrolls away naturally */
     #scrolly-container {
-      height: 500vh;
-      position: relative;
-      width: 100%;
-    }
-
-    .sticky-video-viewport {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
       height: 100vh;
       height: 100dvh;
+      position: relative;
       width: 100%;
       overflow: hidden;
     }
@@ -502,122 +494,21 @@
   </header>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 1: SCROLLYTELLING HERO (SCROLL-DRIVEN VIDEO TIMELINE) -->
+  <!-- SECTION 1: HERO CINEMATIC VIDEO (AUTOPLAYS & SCROLLS NATURALLY) -->
   <!-- ========================================================================= -->
-  <section id="scrolly-container">
-    <div class="sticky-video-viewport flex items-center justify-center bg-stone-950">
-      <!-- Quick Skip Video / Direct Navigation Pill -->
-      <div class="absolute top-5 right-5 sm:top-7 sm:right-8 z-30 pointer-events-auto">
-        <a href="#philosophy" class="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/85 hover:bg-stone-900 text-stone-200 hover:text-white border border-stone-700/80 backdrop-blur-md text-[11px] uppercase tracking-widest font-semibold shadow-2xl transition-all duration-200 hover:scale-105 hover:border-amber-400">
-          <span>Skip Video</span>
-          <i data-lucide="arrow-down" class="w-3.5 h-3.5 text-amber-400 group-hover:translate-y-0.5 transition-transform"></i>
-        </a>
-      </div>
-      <!-- HTML5 Video Scrubbed via Scroll (Desktop Sequence 01 / Mobile Sequence 02) -->
-      <video
-        id="scrolly-video"
-        preload="auto"
-        muted
-        playsinline
-        webkit-playsinline
-        class="w-full h-full object-cover"
-      >
-        <source id="scrolly-video-source" src="Sequence 01_ultrasharp.mp4" type="video/mp4" />
-      </video>
-
-      <!-- Soft localized corner shadow behind narrative text -->
-      <div class="absolute bottom-0 left-0 w-full sm:w-2/3 h-80 bg-gradient-to-tr from-stone-950/85 via-stone-950/25 to-transparent pointer-events-none"></div>
-
-      <!-- Scrollytelling Narrative Step 1: Genesis -->
-      <div id="step-1" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-100 transform translate-y-0">
-        <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-          <img id="hero-logo-img" src="logo-white.png" alt="Architecture Basics Logo" class="h-8 sm:h-9 w-auto mb-2 object-contain opacity-95 filter drop-shadow" />
-          <span id="hero-step-1-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Architectural Manifest</span>
-          <h1 id="hero-step-1-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
-            <span class="sr-only">Architecture Basics &mdash; Contextual Architecture &amp; Bespoke Design Studio. </span>Architecture Begins With Intent.<br/><span class="italic text-stone-300 font-serif">It Takes Form Through Space, Material &amp; Light.</span>
-          </h1>
-          <p id="hero-step-1-desc" class="text-stone-300/90 text-xs sm:text-[13px] font-light tracking-wide leading-relaxed max-w-md">
-            At Architecture Basics, we believe every project deserves a considered response. We design through an understanding of context, function, proportion and material, creating spaces that are purposeful, refined and distinctly their own.
-          </p>
-          <div class="mt-4 flex items-center gap-2 text-stone-400 text-[10px] tracking-widest uppercase">
-            <span>Scroll down to experience timeline</span>
-            <i data-lucide="chevron-down" class="w-3.5 h-3.5 animate-bounce text-amberstone-400"></i>
-            <span class="text-stone-600 mx-1">|</span>
-            <a href="#philosophy" class="pointer-events-auto text-stone-200 hover:text-amber-300 font-semibold underline underline-offset-4 transition-colors">Skip Intro &rarr;</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scrollytelling Narrative Step 2: Context -->
-      <div id="step-2" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-0 transform translate-y-6">
-        <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-          <span id="hero-step-2-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 01 / Context</span>
-          <h2 id="hero-step-2-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
-            Rooted in Context.<br /><span class="italic text-stone-300 font-serif">Designed for Living.</span>
-          </h2>
-          <p id="hero-step-2-desc" class="text-stone-300/90 text-xs sm:text-[13px] font-light leading-relaxed max-w-md">
-            Responding to climate, site orientation, and surroundings to create architecture that feels naturally rooted in its setting.
-          </p>
-        </div>
-      </div>
-
-      <!-- Scrollytelling Narrative Step 3: Materiality -->
-      <div id="step-3" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-0 transform translate-y-6">
-        <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-          <span id="hero-step-3-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 02 / Materiality</span>
-          <h2 id="hero-step-3-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
-            Honest Materiality.<br /><span class="italic text-stone-300 font-serif">Refined Details.</span>
-          </h2>
-          <p id="hero-step-3-desc" class="text-stone-300/90 text-xs sm:text-[13px] font-light leading-relaxed max-w-md">
-            Selecting materials with purpose, texture, and character to create spaces with warmth, depth, and enduring beauty.
-          </p>
-        </div>
-      </div>
-
-      <!-- Scrollytelling Narrative Step 4: Process & Clarity -->
-      <div id="step-4" class="absolute inset-0 flex flex-col justify-end items-start pb-20 sm:pb-24 px-4 sm:px-14 md:px-20 text-left transition-all duration-300 pointer-events-none opacity-0 transform translate-y-6">
-        <div class="max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-          <span id="hero-step-4-eyebrow" class="text-[10px] uppercase tracking-[0.3em] text-amberstone-400 font-sans font-medium mb-1 block">Ethos 03 / Clarity</span>
-          <h2 id="hero-step-4-title" class="font-serif text-xl sm:text-2xl md:text-3xl text-stone-100 font-light leading-snug tracking-wide mb-2">
-            From Concept to Completion.
-          </h2>
-          <p id="hero-step-4-desc" class="text-stone-300/90 text-xs sm:text-[13px] font-light leading-relaxed max-w-md mb-4">
-            A disciplined design methodology translating vision into buildable architecture through precise drawings and dedicated site execution.
-          </p>
-          <a href="#philosophy" class="pointer-events-auto inline-flex items-center gap-2 px-4 py-2 bg-stone-100/95 text-stone-900 text-[10px] tracking-widest uppercase hover:bg-white transition-colors border border-stone-300 shadow">
-            <span>Explore Philosophy</span>
-            <i data-lucide="arrow-down" class="w-3.5 h-3.5 text-stone-800"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Scroll Progress Bar, Play/Pause Toggle & Skip Intro at bottom -->
-      <div class="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 flex items-center justify-between pointer-events-none text-stone-400 text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest z-30">
-        <div class="flex items-center gap-2 sm:gap-3 shrink-0 pointer-events-auto">
-          <!-- Play / Pause Autoplay Toggle -->
-          <button id="hero-play-toggle-btn" onclick="toggleHeroVideoPlay(event)" type="button" class="flex items-center gap-1.5 px-3 py-1 bg-stone-900/90 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-700/80 rounded-sm shadow-sm transition-all cursor-pointer" title="Toggle Play / Pause Video">
-            <i data-lucide="play" id="hero-play-icon" class="w-3.5 h-3.5 text-amber-400"></i>
-            <span id="hero-play-text" class="text-[10.5px] font-semibold">Play</span>
-          </button>
-          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-          <span>Scrub: <span id="video-time-display" class="font-mono text-stone-200">0.00s</span></span>
-        </div>
-
-        <div class="w-20 sm:w-56 md:w-72 h-[3px] bg-stone-800/90 rounded-full overflow-hidden shrink-0 mx-2">
-          <div id="video-progress-bar" class="h-full bg-amber-400 w-0 transition-all duration-75"></div>
-        </div>
-
-        <div class="flex items-center gap-3 shrink-0 pointer-events-auto">
-          <div class="hidden md:block text-stone-400 font-medium tracking-widest text-[10px]" id="hero-indicator-text">
-            Scroll to scrub &bull; or click Play
-          </div>
-          <a href="#philosophy" class="inline-flex items-center gap-1 px-3 py-1 bg-stone-900/90 hover:bg-stone-800 text-white hover:text-amber-300 border border-stone-700/80 text-[10px] font-semibold uppercase tracking-wider rounded-sm transition-all shadow-sm cursor-pointer">
-            <span>Skip Video</span>
-            <i data-lucide="arrow-down" class="w-3 h-3 text-amber-400"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+  <section id="scrolly-container" class="relative w-full h-screen h-[100dvh] bg-stone-950 overflow-hidden">
+    <video
+      id="scrolly-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+      preload="auto"
+      class="w-full h-full object-cover"
+    >
+      <source id="scrolly-video-source" src="Sequence 01_ultrasharp.mp4" type="video/mp4" />
+    </video>
   </section>
 
   <!-- ========================================================================= -->
@@ -2952,230 +2843,39 @@
     }
 
     // =========================================================================
-    // 1. SCROLLYTELLING VIDEO TIMELINE ENGINE
+    // 1. HERO VIDEO AUTOPLAY ENGINE (NATURAL SCROLL, CONTINUOUS AUTOPLAY)
     // =========================================================================
-    const video = document.getElementById('scrolly-video');
-    const scrollyContainer = document.getElementById('scrolly-container');
-    const timeDisplay = document.getElementById('video-time-display');
-    const progressBar = document.getElementById('video-progress-bar');
-    
-    // Narrative steps
-    const step1 = document.getElementById('step-1');
-    const step2 = document.getElementById('step-2');
-    const step3 = document.getElementById('step-3');
-    const step4 = document.getElementById('step-4');
+    const heroVideo = document.getElementById("scrolly-video");
 
-    let videoDuration = (window.innerWidth < 768) ? 35.40 : 33.48; // Full duration including black logo outro
-    let targetTime = 0;
-    let isSeeking = false;
-
-    function syncDuration() {
-      if (video && video.duration && !isNaN(video.duration) && video.duration > 0) {
-        videoDuration = video.duration;
-      } else {
-        videoDuration = (window.innerWidth < 768) ? 35.40 : 33.48;
-      }
-    }
-
-    video.addEventListener('loadedmetadata', syncDuration);
-    video.addEventListener('durationchange', syncDuration);
-    video.addEventListener('loadeddata', syncDuration);
-    video.addEventListener('canplay', syncDuration);
-    if (video.readyState >= 1) syncDuration();
-
-    // In Chrome, prime the video decoder on first interaction so frames render immediately
-    let isPrimed = false;
-    function primeVideo() {
-      if (isPrimed || !video) return;
-      isPrimed = true;
-      video.muted = true;
-      const p = video.play();
-      if (p !== undefined) {
-        p.then(() => {
-          video.pause();
-          seekToTarget();
-        }).catch(() => {
-          seekToTarget();
+    function ensureHeroVideoPlayback() {
+      if (!heroVideo) return;
+      heroVideo.muted = true;
+      heroVideo.playsInline = true;
+      heroVideo.loop = true;
+      const playPromise = heroVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Retry on first user gesture if browser autoplay policy delays playback
+          const startPlay = () => {
+            if (heroVideo && heroVideo.paused) {
+              heroVideo.play().catch(() => {});
+            }
+          };
+          window.addEventListener("click", startPlay, { once: true });
+          window.addEventListener("touchstart", startPlay, { once: true });
+          window.addEventListener("scroll", startPlay, { once: true });
+          window.addEventListener("wheel", startPlay, { once: true });
         });
       }
     }
 
-    window.addEventListener('scroll', primeVideo, { passive: true, once: true });
-    window.addEventListener('wheel', primeVideo, { passive: true, once: true });
-    window.addEventListener('touchstart', primeVideo, { passive: true, once: true });
-    window.addEventListener('click', primeVideo, { passive: true, once: true });
-
-    // High-performance silky-smooth video scrubbing engine with linear interpolation (lerp)
-    let currentSmoothTime = 0;
-    let pendingTargetTime = null;
-    let seekSafetyTimer = null;
-
-    function seekToTime(timeVal) {
-      if (!video) return;
-      const dur = video.duration || videoDuration;
-      // Clamp to ensure we can reach the exact final frame without exceeding
-      const clamped = Math.max(0, Math.min(timeVal, dur - 0.02));
-
-      if (timeDisplay) {
-        timeDisplay.textContent = clamped.toFixed(2) + 's';
-      }
-
-      // If a seek is currently in flight, queue the latest smoothed timestamp
-      if (isSeeking) {
-        pendingTargetTime = clamped;
-        return;
-      }
-
-      // Only seek if difference exceeds half a frame (~20ms) to maximize performance
-      if (Math.abs(video.currentTime - clamped) >= 0.02) {
-        isSeeking = true;
-        clearTimeout(seekSafetyTimer);
-        seekSafetyTimer = setTimeout(() => { isSeeking = false; }, 80);
-
-        if (typeof video.fastSeek === 'function') {
-          video.fastSeek(clamped);
-        } else {
-          video.currentTime = clamped;
-        }
-      }
+    if (heroVideo) {
+      ensureHeroVideoPlayback();
+      heroVideo.addEventListener("canplay", ensureHeroVideoPlayback, { once: true });
+      heroVideo.addEventListener("loadeddata", ensureHeroVideoPlayback, { once: true });
     }
-
-    video.addEventListener('seeked', () => {
-      clearTimeout(seekSafetyTimer);
-      isSeeking = false;
-      if (pendingTargetTime !== null) {
-        const next = pendingTargetTime;
-        pendingTargetTime = null;
-        if (Math.abs(video.currentTime - next) >= 0.02) {
-          seekToTime(next);
-        }
-      }
-    });
-
-    // 60FPS animation loop provides butter-smooth interpolation between mouse wheel ticks
-    function renderScrollyFrame() {
-      const delta = targetTime - currentSmoothTime;
-      if (Math.abs(delta) > 0.001) {
-        // 0.15 damping provides responsive yet cinematic fluid momentum
-        currentSmoothTime += delta * 0.15;
-      } else {
-        currentSmoothTime = targetTime;
-      }
-
-      seekToTime(currentSmoothTime);
-      requestAnimationFrame(renderScrollyFrame);
-    }
-    requestAnimationFrame(renderScrollyFrame);
-
-    // Responsive scroll listener: scrubs smoothly through full video to the black logo outro
-    function onScrollUpdate() {
-      if (!scrollyContainer) return;
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      const containerHeight = scrollyContainer.offsetHeight;
-      const windowHeight = window.innerHeight;
-
-      const totalScrollable = containerHeight - windowHeight;
-
-      // Scroll progress from 0 (top) to 1 (bottom of scrolly container)
-      let scrollProgress = scrollY / (totalScrollable > 0 ? totalScrollable : 1);
-      scrollProgress = Math.max(0, Math.min(1, scrollProgress));
-
-      // Video reaches the black logo outro by ~92% scroll and holds the iconic
-      // Architecture Basics logo on black for the final 8% of the scroll journey
-      const videoProgress = Math.min(1, scrollProgress / 0.82);
-      const dur = video.duration || videoDuration;
-      targetTime = videoProgress * dur;
-
-      if (progressBar) {
-        progressBar.style.width = (scrollProgress * 100) + '%';
-      }
-
-      // Choreograph narrative overlay steps based on scroll progress
-      updateNarrativeSteps(scrollProgress);
-    }
-
-    let isAutoplaying = false;
-
-    function toggleHeroVideoPlay(e) {
-      if (e) e.stopPropagation();
-      const playIcon = document.getElementById('hero-play-icon');
-      const playText = document.getElementById('hero-play-text');
-      
-      if (!isAutoplaying) {
-        isAutoplaying = true;
-        if (playText) playText.textContent = 'Pause';
-        if (playIcon) playIcon.setAttribute('data-lucide', 'pause');
-        video.muted = true;
-        const p = video.play();
-        if (p !== undefined) {
-          p.catch(err => {
-            console.warn("Video play interrupted:", err);
-          });
-        }
-      } else {
-        pauseHeroVideo();
-      }
-      lucide.createIcons();
-    }
-
-    function pauseHeroVideo() {
-      if (!isAutoplaying) return;
-      isAutoplaying = false;
-      const playIcon = document.getElementById('hero-play-icon');
-      const playText = document.getElementById('hero-play-text');
-      if (playText) playText.textContent = 'Play';
-      if (playIcon) playIcon.setAttribute('data-lucide', 'play');
-      if (video) video.pause();
-      lucide.createIcons();
-    }
-
-    video.addEventListener('timeupdate', () => {
-      if (!isAutoplaying) return;
-      const dur = video.duration || videoDuration;
-      const cur = video.currentTime;
-      if (timeDisplay) timeDisplay.textContent = cur.toFixed(2) + 's';
-      const p = Math.min(1, cur / dur);
-      if (progressBar) progressBar.style.width = (p * 100) + '%';
-      updateNarrativeSteps(p);
-      if (cur >= dur - 0.05) {
-        pauseHeroVideo();
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      if (isAutoplaying) pauseHeroVideo();
-      onScrollUpdate();
-    }, { passive: true });
-    window.addEventListener('touchmove', () => {
-      if (isAutoplaying) pauseHeroVideo();
-      onScrollUpdate();
-    }, { passive: true });
-    onScrollUpdate();
-
-    function updateNarrativeSteps(p) {
-      // Step 1: Genesis (0% to 22%)
-      setStepOpacity(step1, p >= 0 && p < 0.22);
-      // Step 2: Context (22% to 48%)
-      setStepOpacity(step2, p >= 0.22 && p < 0.48);
-      // Step 3: Materiality (48% to 70%)
-      setStepOpacity(step3, p >= 0.48 && p < 0.70);
-      // Step 4: Completion (70% to 86% - reveals completed villa)
-      setStepOpacity(step4, p >= 0.70 && p < 0.82);
-      // 86% to 100%: All narrative text fades out to cleanly present the Architecture Basics logo on pure black!
-    }
-
-    function setStepOpacity(el, active) {
-      if (!el) return;
-      if (active) {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-        el.style.pointerEvents = 'auto';
-      } else {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(1.5rem)';
-        el.style.pointerEvents = 'none';
-      }
-    }
+    window.addEventListener("DOMContentLoaded", ensureHeroVideoPlayback);
+    window.addEventListener("load", ensureHeroVideoPlayback);
 
     // =========================================================================
     // 2. HORIZONTAL TYPOLOGY SHELF (SIDE-BY-SIDE WITH AUTO-COLLAPSE ON MOUSELEAVE)
@@ -4420,7 +4120,9 @@
               const isPaused = videoEl.paused;
               videoEl.src = blobUrl;
               videoEl.currentTime = curTime;
-              if (!isPaused) videoEl.play().catch(() => {});
+              videoEl.muted = true;
+              videoEl.loop = true;
+              videoEl.play().catch(() => {});
             }
           }
         })
@@ -4432,31 +4134,29 @@
 
     function initResponsiveVideo(force = false) {
       const isMobile = window.innerWidth < 768;
-      const targetType = isMobile ? 'mobile' : 'desktop';
+      const targetType = isMobile ? "mobile" : "desktop";
 
       if (!force && currentActiveVideoType === targetType) return;
       currentActiveVideoType = targetType;
 
       const data = getCmsData();
-      const targetSrc = isMobile ? (data.videoMobileUrl || 'Sequence 02_ultrasharp.mp4') : (data.videoDesktopUrl || 'Sequence 01_ultrasharp.mp4');
-      videoDuration = isMobile ? 35.40 : 33.48;
+      const targetSrc = isMobile ? (data.videoMobileUrl || "Sequence 02_ultrasharp.mp4") : (data.videoDesktopUrl || "Sequence 01_ultrasharp.mp4");
       preloadHeroVideoBlob(targetSrc);
 
-      const videoEl = document.getElementById('scrolly-video');
-      const srcEl = document.getElementById('scrolly-video-source');
+      const videoEl = document.getElementById("scrolly-video");
+      const srcEl = document.getElementById("scrolly-video-source");
 
       if (videoEl && srcEl) {
-        videoEl.style.objectFit = data.videoFitMode || 'cover';
-        const currentSrc = srcEl.getAttribute('src') || '';
+        videoEl.style.objectFit = data.videoFitMode || "cover";
+        videoEl.muted = true;
+        videoEl.loop = true;
+        const currentSrc = srcEl.getAttribute("src") || "";
         if (currentSrc !== targetSrc) {
-          // Src changed — reset prime so the new video gets primed on next interaction
-          isPrimed = false;
           srcEl.src = targetSrc;
           videoEl.load();
-          videoEl.addEventListener('loadedmetadata', syncDuration, { once: true });
-        } else {
-          // Same src — just sync duration, don't reload
-          syncDuration();
+          videoEl.play().catch(() => {});
+        } else if (videoEl.paused) {
+          videoEl.play().catch(() => {});
         }
       }
     }
